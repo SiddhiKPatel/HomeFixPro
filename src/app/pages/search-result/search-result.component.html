@@ -1,0 +1,460 @@
+<app-search-header></app-search-header>
+<!-- Homefix slider Area Start -->
+<div class="progectBox pt-60 pb-120">
+    <div class="container">
+        <div class="row mt--30 flex-lg-row flex-column-reverse">
+            <div class="col-xl-4 col-lg-6 mt-30">
+                <div class="ssidebar">
+                    <div class="card result_card ">
+                        <div class="card-body topb">
+                            <p class="card-title" style="color: #FAFAFB;">Filters</p>
+                            <p class="card-para">Find the right person for your Problem. </p>
+
+                            <ul class="starbox">
+                                <li><a href="#0">1 <i class="icofont-star"></i></a></li>
+                                <li><a href="#0">2 <i class="icofont-star"></i></a></li>
+                                <li><a href="#0">3 <i class="icofont-star"></i></a></li>
+                                <li><a href="#0">4 <i class="icofont-star"></i></a></li>
+                                <li><a href="#0">5 <i class="icofont-star"></i></a></li>
+                            </ul>
+
+                            <div class="mt-4">
+                                <button type="button" class="btn btn-sm ps-2 pe-2" style="background: #00A3FF;
+                                    color: white; border-radius: 10px;">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="pb-2" style="font-size: 16px; font-weight: 600; color: #44444F;;">All Worker</p>
+                        <div class="input-group mb-3 srch">
+                            <input type="text" class="form-control border-end-0" placeholder="Search"
+                                aria-label="Search" aria-describedby="basic-addon1">
+                            <span type="button" class="input-group-text bg-white border-start-0" id="basic-addon1"><i
+                                    class="bi bi-search"></i></span>
+                        </div>
+
+                        <ul class="checklist">
+                            <li><a [routerLink]="['/search-result']"
+                                [queryParams]="{ keyword: 'all', zipcode: zipcode}"> <span>View All </span> <span class="two"></span> </a></li>
+                            <li><a *ngFor="let c of categoryList" [routerLink]="['/search-result']"
+                                [queryParams]="{ keyword: c.slug, zipcode: zipcode}"> <span>{{c.name}} </span> <span class="two"> </span> </a></li>
+                            <!-- <li><a href="#0"> <span>Drywall </span> <span class="two"> </span> </a></li>
+                            <li><a href="#0"> <span>General Carpentry </span> <span class="two"> 365 </span> </a></li>
+                            <li><a href="#0"> <span>Framing </span> <span class="two"> 104 </span> </a></li>
+                            <li><a href="#0"> <span>Finish Carpentry </span> <span class="two"> 46 </span> </a></li>
+                            <li><a href="#0"> <span>Flooring Installation </span> <span class="two"> 129 </span> </a>
+                            </li>
+                            <li><a href="#0"> <span>Electrical </span> <span class="two"> 118</span> </a></li>
+                            <li><a href="#0"> <span>Elevator mechanic </span> <span class="two"> 97</span> </a></li> -->
+                        </ul>
+
+                        <div class="mt-5">
+                            <p class="pb-2" style="font-size: 16px; font-weight: 600; color: #44444F;">Frequency</p>
+                            <div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="c1" checked>
+                                    <label class="form-check-label" for="c1" style="color: #44444F;font-size: 14px;">
+                                        Just Once
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="c12">
+                                    <label class="form-check-label" for="c12" style="color: #44444F;font-size: 14px;">
+                                        Every Week
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="c13">
+                                    <label class="form-check-label" for="c13" style="color: #44444F;font-size: 14px;">
+                                        Every two week
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="c14">
+                                    <label class="form-check-label" for="c14" style="color: #44444F;font-size: 14px;">
+                                        Once a month
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8  col-lg-6 ">
+                <!-- <div class="row">
+                    <div class="col-xl-12 mt-5"> -->
+                <!-- <form action="#0" class="slider_sea_form mb-2">
+                            <div class="slide_from_fileds">
+                                <div class="slide_form_field_inner">
+                                    <input type="search" placeholder="What's on your to-do list?">
+                                </div>
+                                <div class="slide_form_field_inner zip_c">
+                                    <i class="bi bi-geo-alt icofont-bubble-down"></i>
+                                    <input type="text" placeholder="Zip Code">
+                                </div>
+                                <input class="search" type="submit" value="Search">
+                            </div>
+                        </form> -->
+                <!-- <h4 class="h4h m-0"> Top 3 House Cleaners based on our Settle. <button
+                                type="reset">reset</button> </h4> -->
+                <!-- </div>
+                </div> -->
+                <div class="row" *ngIf="serviceList && serviceList.data">
+                    <div class="col-xl-6" *ngFor="let service of serviceList.data">
+                        <div class="proj_single_items mt-30 " [routerLink]="['/project-details', service.slug]">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img [src]="image_path && service.gallery[0] ? image_path + service?.gallery[0].file : ''"
+                                        onerror="this.src='assets/images/no-image.png';" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                        <!-- clients thumb -->
+                                        <div class="proj_client_thumb">
+                                            <img [src]="image_path && service.user && service.user.avatar ? image_path + service.user.avatar : ''"
+                                                onerror="this.src='./assets/images/Group2094.png';" alt="">
+                                        </div>
+                                        <!-- clients name -->
+                                        <a [routerLink]="['/project-details', service.slug]" class="proj_client_name">
+                                            <h4 class="client_name">{{ service && service.user &&
+                                                service.user.name ? service.user.name : 'Admin'}}</h4>
+                                            <span *ngFor="let t of service.tag">{{t.name}}</span>
+                                        </a>
+                                        <!-- ratting area -->
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="javascript:void(0);">
+                                            <h3 class="proj_single_item_tilte">{{service.title}} </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="javascript:void(0);" class="button1  me-2 ">View Details</a>
+                                        <a href="javascript:void(0);">
+                                            <i class="icofont-chat pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-6">
+                        <div class="proj_single_items mt-30 ">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img src="assets/images/blog/s2.png" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                       
+                                        <div class="proj_client_thumb">
+                                            <img src="assets/images/home/proj_client_img.png" alt="">
+                                        </div>
+                                       
+                                        <a href="#0" class="proj_client_name">
+                                            <h4 class="client_name">Bijoy Roy</h4>
+                                            <span>top worker</span>
+                                        </a>
+                                       
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="#0">
+                                            <h3 class="proj_single_item_tilte">You will get solution
+                                                for plumbing </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="#0" class="button1 me-2">View Details</a>
+                                        <a href="contactprice">
+                                            <i class="icofont-chat  pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="proj_single_items mt-30 ">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img src="assets/images/blog/s1.png" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                       
+                                        <div class="proj_client_thumb">
+                                            <img src="assets/images/home/proj_client_img.png" alt="">
+                                        </div>
+                                       
+                                        <a href="#0" class="proj_client_name">
+                                            <h4 class="client_name">Bijoy Roy</h4>
+                                            <span>top worker</span>
+                                        </a>
+                                       
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="#0">
+                                            <h3 class="proj_single_item_tilte">You will get solution
+                                                for plumbing </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="#0" class="button1  me-2 ">View Details</a>
+                                        <a href="contactprice">
+                                            <i class="icofont-chat pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="proj_single_items mt-30 ">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img src="assets/images/home/proj_1.png" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                       
+                                        <div class="proj_client_thumb">
+                                            <img src="assets/images/home/proj_client_img.png" alt="">
+                                        </div>
+                                       
+                                        <a href="#0" class="proj_client_name">
+                                            <h4 class="client_name">Bijoy Roy</h4>
+                                            <span>top worker</span>
+                                        </a>
+                                       
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="#0">
+                                            <h3 class="proj_single_item_tilte">You will get solution
+                                                for plumbing </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="#0" class="button1 me-2">View Details</a>
+                                        <a href="contactprice">
+                                            <i class="icofont-chat  pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="proj_single_items mt-30 ">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img src="assets/images/blog/s2.png" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                       
+                                        <div class="proj_client_thumb">
+                                            <img src="assets/images/home/proj_client_img.png" alt="">
+                                        </div>
+                                       
+                                        <a href="#0" class="proj_client_name">
+                                            <h4 class="client_name">Bijoy Roy</h4>
+                                            <span>top worker</span>
+                                        </a>
+                                       
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="#0">
+                                            <h3 class="proj_single_item_tilte">You will get solution
+                                                for plumbing </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="#0" class="button1  me-2 ">View Details</a>
+                                        <a href="contactprice">
+                                            <i class="icofont-chat pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="proj_single_items mt-30 ">
+                            <div class="proj_single_inner">
+                                <div class="proj_single_thumb">
+                                    <img src="assets/images/home/proj_1.png" alt="">
+                                </div>
+                                <div class="proj_single_content">
+                                    <div class="proj_single_cont_inner">
+                                       
+                                        <div class="proj_client_thumb">
+                                            <img src="assets/images/home/searchResultTwo.png" alt="">
+                                        </div>
+                                      
+                                        <a href="#0" class="proj_client_name">
+                                            <h4 class="client_name">Bijoy Roy</h4>
+                                            <span>top worker</span>
+                                        </a>
+                                       
+                                        <div class="proj_ratting">
+                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                            <span class="proj_reviews">( 11 reviews)</span>
+                                        </div>
+                                    </div>
+                                    <div class="proj_single_item_title">
+                                        <a href="#0">
+                                            <h3 class="proj_single_item_tilte">You will get solution
+                                                for plumbing </h3>
+                                        </a>
+                                    </div>
+                                    <div class="group-btn">
+                                        <a href="#0" class="button1 me-2">View Details</a>
+                                        <a href="contactprice">
+                                            <i class="icofont-chat  pe-1"></i>
+                                            Contact for price
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-12">
+                        <ul class="pagination justify-content-center mt-4">
+                            <li class="page-item "><a class="page-link active" href="#0">1</a> </li>
+                            <li class="page-item"><a class="page-link" href="#0">2</a> </li>
+                            <li class="page-item"><a class="page-link" href="#0">3</a> </li>
+                            <li class="page-item"><a class="page-link active" href="#0">NEXT</a> </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix slider Area End -->
+
+<!-- Homefix Works Area Start -->
+<section class="homefix_works_area pt-120 pb-120">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xxl-12">
+                <h3 class="section_title pb-2">How it Works</h3>
+            </div>
+            <!-- end section title -->
+        </div>
+        <!-- works items -->
+        <div class="row">
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7">
+                <div class="works_single_item single_1">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont">
+                            <!-- works icons -->
+                            <div class="works_icons">
+                                <i><img src="assets/images/icon/hicon-1.png" alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">1. Tell us what your home needs</h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center">From routine maintenance and repairs to dream
+                                home renovations, we can help with
+                                any project — big or small.</p>
+                            <!-- works bg img -->
+                            <div class="works_bg_img d-md-block d-none ">
+                                <img src="assets/images/home/works_bg.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-5">
+                <div class="works_single_item single_2">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont work_cont">
+                            <!-- works icons -->
+                            <div class="works_icons">
+                                <i><img src="assets/images/icon/hicon-2.png" alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">2. We’ll match you with personalized solutions
+                            </h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center">See your price and book services in an instant.
+                                Or, request and compare
+                                quotes
+                                from highly rated pros near you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7">
+                <div class="works_single_item single_3">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont">
+
+                            <!-- works icons -->
+
+                            <div class="works_icons">
+                                <i><img src="assets/images/icon/hicon-3.png" alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">3. Start to finish, we’ve got you covered</h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center">When you book and pay with Homefixpros, you’re
+                                covered by our Happiness
+                                Guarantee. We’ll cover your projects up to full purchase price, plus limited
+                                damage protection.</p>
+
+                            <div class="works_bg_img  d-md-block d-none">
+                                <img src="assets/images/home/works_bg1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end works single item -->
+            <!-- works learnmore btn -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-5">
+                <div class="works_learnmore">
+                    <a href="#">Learn More</a>
+                </div>
+                <!-- end works learnmore btn -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Homefix Works Area -->
+<app-footer></app-footer>

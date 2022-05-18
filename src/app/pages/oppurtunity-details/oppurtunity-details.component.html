@@ -1,0 +1,91 @@
+<app-header></app-header>
+<!-- Homefix oppurtunity area start -->
+<div class="oppurtunity pt-60 pb-60">
+    <div class="container ">
+        <div class="row mt--30">
+            <div class="col-lg-8 mt-30">
+                <div class="left-box">
+                    <h2 class="fs-2">{{jobDetails?.title}}</h2>
+                    <p>3 hours ago. <br /> <a href="#" style="color: #00A3FF; font-size: 14px;"
+                            class="text-decoration-none">1 pro responded</a></p>
+                    <p class="fs-3 mt-3" style="font-weight: 600;">Job Responsibilities</p>
+                    <!-- <p style="text-align: justify;">is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in the
+                        1960s with the release of Letraset sheets containing
+                        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                        PageMaker including versions of Lorem Ipsum.</p> -->
+                    <p style="text-align: justify;" [innerHTML]="jobDetails?.body"></p>
+                    <div class="mt-3" *ngIf="jobDetails && jobDetails.gallery && image_path">
+                        <p class="fs-4">Project photos</p>
+                        <div id="image-gallery">
+                            <div class="row g-3 mt-1">
+                                <div class="col-lg-3 col-md-4 col-6" *ngFor="let g of jobDetails.gallery">
+                                    <img [src]="image_path + g.file" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-1.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-2.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-3.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-4.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-5.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-6.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-7.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-9.png" alt="Image" class="img-fluid rounded-1">
+                                </div> -->
+                            </div>
+                            <!-- End row -->
+                            <!-- <button type="button" class="button1 mt-4">Show More</button> -->
+                        </div>
+                        <!-- End image gallery -->
+                    </div>
+                    <!-- End container -->
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-7 mt-30">
+                <div class="bg-white rounded-3 px-5 py-4 shadow-sm">
+
+                    <div class="d-grid gap-2 ">
+                        <button *ngIf="jobDetails && jobDetails.slug" class="btn btn-primary" type="button" [routerLink]="['/send-proposals', jobDetails.slug]"><i class="bi bi-envelope-fill me-3"></i>Send
+                            Proposals</button>
+                        <button class="btn btn-outline-primary mt-3" type="button"> <span
+                                style="text-align: left; display: inline-block;">Share now</span> <i
+                                class="bi bi-share-fill ms-5"></i></button>
+                    </div>
+                    <div class="mt-3">
+                        <p class="fs-4 fw-bold text-dark" *ngIf="jobDetails && jobDetails.created_at">
+                            {{jobDetails.created_at
+                            | date: 'mediumDate'}}</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Location</p>
+                        <p class="">Seattle</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Frequency</p>
+                        <p class="">Every 2 weeks</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Experience</p>
+                        <p class="">10 years</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Delivery Time</p>
+                        <p>{{jobDetails?.delivery_time.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix oppurtunity area end -->
+<app-footer></app-footer>

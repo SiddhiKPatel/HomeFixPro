@@ -1,0 +1,23 @@
+.invalid-feedback{
+    display: block;
+    text-align: left;
+}
+.login-form{
+    border: none;
+    padding: 0;
+}
+.input_checked label{
+    width: auto;
+}
+.remember label{
+    width: auto;
+}
+.pt-85{
+    padding-top: 85px;
+}
+.form_title .login_form_title{
+    color: black;
+}
+input{
+    cursor: auto;
+}

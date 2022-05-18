@@ -1,0 +1,747 @@
+<app-header></app-header>
+
+<div>
+    <div class="mx-auto container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row d-flex align-items-start">
+                    <div class="col-md-4  messages pt-4">
+                        <div class="">
+                            <div class="nav list-group flex-md-column  nav-pills me-3" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                <div class="row mb-3">
+                                    <div class="col-md-8 col-8">
+                                        <p><span class="fw-normal fs-4 me-2" style="font-weight: 700;">Inbox</span>
+                                            <!-- <span style="font-size: 14px;">(98 messages)</span> -->
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 col-4 pt-2">
+                                        <div class="text-end">
+                                            <div type="button" class=" position-relative "> <img
+                                                    src="./assets/images/Bell.png" />
+                                                <span
+                                                    class="position-absolute top-0 start-1 translate-middle badge rounded-pill bg-primary">
+                                                    {{all_user_unread_message}} <span class="visually-hidden">unread
+                                                        messages</span> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9 col-9">
+                                        <div class="d-grid gap-2 ">
+                                            <button class="btn text-white" style="background-color: #00A3FF;"
+                                                type="button" [routerLink]="['/project-status']">Active project</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-3 p-0">
+                                        <div class="text-end"> <img src="./assets/images/Filter.png" alt=""> </div>
+                                    </div>
+                                </div>
+                                <li class="nav-link active list-group-item " id="v-pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                    aria-selected="true" style="height: 70px;" *ngFor="let u of usersList"
+                                    (click)="fetchMessages(u)">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative chat-users"> <img [src]="u.avatar_url"
+                                                    class="img-fluid " />
+                                                <span *ngIf="u.chat_status == 'online'"
+                                                    class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span
+                                                    style="font-weight: 800;">{{u.name}}</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">{{u.last_message
+                                                    && u.last_message.message ? u.last_message.message : ''}}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;">
+                                                <!-- <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span> -->
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle"
+                                                    *ngIf="u.unread">{{u.unread}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- <li class="nav-link list-group-item " id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-profile" type="button" role="tab"
+                                    aria-controls="v-pills-profile" aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                    class="position-absolute bottom-0 start-1 translate-middle border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 800;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-link list-group-item" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-messages" type="button" role="tab"
+                                    aria-controls="v-pills-messages" aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                    class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 800;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-link list-group-item" id="v-pills-settings-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-settings" type="button" role="tab"
+                                    aria-controls="v-pills-settings" aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                    class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 500;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-link list-group-item" id="v-pills-chat-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-chat" type="button" role="tab" aria-controls="v-pills-chat"
+                                    aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                    class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 500;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-link list-group-item" id="v-pills-chat-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-chat" type="button" role="tab" aria-controls="v-pills-chat"
+                                    aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                    class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                    style="background-color: #00DD85;"> <span
+                                                        class="visually-hidden">New alerts</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 500;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li> 
+                                <li class="nav-link list-group-item" id="v-pills-chat-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-chat" type="button" role="tab" aria-controls="v-pills-chat"
+                                    aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                          class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                          style="background-color: #00DD85;">
+                                                          <span class="visually-hidden">New alerts</span>
+                                                      </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 500;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="nav-link list-group-item" id="v-pills-chat-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-chat" type="button" role="tab" aria-controls="v-pills-chat"
+                                    aria-selected="false" style="height: 70px;">
+                                    <div class="row">
+                                        <div class="col-md-2 col-2">
+                                            <div class="position-relative"> <img src="./assets/images/Oval1.png"
+                                                    class="img-fluid " />
+                                                <span
+                                                      class="position-absolute bottom-0 start-1 translate-middle p-1 border border-light rounded-circle profileDetailImg"
+                                                      style="background-color: #00DD85;">
+                                                      <span class="visually-hidden">New alerts</span>
+                                                  </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-9">
+                                            <p style="line-height: 20px;"><span style="font-weight: 500;">Charlie
+                                                    Willson</span> <br />
+                                                <span class="text-secondary" style="font-size: 14px;">Hey
+                                                    Iconspace</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-1 col-1">
+                                            <p style="line-height: 20px;"> <span class="text-secondary"
+                                                    style="font-size: 14px;">2m</span>
+                                                <br />
+                                                <span class="badge bg-primary rounded-circle">2</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 pos" style="padding-bottom: 150px;">
+                        <div class="tab-content " id="v-pills-tabContent" #scrollMe>
+                            <!-- Account setting -->
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                aria-labelledby="v-pills-home-tab">
+                                <div class="">
+                                    <div class="fixed position bg-white pt-0" style="position: fixed;">
+                                        <div class="row border-bottom" *ngIf="oppositeUser">
+                                            <div class="col-md-8">
+                                                <div class="row">
+                                                    <div class="col-md-2 pe-0 user-msg-detsils"> <img
+                                                            [src]="oppositeUser.avatar_url" alt="" srcset=""> </div>
+                                                    <div class="col-md-10 ps-0">
+                                                        <p style="line-height: 23px;">{{oppositeUser.name}} <br />
+                                                            <span class="badge p-0 bg-success rounded-circle"
+                                                                style="line-height: .75;"
+                                                                *ngIf="fetchMessagesRes?.sender.chat_status == 'online'">
+                                                                <span style="visibility: hidden;">n</span> </span>
+                                                            <span class="badge p-0 bg-offline rounded-circle"
+                                                                style="line-height: .75;"
+                                                                *ngIf="fetchMessagesRes?.sender.chat_status != 'online'">
+                                                                <span style="visibility: hidden;">n</span> </span>
+                                                            {{fetchMessagesRes?.sender.chat_status == 'online' ?
+                                                            'Online' :
+                                                            'Offline'}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <!-- <div class="text-end"> <span
+                                                        class=" p-2 badge bg-light shadow me-2 rounded-pill"
+                                                        style="color: blue;"> <i
+                                                            class="bi bi-camera-video-fill"></i></span> <span
+                                                        class=" p-2 badge bg-light rounded-pill shadow text-success"> <i
+                                                            class="bi bi-telephone-fill"></i></span> </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top: 100px;">
+                                        <div *ngFor="let msg of fetchMessagesDetails">
+                                            <div class="row" *ngIf="msg.from_user_id != current_user.id">
+                                                <div class="col-md-8 ">
+                                                    <div class="" *ngIf="msg.message_type == 3">
+                                                        <!-- <p class="  "><span
+                                                        class="bg-light text-dark p-3 border rounded-pill  mt-3 ">lorem
+                                                        ipsum dolor sit amet.</span> </p> -->
+                                                        <p class="rounded-pill ">
+                                                            <span
+                                                                class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">
+                                                                {{msg.message}}
+                                                            </span>
+                                                        </p>
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+                                                    <div class="text-left" *ngIf="msg.message_type == 4">
+                                                        <img [src]="image_path && msg.file_name ? image_path + msg.file_name : ''"
+                                                        onerror="this.src='assets/images/no-image.png';" width="150" alt="">
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="text-center" *ngIf="msg.message_type == 8">
+                                                        <span
+                                                                class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">
+                                                                {{msg.message}}
+                                                            </span>
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="text-center" *ngIf="msg.message_type == 9">
+                                                        <span
+                                                                class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">
+                                                                {{msg.message}}
+                                                            </span>
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="border border-1 mt-3" *ngIf="msg.message_type == 6">
+                                                        <p class="card-header fw-bold text-dark fs-5"
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.title">
+                                                            {{fetchMessagesRes.job.title}}</p>
+                                                        <div class="card-body">
+                                                            <p class="card-title">Your Contract includes</p>
+                                                            <!-- <pre>{{msg | json}}</pre> -->
+                                                            <p *ngIf="msg.contract && msg.contract.amount">Amount:
+                                                                ${{msg.contract.amount}}</p>
+                                                            <p class="card-text text-dark"
+                                                                *ngIf="oppositeUser && oppositeUser.delivery_times && msg.contract">
+                                                                <img src="./assets/images/Group2231.png" alt=""
+                                                                    srcset="">
+
+                                                                <span *ngFor="let d of oppositeUser.delivery_times">
+                                                                    <span *ngIf="msg.contract.delivery_time_id == d.id">
+                                                                        {{d.name}} delivery</span>
+                                                                </span>
+                                                            </p>
+                                                            <div class="text-end"> <a
+                                                                    *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.slug"
+                                                                    [routerLink]="['/contract', fetchMessagesRes.job.slug]"
+                                                                    class="btn btn-link text-decoration-none text-secondary">View
+                                                                    Contract</a>
+                                                                <a href="javascript:void(0);" class="btn"
+                                                                    *ngIf="fetchMessagesRes && fetchMessagesRes.can_accept_contract == '1'"
+                                                                    style="background:#00A3FF; color: white;"
+                                                                    (click)="acceptContract(msg.contract_id)">
+                                                                    Accept</a>
+                                                                <a href="javascript:void(0);" class="btn"
+                                                                    *ngIf="fetchMessagesRes && fetchMessagesRes.can_accept_contract == 0"
+                                                                    style="background:#999999; color: rgb(255, 255, 255);">
+                                                                    Accepted</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                            <div class="row" *ngIf="msg.from_user_id == current_user.id">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-8 mt-3 pr">
+                                                    <div class="" *ngIf="msg.message_type == 3">
+                                                        <div>
+                                                            <p class="text-end rounded-pill ">
+                                                                <span
+                                                                    class=" bg-primary text-white p-3 rounded-pill d-inline-block  border mt-3 ">{{msg.message}}</span>
+                                                            </p>
+                                                            <p class="text-end">{{msg.created_at | date: 'MMM d, h:mm:ss
+                                                                a'}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-right" *ngIf="msg.message_type == 4">
+                                                        <img [src]="image_path && msg.file_name ? image_path + msg.file_name : ''"
+                                                        onerror="this.src='assets/images/no-image.png';" width="150" alt="">
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="text-center" *ngIf="msg.message_type == 8">
+                                                        <span
+                                                                class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">
+                                                                {{msg.message}}
+                                                            </span>
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="text-center" *ngIf="msg.message_type == 9">
+                                                        <span
+                                                                class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">
+                                                                {{msg.message}}
+                                                            </span>
+                                                        <p>{{msg.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                                    </div>
+
+                                                    <div class="border border-1" *ngIf="msg.message_type == 6">
+                                                        <p class="card-header fw-bold text-dark fs-5"
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.title">
+                                                            {{fetchMessagesRes.job.title}}</p>
+                                                        <div class="card-body">
+                                                            <p class="card-title">Your Contract includes</p>
+                                                            <p *ngIf="msg.contract && msg.contract.amount">Amount:
+                                                                ${{msg.contract.amount}}</p>
+                                                            <p class="card-text text-dark"
+                                                                *ngIf="oppositeUser && oppositeUser.delivery_times && msg.contract">
+                                                                <img src="./assets/images/Group2231.png" alt=""
+                                                                    srcset="">
+
+                                                                <span *ngFor="let d of oppositeUser.delivery_times">
+                                                                    <span *ngIf="msg.contract.delivery_time_id == d.id">
+                                                                        {{d.name}} delivery</span>
+                                                                </span>
+                                                            </p>
+
+                                                            <!-- <p class="card-text text-dark"
+                                                                *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.delivery_time">
+                                                                <img src="./assets/images/Group2231.png" alt=""
+                                                                    srcset="">
+                                                                {{fetchMessagesRes.job.delivery_time.name}} delivery
+                                                            </p> -->
+                                                            <div class="text-end">
+                                                                <a *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.slug"
+                                                                    [routerLink]="['/contract', fetchMessagesRes.job.slug]"
+                                                                    class="btn btn-link text-decoration-none text-secondary">View
+                                                                    Contract</a>
+                                                                <a href="javascript:void(0);" class="btn"
+                                                                    *ngIf="fetchMessagesRes && fetchMessagesRes.can_withdraw_completed_contract == '1'"
+                                                                    style="background:#00A3FF; color: white;"> Withdraw
+                                                                    Contract</a>
+                                                                <!-- <a href="javascript:void(0);" class="btn"
+                                                                    *ngIf="fetchMessagesRes && fetchMessagesRes.can_accept_contract == '1' && "
+                                                                    style="background:#00A3FF; color: white;"
+                                                                    (click)="acceptContract(msg.contract_id)">
+                                                                    Accept</a> -->
+                                                            </div>
+                                                            <p class="text-end">{{msg.created_at | date: 'MMM d, h:mm:ss
+                                                                a'}}</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row"
+                                            *ngIf="fetchMessagesRes && fetchMessagesRes.can_chat == 0 && fetchMessagesRes.is_customer == 0">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-8 mt-3 pr">
+                                                <div class="border border-1 mt-3">
+                                                    <p class="card-header fw-bold text-dark fs-5"> New contract request
+                                                    </p>
+                                                    <div class="card-body">
+                                                        <p
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.title">
+                                                            {{fetchMessagesRes.job.title}}</p>
+                                                        <p
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.contract_estimate_end">
+                                                            Scheduling: {{fetchMessagesRes.job.contract_estimate_end |
+                                                            date : 'd MMM yyyy'}}</p>
+                                                        <p
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.job && fetchMessagesRes.job.amount">
+                                                            {{fetchMessagesRes.job.amount}}</p>
+                                                        <p class="card-title">Accept this for message</p>
+                                                        <!-- <p class="card-text text-dark"> <img
+                                                                src="./assets/images/Group2231.png" alt="" srcset=""> 10
+                                                            days delivery</p> -->
+                                                        <div class="text-end">
+                                                            <a href="javascript:void(0);"
+                                                                class="btn btn-link text-decoration-none text-secondary"
+                                                                (click)="declineChat()">Decline</a>
+                                                            <a href="javascript:void(0);" class="btn"
+                                                                style="background:#00A3FF; color: white;"
+                                                                (click)="acceptChat()"> Accept</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            *ngIf="fetchMessagesRes && fetchMessagesRes.can_chat == 0 && fetchMessagesRes.is_worker == 0">
+                                            <h2 class="text-center">You can start message after accept your request,
+                                            </h2>
+                                        </div>
+
+                                        <!-- <div class="row">
+                                        <div class="col-md-8 " style="padding-top: 100px;">
+                                            <div class="">
+                                                <p class="  "><span
+                                                        class="bg-light text-dark p-3 border rounded-pill  mt-3 ">lorem
+                                                        ipsum dolor sit amet.</span> </p>
+                                                <p class="rounded-pill "><span
+                                                        class=" bg-light text-dark p-3 rounded-pill d-inline-block  border mt-3 ">lorem
+                                                        ipsum dolor sit amet. lorem ipsum dolor sit amet
+                                                        lorem ipsum dolor sit amet. lorem ipsum dolor sit
+                                                        amet</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-8 mt-3 pr">
+                                            <div class="">
+                                                <div>
+                                                    <p class="text-end   rounded-pill "><span
+                                                            class=" bg-primary text-white p-3 rounded-pill d-inline-block  border mt-3 ">lorem
+                                                            ipsum dolor sit amet.</span> </p>
+                                                    <p class="rounded-pill text-end"><span
+                                                            class=" bg-primary text-white p-3 rounded-pill d-inline-block  border mt-3 ">lorem
+                                                            ipsum dolor sit amet. lorem ipsum dolor sit amet
+                                                            lorem ipsum dolor sit amet. lorem ipsum dolor sit
+                                                            amet</span> </p>
+                                                    <div class="border border-1">
+                                                        <p class="card-header fw-bold text-dark fs-5"> Professional
+                                                            Cleaning Service</p>
+                                                        <div class="card-body">
+                                                            <p class="card-title">Your Contract includes</p>
+                                                            <p class="card-text text-dark"> <img
+                                                                    src="./assets/images/Group2231.png" alt=""
+                                                                    srcset=""> 10 days delivery</p>
+                                                            <div class="text-end"> <a href="#"
+                                                                    class="btn btn-link text-decoration-none text-secondary">View
+                                                                    Contract</a> <a href="#" class="btn"
+                                                                    style="background:#00A3FF; color: white;"> Withdraw
+                                                                    Contract</a> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                        <div class="col-md-12" *ngIf="oppositeUser">
+                                            <div style="position: fixed;
+                                           bottom: 0;
+                                           " class="position">
+                                                <textarea class="rounded-0 border-bottom-0 form-control"
+                                                    placeholder="Type a message..." rows="3"
+                                                    [(ngModel)]="messageText"></textarea>
+                                                <div class="card px-3 border-top-0 rounded-0">
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- <i class="bi bi-mic-fill d-inline-block align-bottom"></i>  -->
+                                                        <i class="bi bi-paperclip d-inline-block align-bottom mx-2"
+                                                            (click)="chooseImg()"></i>
+                                                        <!-- <button class="btn btn-sm btn-outline-primary"
+                                                            *ngIf="fetchMessagesRes && fetchMessagesRes.can_send_contract == '1'"
+                                                            (click)="sendContract()"> -->
+                                                        <button class="btn btn-sm btn-outline-primary"
+                                                            data-bs-toggle="modal" data-bs-target="#contractModal">
+                                                            Send Contacts</button>
+                                                        <i (click)="sendMessage()"
+                                                            class="bi bi-send-fill px-2 py-1 rounded-pill  bg-primary ms-auto shadow text-white"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab">
+                                <div class="border  border-1 px-2 px-md-3   py-4"> tab2 </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab">
+                                <div class=" px-2 px-md-3 "> tab3 </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                                aria-labelledby="v-pills-settings-tab"> tab4 </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="text-start">
+        <div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog  modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="contractModalLabel">
+                            Contract</h6>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <form [formGroup]="proposalForm">
+                        <div class="mt-5 bg-white rounded-3 px-md-5 py-3">
+                            <p class="fs-2 text-dark" style="font-weight: 500;">Select a Project to Proposals</p>
+                            <div class="">
+
+                                <div class="row">
+
+                                    <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let s of services">
+
+                                        <label (click)="serviceChoose(s)">
+                                            <input type="radio" name="product" class="card-input-element" />
+
+                                            <div class="panel panel-default card-input">
+                                                <div class="panel-heading"></div>
+                                                <div class="panel-body">
+                                                    <div class="card border-0"
+                                                        style="box-shadow: 4px 4px 20px rgba(206, 187, 187, 0.25); border-radius: 10px;">
+                                                        <img [src]="image_path && s.gallery[0] ? image_path + s.gallery[0].file : ''"
+                                                            onerror="this.src='assets/images/no-image.png';"
+                                                            class="card-img-top" alt="...">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                            </div>
+                                                            <h5 class="card-title my-2">{{s.title}}</h5>
+
+                                                            <a href="javascript:void(0);" class="btn btn-sm rounded-0"
+                                                                style="background:#00A3FF; color: white;">View
+                                                                Profile</a>
+                                                            <button type="button"
+                                                                class="btn btn-link text-decoration-none text-muted"><i
+                                                                    class="bi bi-chat-right"></i> Contact for
+                                                                Price</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </label>
+
+                                    </div>
+
+                                    <div *ngIf="submitted && f.service_id.errors" class="invalid-feedback-msg">
+                                        <div *ngIf="f.service_id.errors.required">Please choose a service</div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mt-5">
+                                <!-- <form> -->
+                                <div class="my-4">
+                                    <label for="exampleInputPassword1" class="form-label">Tell us a bit about this
+                                        project</label>
+                                    <textarea class="form-control rounded-0" placeholder="Let us know"
+                                        id="exampleFormControlTextarea1" rows="3" formControlName="body"
+                                        [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
+                                    <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+                                        <div *ngIf="f.body.errors.required">Tell us a bit about this
+                                            project</div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="exampleInputEmail1" class="form-label">Cost</label>
+                                    <input type="number" formControlName="cost"
+                                        [ngClass]="{ 'is-invalid': submitted && f.cost.errors }" placeholder="2000005"
+                                        class="form-control rounded-0" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp">
+                                    <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cost.errors.required">Cost required</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="exampleInputEmail1" class="form-label">Delivery Time</label>
+                                            <select class="form-select" formControlName="delivery_time_id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.delivery_time_id.errors }"
+                                                aria-label="Default select example">
+                                                <option value="" selected>Delivery Time</option>
+                                                <option [value]="d.id" *ngFor="let d of deliveryTime">{{d.name}}
+                                                </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="exampleInputEmail1" class="form-label">Project Image</label>
+                                            <div class="input-group mb-3">
+                                                <input type="file" (change)="importFile($event)" class="form-control"
+                                                    id="inputGroupFile02">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-start my-3">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor dicta
+                                        repellat consequuntur eveniet ducimus. Aut, iusto repellendus molestias at
+                                        tempora itaque doloremque assumenda, laborum tenetur saepe laudantium!
+                                        Rerum, ratione corporis.</p>
+                                    <button (click)="sendContract()" class="btn"
+                                        style="background:#00A3FF; color: white;" type="button"><i
+                                            class="bi bi-envelope-fill me-3"></i>Send Proposals</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="msg-img" (change)="importMsgFile($event)">
+
+    <!-- <app-footer></app-footer> -->

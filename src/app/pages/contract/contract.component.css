@@ -1,0 +1,31 @@
+.timer-disp{
+    font-size: 65px;
+    font-family: monospace;
+    text-align: center;
+    font-weight: 600;
+    color: black;
+}
+
+.with-body{
+    padding: 30px;
+    text-align: center;
+}
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+.rating-list li {
+    font-size: 20px;
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+}
+.rating-list li:hover {
+    color: #ffd700;
+}
+.rating-list li:hover ~ li {
+    color: #ffd700;
+}
+.rating-list li.selected {
+    color: #ffd700;
+}

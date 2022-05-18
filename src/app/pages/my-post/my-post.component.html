@@ -1,0 +1,115 @@
+<app-header></app-header>
+<!-- Homefix oppurtunity area start -->
+<div class="jobsbox pt-120 pb-60">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-md-8 pb-2">
+                <h4 class="fw-light head">All jobs near you</h4>
+            </div>
+            <div class="col-md-4 pb-2">
+                <div class="inputBox">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-sm border-0 "
+                            placeholder="search by username" aria-label="search by username"
+                            aria-describedby="button-addon2">
+                        <button class="btn btn-warning" type="button" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-12">
+                <!-- <p class="text-up"><a href="#" class="text-decoration-none" style="color: #00A3FF;">Active now
+                    </a>
+                    <a href="#" class="text-decoration-none mx-3">Sent Proposals</a>
+                </p> -->
+                <div class="card rounded-0 my-3" *ngFor="let job of myJobList">
+                    <div class="card-header bg-white">
+                        <div class="row">
+                            <div class="col-md-8 pt-2">
+                                <h4> {{job.title}}</h4>
+                                <p class="text2">
+                                    {{job.created_at | date: 'MMM d, h:mm:ss a'}}
+                                    <a [routerLink]="['/my-post-details', job.id]">{{job.jobproposals.length}} pro
+                                        responded</a>
+                                </p>
+                            </div>
+                            <div class="col-md-4 pt-2">
+                                <div class="text-md-end">
+                                    <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
+                                        [routerLink]="['/my-post-details', job.id]">
+                                        View details
+                                    </button>
+                                    <!-- <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
+                                        type="button"><a href="submit-proposal.html" class="text-white" target="_blank"
+                                            rel="noopener noreferrer">send
+                                            proposals</a></button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- <p class="card-text"> -->
+                        <div id="section">
+                            <div class="article">
+                                <p [innerHTML]="job.body"></p>
+                                <!-- <p>In publishing and graphic design, Lorem ipsum is a placeholder text
+                                    commonly
+                                    used to demonstrate the visual form of a document or a typeface without
+                                    relying on meaningful content. Lorem ipsum may be used as
+                                    a placeholder before the final copy is...
+
+                                    <span class="moretext">
+                                        Brisket ball tip cow sirloin. Chuck porchetta kielbasa pork chop
+                                        doner
+                                        sirloin, bacon beef brisket ball tip short ribs.
+                                    </span>
+                                    <a class="moreless-button" style="color: #00A3FF;" href="#">Read
+                                        more</a>
+                                </p> -->
+                            </div>
+                        </div>
+                        <!-- </p> -->
+                        <div><span class="badge rounded-pill bg-light text-dark me-3">{{ job.category.name}}</span>
+                            <!-- <span class="badge rounded-pill bg-light text-dark">cleaner</span> -->
+                        </div>
+                        <div class="infobox">
+                            <p>
+                                <!-- <span class="pe-2">
+                                    <i class="icofont-location-pin"></i>
+                                </span> -->
+                                <span class="pe-2">
+                                    <i class="icofont-clock-time"></i>
+                                </span>
+                                <span>Seattle </span>
+                            </p>
+                            <p>
+                                <span class="pe-2">
+                                    <i class="icofont-clock-time"></i>
+                                </span>
+                                <span>
+                                    {{job.delivery_time.name}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- pagination -->
+                <!-- <div class="row">
+                    <div class="col-lg-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item "><a class="page-link active" href="#0">1</a> </li>
+                                <li class="page-item"><a class="page-link" href="#0">2</a> </li>
+                                <li class="page-item"><a class="page-link" href="#0">3</a> </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div> -->
+                <!-- end Pagination -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix oppurtunity area end -->
+<app-footer></app-footer>

@@ -1,0 +1,169 @@
+@import "compass/css3";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+
+.wrap {
+	/* position: absolute; */
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 210px;
+}
+
+a {
+	text-decoration: none;
+	color: #1a1a1a;
+}
+
+h1 {
+	margin-bottom: 10px;
+	text-align: center;
+	font: 300 2.25em 'Rubik';
+	text-transform: uppercase;
+}
+
+h1 strong {
+	font-weight: 400;
+	color: #ea4c4c;
+}
+
+h2 {
+	margin-bottom: 10px; 
+	font: 300 1em 'Rubik';
+	text-transform: uppercase;
+}
+
+h2 strong {
+	font-weight: 400;
+}
+
+h3 {
+	margin-bottom: 60px;
+	text-align: center;
+	font: 300 0.7em;
+	text-transform: uppercase;
+}
+
+h3 strong {
+	font-weight: 400;
+}
+
+.countdown {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.countdown .bloc-time {
+	float: left;
+	margin-right: 45px;
+	text-align: center;
+}
+
+.countdown .bloc-time:last-child {
+	margin-right: 0;
+}
+
+.countdown .figure {
+	position: relative;
+	float: left;
+	height: 65px;
+	width: 70px;
+	margin-right: 5px;
+	background-color: #fff;
+	/* border-radius: 8px; */
+}
+
+.countdown .figure:last-child {
+	margin-right: 0;
+}
+
+.countdown .figure>span {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	font: normal 3.25em 'Rubik';
+	font-weight: 500;
+	border: 1px solid #00a3ff;
+	border-radius: 15px;
+	/* color: #00a3ff; */
+}
+
+.countdown .figure .top:after, .countdown .figure .bottom-back:after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	left: 0;
+	/* bottom: 0; */
+	width: 100%;
+	height: 100%;
+	/* border-bottom: 1px solid rgba(0, 0, 0, .1); */
+}
+
+.countdown .figure .top {
+	z-index: 3;
+	/* background-color: #e2dddd; */
+	transform-origin: 50% 100%;
+	-webkit-transform-origin: 50% 100%;
+	margin: 0 5px;
+}
+
+.countdown .figure .bottom {
+	z-index: 1;
+}
+
+.countdown .figure .bottom:before {
+	content: "";
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	background-color: rgba(0, 0, 0, .02);
+}
+
+.countdown .figure .bottom-back {
+	z-index: 2;
+	top: 0;
+	height: 50%;
+	overflow: hidden; 
+}
+
+.countdown .figure .bottom-back span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.countdown .figure .top, .countdown .figure .top-back {
+	/* height: 50%; */
+	overflow: hidden;
+}
+
+.countdown .figure .top-back {
+	z-index: 4;
+	bottom: 0;
+	background-color: #fff;
+	-webkit-transform-origin: 50% 0;
+	transform-origin: 50% 0;
+}
+
+.countdown .figure .top-back span {
+	position: absolute;
+	top: -100%;
+	left: 0;
+	right: 0;
+	margin: auto; 
+} 
+
+.countdown .count-title {
+	display: block;
+	margin-bottom: 15px;
+	font: normal 1.24em 'Rubik';
+	color: #1a1a1a;
+	text-transform: uppercase;
+}

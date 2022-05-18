@@ -1,0 +1,194 @@
+/* Global Styles */
+
+  .section {
+    min-height: 800px;
+  }
+  .container {
+    width: 1170px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .content-wrapper {
+    width: 80%;
+    /* margin: 0 auto; */
+    display: table;
+    min-height: 800px;
+  }
+  .content {
+    display: table-cell;
+    width: 100%; 
+    vertical-align: middle;
+  }
+  /* End Global Styles */
+  
+  /* Start Nav Styles */
+  .navbar {
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+  }
+  .navbar .nav-menu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .navbar .nav-menu li {
+    position: relative;
+    min-width: 200px;
+    text-align: right;
+  }
+  .navbar .nav-menu li .dot {
+    display: block;
+    color: #fff;
+    padding: 5px 0;
+  }
+  .navbar .nav-menu li .dot::before,
+  .navbar .nav-menu li .dot::after {
+    display: block;
+    position: absolute;
+    content: '';
+    border-radius: 50%;  
+    top: 50%;  
+    transition: all .3s ease;
+  }
+  .navbar .nav-menu li .dot::before {
+    width: 5px;
+    height: 5px;
+    right: 0;
+    border: 2px solid #181818;
+    transform: translateY(-50%);
+  }
+  .navbar .nav-menu li .dot::after {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #00A3FF;
+    right: -5px;
+    transform: translateY(-50%) scale(0);
+  }
+  .navbar .nav-menu li .dot.active::before,
+  .navbar .nav-menu li:hover .dot::before {
+    background: #00A3FF;
+    border-color: #00A3FF;
+  }
+  .navbar .nav-menu li .dot.active::after,
+  .navbar .nav-menu li:hover .dot::after {
+    transform: translateY(-50%) scale(1);  
+  }
+  .navbar .nav-menu li .dot span {
+    display: inline-block;
+    opacity: 0;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+    background-color: #00A3FF;
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-right: 30px;
+    transform: translateX(20px);
+    transition: all .3s ease;
+  }
+  .navbar .nav-menu li .dot span::before {
+    display: block;
+    position: absolute;
+    content: '';
+    border-left: 7px solid #00A3FF;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    top: 50%;
+    transform: translate(7px, -50%);
+    right: 0;
+    transition: all .3s ease;
+  }
+  .navbar .nav-menu li .dot.active span,
+  .navbar .nav-menu li:hover .dot span {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  /* End Nav Styles */
+  
+  /* Start Home Styles */
+  #home {
+    background-color: #f6f6f6;
+  }
+  
+  /* End Home Styles */
+  
+  /* Start About Styles */
+  #about .container {
+    padding: 100px 0;
+  }
+  #about p {
+    width: 60%;
+    margin: 10px auto;
+  }
+  #about img {
+    margin-top: 40px;
+  }
+  /* End About Styles */
+  
+  /* Start Services Styles */
+  #services {
+    background-color: #eee;
+  }
+  #services .services {
+    margin: 40px auto;
+  }
+  #services .services .service {
+    width: 50%;
+    padding: 1%;
+  }
+  
+  #services .text-right {
+    float: right;
+  }
+  #services .text-left {
+    float: left;
+  }
+  /* End Services Styles */
+  
+  /* Start Testimonials Styles */
+  #test,
+  #test .content-wrapper {
+    min-height: 400px;
+  }
+  /* End Testimonials Styles */
+  
+  /* Start Contact Styles */
+  #contact {
+    min-height: 600px;
+    background-color: #222;
+    color: #fff;
+  }
+  #contact .content-wrapper {
+    min-height: 600px;
+  }
+  #contact p {
+    color: #eee
+  }
+  #contact .mail {
+    font-size: 30px;
+    margin-top: 40px;
+  }
+  /* End Contact Styles */
+  
+
+  
+  
+  
+  /**
+  *
+  *  I used Normalize.css to reset elements.
+  *  I used Autoprifixer to make sure that I'm using the necessary vendor prefixes.
+  *
+  **/

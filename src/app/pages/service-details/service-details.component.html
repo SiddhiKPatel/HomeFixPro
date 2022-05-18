@@ -1,0 +1,786 @@
+<app-header></app-header>
+<!-- Homefix slider Area Start -->
+<section class="homefix_slider_service_area" 
+[style.background-image]="image_path && serviceCatDetails?.banner_image ? 'url(' + image_path + serviceCatDetails?.banner_image + ')' : 'url(./assets/images/service.png)'">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                <div class="homefix_slider_item">
+                    <div class="homefix_slider_inner">
+                        <div class="homefix_slider_content">
+                            <!-- sldier subtitle -->
+                            <div class="slider_subtitle ms-0">
+                                <img [src]="image_path && serviceCatDetails.banner_icon ? image_path + serviceCatDetails?.banner_icon : ''"
+                                onerror="this.src='./assets/images/ICON.png';" alt="" srcset="">
+                            </div>
+
+                            <!-- sldier title -->
+                            <h2 class="homefix_slider_title">{{serviceCatDetails?.banner_title}}</h2>
+                            <p class="homefix_slider_title" style="font-size: 16px;" [innerHTML]="serviceCatDetails?.banner_content">
+                                
+                            </p>
+                            <!-- Button option -->
+                            <div class="slider_subtitle ms-0">
+                                <a href="{{serviceCatDetails?.banner_btn_url}}" class="active">{{serviceCatDetails?.banner_btn_text}}</a>
+                            </div>
+                            <!-- end slider options -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Homefix slider Area End -->
+
+<!-- Homefix Project Area Start -->
+<section class="homefix_project_area">
+    <div class="container">
+        <!-- project section title area -->
+        <div class="row">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8">
+                <!-- project left area -->
+                <div class="homefix_proj_left_area">
+                    <div class="homefix_section_title">
+                        <!-- section title -->
+                        <h2 class="section_title">{{serviceCatDetails?.section1_title}}</h2>
+                        <!-- section des -->
+                        <p class="w-100 w-md-75 " [innerHTML]="serviceCatDetails?.section1_content"></p>
+                    </div>
+                </div>
+                <!-- end project left area -->
+            </div>
+            <!-- project right area -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-4">
+
+            </div>
+            <!-- end project right area -->
+        </div>
+        <!-- Homefix Service Area Start -->
+        <section class="homefix_service_area" style="padding: 0px 0 15px 0" *ngIf="serviceCatDetails && serviceCatDetails.categorypage.length > 0">
+            <div class="container">
+                <!-- service items -->
+
+                <div class="row g-0">
+                    <div class="service-slider">
+                        <a class="homefix_service_single" *ngFor="let service of serviceCatDetails.categorypage" [routerLink]="['/estimates', service.slug]" >
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img [src]="image_path && service.image2 ? image_path + service?.image2 : ''"
+                                    onerror="this.src='assets/images/no-image.png';" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>{{service.page_name}}</h3>
+                                    <div style="display: flex; font-size: 14px;" >
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="" *ngIf="service.bannertext">
+                                        <span style="color:#0062FF;">{{service?.bannertext}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- <a href="#0" class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#0" class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_1.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>custom service</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#0" class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#0" class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- <div class="row service">
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_1.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>plumbing service</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_1.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>custom service</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                        <div class="homefix_service_single">
+                            <div class="homefix_ser_single_inner">
+                                <div class="service_single_thumb">
+                                    <img src="assets/images/home/ser_2.png" alt="">
+                                </div>
+                                <div class="service_single_title">
+                                    <h3>pluster worker</h3>
+                                    <div style="display: flex; font-size: 14px;">
+                                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                                        <span style="color:#0062FF;">Avg. Price $170</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </section>
+        <!-- End Homefix Service Area -->
+    </div>
+</section>
+<!-- End Homefix Project Area -->
+<!-- Homefix Service Professional Area Start -->
+<section class="homefix_service_area homefix_service_professional_area" style="padding: 0px " *ngIf="serviceCatDetails && serviceCatDetails.service">
+    <!-- First section profesional service -->
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xxl-12">
+                <h3 class="section_title">{{serviceCatDetails?.section2_title}}</h3>
+            </div>
+            <!-- end section title -->
+            <div class="col-xxl-12">
+                <p class="px-3" style="width: 168px;height: 30px;background: #EEF9FF;border-radius: 10px;">
+                    {{serviceCatDetails?.section2_sub_title}}</p>
+            </div>
+        </div>
+
+        <section class="homefix_service_area" style="padding: 0px 0 20px 0">
+            <div class="container">
+                <!-- service items -->
+                <div class="row service">
+                    <!-- service single item -->
+                    <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 homefix-service-slider"> -->
+                    <div class="homefix-service-slider">
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6"  *ngFor="let service of serviceCatDetails.service" [routerLink]="['/project-details', service.slug]">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background" 
+                                    [style.background-image]="image_path && service.image ? 'url(' + image_path + service.image + ')' : 'url(assets/images/no-image.png)'"
+                                    style="background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <!-- <img src="assets/images/home/ser_1.png" alt=""> -->
+                                        <img [src]="image_path && service.image ? image_path + service.image : ''"
+                                        onerror="this.src='assets/images/no-image.png';" alt="image">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">{{service.title}}</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- service single item -->
+                        <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- service single item -->
+                        <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- service single item -->
+                        <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- end service single item -->
+                        <!-- service single item -->
+                        <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- end service single item -->
+
+                </div>
+            </div>
+        </section>
+        <!-- service items -->
+
+    </div>
+    <!-- First section professional service end -->
+    <!-- Second section professional service start -->
+
+    <!-- <div class="container py-3">
+        <div class="row">
+            <div class="col-xxl-12">
+                <p class="px-3" style="width: 202px;height: 30px;background: #EEF9FF;border-radius: 10px;">
+                    Bedroom Breakdown</p>
+            </div>
+        </div>
+
+        <section class="homefix_service_area" style="padding: 0px 0 20px 0">
+            <div class="container">
+
+                <div class="row service">
+                    <div class="homefix-service-slider">
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> -->
+    
+    <!-- Second Section professional Service end -->
+    <!-- Third section professional service start -->
+    
+    <!-- <div class="container py-3">
+        <div class="row">
+            <div class="col-xxl-12">
+                <p class="px-3" style="width: 100px;height: 30px;background: #EEF9FF;border-radius: 10px;">
+                    Insects.</p>
+            </div>
+        </div>
+        
+        <section class="homefix_service_area" style="padding: 0px 0 20px 0">
+            <div class="container">
+                
+                <div class="row service">
+                    <div class="homefix-service-slider">
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div> -->
+
+    <!-- Third Section professional Service end -->
+    <!-- Fourth section professional service start -->
+    
+    <!-- <div class="container py-3">
+        <div class="row">
+            <div class="col-xxl-12">
+                <p class="px-3" style="width: 173px;height: 30px;background: #EEF9FF;border-radius: 10px;">
+                    Indoor Things.</p>
+            </div>
+        </div>
+        
+        <section class="homefix_service_area" style="padding: 0px 0 20px 0">
+            <div class="container">
+                
+                <div class="row service">
+                    <div class="homefix-service-slider">
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                            <div class="homefix_service_single">
+                                <div class="homefix_ser_single_inner service_background"
+                                    style="background-image:url('./assets/images/home/ser_1.png'); background-size:  cover; background-repeat:  no-repeat;background-position: center; height: 292px;position: relative;">
+                                    <div class="service_single_thumb" style="visibility: hidden;">
+                                        <img src="assets/images/home/ser_1.png" alt="">
+                                    </div>
+                                    <div class="service_single_title "
+                                        style="position: absolute; bottom: 0; left: 20%;">
+                                        <h3 class="text-white">plumbing service</h3>
+                                        <div style="font-size: 14px;">
+                                            <p class="text-white">See Plumbers near you</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div> -->
+
+    <!-- Fourth Section professional Service end -->
+</section>
+<!-- End Homefix Service Professional Area -->
+
+
+<!-- Homefix About Area Start -->
+<section class="homefix_about_area pt-120 pb-120 mt-60 mb-60" *ngIf="serviceCatDetails && serviceCatDetails.section3_title">
+    <div class="about_right_thumb d-lg-block d-none">
+        <img *ngIf="image_path && serviceCatDetails.section3_image" class="img-fluid" [src]="image_path + serviceCatDetails.section3_image" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- about left -->
+            <div class="col-xl-7 col-lg-8">
+                <div class="homefix_about_left_area text-lg-start text-center ">
+                    <!-- section title -->
+                    <div class="homefix_section_title">
+                        <!-- section title -->
+                        <h2 class="section_title">{{serviceCatDetails.section3_title}}</h2>
+                        <!-- section des -->
+                        <p [innerHTML]="serviceCatDetails.section3_content"></p>
+                    </div>
+                    <!-- end section title -->
+                    <!-- about btn area -->
+                    <div class="about_button_area mt-3">
+                        <div class="about_btn">
+                            <a href="javascript:void(0);">
+                                <i class="icofont-brand-apple"></i>
+                                <p class="down_text">Download on the</p>
+                                <p class="btn_text">App Store</p>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <img src="assets/images/playstore.png" alt="">
+                                <p class="down_text">GET IT ON </p>
+                                <p class="btn_text">Google Play</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- end about btn area -->
+                </div>
+            </div>
+            <!-- end about left -->
+        </div>
+    </div>
+</section>
+<!-- End Homefix About Area -->
+
+
+
+<!-- Homefix Contact Area Start -->
+<section class="homefix_contact_area bg-white mb-60" *ngIf="serviceCatDetails && serviceCatDetails.section4_title">
+    <div class="container">
+        <div class="row">
+            <!-- about left -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                <div class=" my-3">
+                    <div class="about_right_inner">
+                        <div class="about_right_thumb">
+                            <img [src]="image_path && serviceCatDetails.section4_image ? image_path + serviceCatDetails?.section4_image : ''"
+                            onerror="this.src='assets/images/no-image.png';" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end about left -->
+            <!-- about right -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 m-auto">
+                <div class="homefix_about_left_area mar">
+                    <!-- section title -->
+                    <div class="homefix_section_title">
+                        <!-- section title -->
+                        <h3 class="section_title" style="font-size: 30px;">{{serviceCatDetails.section4_title}}
+                        </h3>
+                        <!-- section des -->
+                        <p [innerHTML]="serviceCatDetails.section4_content"></p>
+                    </div>
+                    <!-- end section title -->
+                    <!-- about btn area -->
+                    <div class="about_button_area mb-3 mb-md-0">
+                        <button type="button" class="btn btn-warning" style="font-weight:700;margin-right: 10px;">{{serviceCatDetails?.section4_btn1_text}}</button>
+                        <button type="button" class="btn btn-outline-dark" style="font-weight:700;">{{serviceCatDetails?.section4_btn2_text}}</button>
+                    </div>
+                    <!-- end about btn area -->
+                </div>
+            </div>
+            <!-- end about right -->
+
+        </div>
+    </div>
+</section>
+<!-- End Homefix Contact Area -->
+<app-footer></app-footer>

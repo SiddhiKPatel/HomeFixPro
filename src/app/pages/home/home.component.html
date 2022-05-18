@@ -1,0 +1,653 @@
+<app-header></app-header>
+<!-- Homefix slider Area Start -->
+<section class="homefix_slider_area" *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type1">
+    <div class="home-slider" *ngIf="homePageData.image_path">
+        <div *ngFor="let slide of homePageData.extra_data.type1;let i=index;" class="slider-slide "
+            [ngClass]="i==0?'show':''" style="background-image: url({{homePageData.image_path}}{{slide.image}});"></div>
+        <!-- <div class="slider-slide show " style="background-image: url('assets/images/slider.png');"></div> -->
+        <!-- <div class="slider-slide" style="background-image: url('assets/images/slider.png');"> </div>
+        <div class="slider-slide" style="background-image: url('assets/images/slider-2.jpg');"> </div>
+        <div class="slider-slide" style="background-image: url('assets/images/slider-3.jpg');"> </div>
+        <div class="slider-slide" style="background-image: url('assets/images/slider-4.jpg');"> </div> -->
+    </div>
+    <div class="slider">
+        <div class="slider-content">
+            <div class="slider-content-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xxl-6 col-lg-7">
+                            <div class="homefix_slider_item">
+                                <div class="homefix_slider_inner">
+                                    <div class="homefix_slider_content">
+                                        <!-- sldier subtitle -->
+                                        <div class="slider_subtitle">
+                                            <div class="row g-0">
+                                                <!-- 4/2/2022 -->
+                                                <ul class="sl_nav nav nav-tabs" id="myTab" role="tablist">
+                                                    <li>
+                                                        <button class="nav-link active" id="pills-home-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-home"
+                                                            type="button" role="tab" aria-controls="pills-home"
+                                                            aria-selected="true" onclick="myFunctionOne()">hire
+                                                            a pro</button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="nav-link " id="pills-profile-tab"
+                                                            data-bs-toggle="pill" data-bs-target="#pills-profile"
+                                                            type="button" role="tab" aria-controls="pills-profile"
+                                                            aria-selected="true" onclick="myFunction()">find
+                                                            customer</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                                aria-labelledby="pills-home-tab">
+
+                                                <!-- sldier title -->
+                                                <h2 class="homefix_slider_title">
+                                                    {{homePageData.extra_data.type1[0].title}} </h2>
+                                                <!-- search option -->
+                                                <form [formGroup]="searchForm" class="slider_sea_form">
+                                                    <div class="slide_from_fileds">
+                                                        <div class="slide_form_field_inner">
+                                                            <input type="search" class="home-search-input" formControlName="keyword"
+                                                                placeholder="What's on your to-do list?">
+                                                        </div>
+                                                        <div class="slide_form_field_inner zip_c">
+                                                            <!-- <i class="icofont-bubble-down"></i> -->
+                                                            <!-- 4/2/2022 -->
+                                                            <i class="bi bi-geo-alt icofont-bubble-down"></i>
+                                                            <input class="home-search-input" type="text"
+                                                                placeholder="Zip Code" formControlName="zipcode">
+                                                        </div>
+                                                        <input type="submit" value="Search" (click)="search()">
+                                                    </div>
+                                                </form>
+                                                <!-- slider options -->
+                                                <div class="slider_options d-none d-md-inline-block" *ngIf="homePageData && homePageData.category && showmore">
+                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category.slice(0,8)">{{c.name}}</a>
+                                                    <a href="javascript:void(0);" (click)="showMore()" style="color: black;background: #ffca06;">Show more</a>
+                                                    <!-- <a href="#">Carpentry</a>
+                                                    <a href="#">Plumbing</a>
+                                                    <a href="#">Painting</a>
+                                                    <a href="#">Title work</a> -->
+                                                </div>
+                                                <div class="slider_options d-none d-md-inline-block" *ngIf="homePageData && homePageData.category && showless">
+                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category">{{c.name}}</a>
+                                                    <a href="javascript:void(0);" (click)="showLess()" style="color: black;background: #ffca06;">Show less</a>
+                                                    <!-- <a href="#">Carpentry</a>
+                                                    <a href="#">Plumbing</a>
+                                                    <a href="#">Painting</a>
+                                                    <a href="#">Title work</a> -->
+                                                </div>
+                                                <!-- end slider options -->
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                                aria-labelledby="pills-profile-tab">
+                                                <!-- sldier title -->
+                                                <h2 class="homefix_slider_title">
+                                                    {{homePageData.extra_data.type1[0].sub_title}} </h2>
+                                                <!-- search option -->
+                                                <form class="slider_sea_form signup" *ngIf="!token">
+                                                    <button class="btn btn-warning" [routerLink]="['/signup']">Sign up</button>
+                                                </form>
+                                                <div class="slider_options d-none d-md-inline-block"
+                                                    style="visibility: hidden;" *ngIf="homePageData && homePageData.category">
+                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category">{{c.name}}</a>
+                                                    <!-- <a href="#">Plumbing</a>
+                                                    <a href="#">Painting</a>
+                                                    <a href="#">Title work</a> -->
+                                                </div>
+                                                <!-- end slider options -->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Homefix slider Area End -->
+
+<!-- Homefix Project Area Start -->
+<section class="homefix_project_area pt-120 pb-120 " id="homefix_project_area"
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type2">
+    <div class="container">
+        <!-- project section title area -->
+        <div class="row align-items-center  mt--30">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8">
+                <!-- project left area -->
+                <div class="homefix_proj_left_area text-md-start text-center">
+                    <div class="homefix_section_title  mt-30">
+                        <!-- section title -->
+                        <h2 class="section_title mb-3">{{homePageData.extra_data.type2[0].title}}</h2>
+                        <!-- section des -->
+                        <p [innerHTML]="homePageData.extra_data.type2[0].body"></p>
+                    </div>
+                </div>
+                <!-- end project left area -->
+            </div>
+            <!-- project right area -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-4">
+                <div class="homefix_proj_right_area mt-30 ">
+                    <div class="project_right_btn">
+                        <a
+                            routerLink="{{homePageData.extra_data.type2[0].btn_url}}">{{homePageData.extra_data.type2[0].btn_text}}</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end project right area -->
+        </div>
+        <!-- project single items -->
+        <div class="row justify-content-center" *ngIf="homePageData && homePageData.services">
+            <!-- project single item -->
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6" *ngFor="let service of homePageData.services | slice:0:3">
+                <div class="proj_single_items mt-30 ">
+                    <div class="proj_single_inner">
+                        <!-- single thumb -->
+                        <a [routerLink]="['/project-details', service.slug]" class="proj_single_thumb d-block">
+                            <img [src]="image_path && service.gallery[0] ? image_path + service.gallery[0].file : ''"
+                                onerror="this.src='assets/images/no-image.png';" alt="">
+                        </a>
+                        <!-- proj single item content -->
+                        <div class="proj_single_content">
+                            <div class="proj_single_cont_inner">
+                                <!-- clients thumb -->
+                                <div class="proj_client_thumb">
+                                    <img [src]="image_path && service && service.user && service.user.avatar ? image_path + service?.user.avatar : ''"
+                                        onerror="this.src='assets/images/home/proj_client_img.png';" alt="">
+                                </div>
+                                <!-- clients name -->
+                                <a [routerLink]="['/project-details', service.slug]" class="proj_client_name">
+                                    <h4 class="client_name">{{ service && service.user && service.user.name ?
+                                        service.user.name : 'Admin'}}</h4>
+                                    <span *ngFor="let t of service.tag">{{t.name}}</span>
+                                </a>
+                                <!-- ratting area -->
+                                <div class="proj_ratting">
+                                    <span class="proj_raing_per">4.1</span>
+                                    <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                    <span class="proj_reviews">( 11 reviews)</span>
+                                </div>
+                            </div>
+                            <!-- single item title -->
+                            <div class="proj_single_item_title">
+                                <a [routerLink]="['/project-details', service.slug]">
+                                    <!-- <h3 class="proj_single_item_tilte">{{service?.title}} </h3> -->
+                                    <h3 class="proj_single_item_tilte">{{service.title && service.title.length > 36 ?
+                                        (service.title | slice:0:30)+'...' : service.title}} </h3>
+                                </a>
+                                <span class="proj_hours_area"> $120/hour</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- project single item -->
+
+            <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="proj_single_items mt-30 ">
+                    <div class="proj_single_inner">
+                        <a routerLink="/blog-details" class="proj_single_thumb d-block">
+                            <img src="assets/images/home/proj_2.png" alt="">
+                        </a>
+                        
+                        <div class="proj_single_content">
+                            <div class="proj_single_cont_inner">
+                                
+                                <div class="proj_client_thumb">
+                                    <img src="assets/images/home/proj_client_img.png" alt="">
+                                </div>
+                                
+                                <a href="#0" class="proj_client_name">
+                                    <h4 class="client_name">Rokhi Sne</h4>
+                                    <span>worker</span>
+                                </a>
+                                
+                                <div class="proj_ratting">
+                                    <span class="proj_raing_per">4.1</span>
+                                    <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                    <span class="proj_reviews">( 11 reviews)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="proj_single_item_title">
+                                <a routerLink="/blog-details">
+                                    <h3 class="proj_single_item_tilte">You will get solution for plumbing </h3>
+                                </a>
+                                <span class="proj_hours_area">$120/hour</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="proj_single_items mt-30 ">
+                    <div class="proj_single_inner">
+                        
+                        <a routerLink="/blog-details" class="proj_single_thumb d-block">
+                            <img src="assets/images/home/proj_1.png" alt="">
+                        </a>
+                        
+                        <div class="proj_single_content">
+                            <div class="proj_single_cont_inner">
+                                
+                                <div class="proj_client_thumb">
+                                    <img src="assets/images/home/proj_client_img.png" alt="">
+                                </div>
+                                
+                                <a href="#0" class="proj_client_name">
+                                    <h4 class="client_name">Bijoy Roy</h4>
+                                    <span>top worker</span>
+                                </a>
+                                
+                                <div class="proj_ratting">
+                                    <span class="proj_raing_per">4.1</span>
+                                    <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
+                                    <span class="proj_reviews">( 11 reviews)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="proj_single_item_title">
+                                <a routerLink="/blog-details">
+                                    <h3 class="proj_single_item_tilte">You will get solution for plumbing </h3>
+                                </a>
+                                <span class="proj_hours_area">$120/hour</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- project single item -->
+        </div>
+        <!-- end project single item -->
+    </div>
+</section>
+<!-- End Homefix Project Area -->
+
+
+<!-- Homefix About Area Start -->
+<section class="homefix_about_area pt-120 pb-120"
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type3">
+    <div class="about_right_thumb d-lg-block d-none"> <img class="img-fluid"
+            [src]="homePageData.image_path + homePageData.extra_data.type3[0].image" alt="">
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- about left -->
+            <div class="col-xl-7 col-lg-6">
+                <div class="homefix_about_left_area text-lg-start text-center ">
+                    <!-- section title -->
+                    <div class="homefix_section_title">
+                        <!-- section title -->
+                        <h2 class="section_title">{{homePageData.extra_data.type3[0].title}}</h2>
+                        <!-- section des -->
+                        <p [innerHTML]="homePageData.extra_data.type3[0].body"></p>
+                    </div>
+                    <!-- end section title -->
+                    <!-- about btn area -->
+                    <div class="about_button_area mt-3">
+                        <div class="about_btn"> <a href="#"> <i class="icofont-brand-apple"></i>
+                                <p class="down_text">Download on the</p>
+                                <p class="btn_text">App Store</p>
+                            </a> <a href="#"> <img src="assets/images/playstore.png" alt="">
+                                <p class="down_text">GET IT ON </p>
+                                <p class="btn_text">Google Play</p>
+                            </a> </div>
+                    </div>
+                    <!-- end about btn area -->
+                </div>
+            </div>
+            <!-- end about left -->
+        </div>
+    </div>
+</section>
+<!-- End Homefix About Area -->
+
+
+<!-- Homefix Service Area Start -->
+<section class="homefix_service_area pt-120 pb-60 "
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type4">
+    <div class="container">
+        <!-- section title area -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xxl-12">
+                <h3 class="section_title mb-3 text-lg-start text-center">{{homePageData.extra_data.type4[0].title}}</h3>
+            </div>
+            <!-- end section title -->
+        </div>
+        <!-- end section title area -->
+        <!-- service items -->
+        <div class="row g-0" *ngIf="homePageData && homePageData.category">
+            <div class="service-slider">
+                <a [routerLink]="['/service', category.slug]" class="homefix_service_single"
+                    *ngFor="let category of homePageData.category">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb">
+                            <img [src]="image_path && category.image ? image_path + category.image : ''"
+                                onerror="this.src='assets/images/no-image.png';" alt="">
+                        </div>
+                        <div class="service_single_title">
+                            <h3>{{category?.name}}</h3>
+                        </div>
+                    </div>
+                </a>
+                <!-- <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb">
+                            <img src="assets/images/home/ser_2.png" alt="">
+                        </div>
+                        <div class="service_single_title">
+                            <h3>pluster worker</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb">
+                            <img src="assets/images/home/ser_1.png" alt="">
+                        </div>
+                        <div class="service_single_title">
+                            <h3>custom service</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb">
+                            <img src="assets/images/home/ser_2.png" alt="">
+                        </div>
+                        <div class="service_single_title">
+                            <h3>pluster worker</h3>
+                        </div>
+                    </div>
+                </a>
+                <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb">
+                            <img src="assets/images/home/ser_2.png" alt="">
+                        </div>
+                        <div class="service_single_title">
+                            <h3>pluster worker</h3>
+                        </div>
+                    </div>
+                </a> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Homefix Service Area -->
+
+
+<!-- Homefix Testimonial Area Start-->
+<section class="testimonial_area_start  pt-60 pb-120 " *ngIf="homePageData && homePageData.testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                <div class="testimonila_items">
+                    <div class="testi_inner tesimonial"
+                        style="background-image: url('assets/images/home/testi_shape.png');">
+                        <!-- testimonila single item -->
+                        <div class="testi_content" *ngFor="let t of homePageData.testimonials">
+                            <!-- single thumb -->
+                            <div class="testi_single_thumb">
+                                <img [src]="homePageData.image_path + t.image" alt="">
+                            </div>
+                            <!-- testimonila des -->
+                            <div class="testi_description">
+                                <blockquote>"</blockquote>
+                                <p [innerHTML]="t.body"></p>
+                                <!-- <p>We found so many people on Homefixpros. And some of the people we found on
+                                    Homefixpros, like our electrician, we use him now. He's great</p> -->
+                            </div>
+                            <!-- testi name -->
+                            <div class="testi_name">
+                                <p>-{{t.name}}</p>
+                            </div>
+                        </div>
+                        <!-- testimonila single item -->
+
+                        <!-- end testimonila single item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Homefix Testimonial Area -->
+
+
+
+<!-- Homefix Works Area Start -->
+<section class="homefix_works_area pt-120 pb-120"
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type5">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xxl-12">
+                <h3 class="section_title pb-2">{{homePageData.extra_data.type5[0].title}}</h3>
+            </div>
+            <!-- end section title -->
+        </div>
+        <!-- works items -->
+        <div class="row">
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7"
+                *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type6 && homePageData.extra_data.type6[0]">
+                <div class="works_single_item single_1">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont">
+                            <!-- works icons -->
+                            <div class="works_icons">
+                                <i><img [src]="homePageData.image_path + homePageData.extra_data.type6[0].image"
+                                        alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">{{homePageData.extra_data.type6[0].title}}</h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center" [innerHTML]="homePageData.extra_data.type6[0].body">
+                            </p>
+                            <!-- works bg img -->
+                            <div class="works_bg_img d-md-block d-none ">
+                                <img src="assets/images/home/works_bg.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-5"
+                *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type6 && homePageData.extra_data.type6[1]">
+                <div class="works_single_item single_2">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont work_cont">
+                            <!-- works icons -->
+                            <div class="works_icons">
+                                <i><img [src]="homePageData.image_path + homePageData.extra_data.type6[1].image"
+                                        alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">{{homePageData.extra_data.type6[1].title}}
+                            </h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center" [innerHTML]="homePageData.extra_data.type6[1].body">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- works single item  -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-7"
+                *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type6 && homePageData.extra_data.type6[2]">
+                <div class="works_single_item single_3">
+                    <div class="works_single_item_inner">
+                        <div class="works_single_item_cont">
+
+                            <!-- works icons -->
+
+                            <div class="works_icons">
+                                <i><img [src]="homePageData.image_path + homePageData.extra_data.type6[2].image"
+                                        alt=""></i>
+                            </div>
+                            <!-- works title -->
+                            <h3 class="text-md-start text-center">{{homePageData.extra_data.type6[2].title}}</h3>
+                            <!-- works des -->
+                            <p class="text-md-start text-center" [innerHTML]="homePageData.extra_data.type6[2].body">
+                            </p>
+
+                            <div class="works_bg_img  d-md-block d-none">
+                                <img src="assets/images/home/works_bg1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end works single item -->
+            <!-- works learnmore btn -->
+            <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-5">
+                <div class="works_learnmore">
+                    <a
+                        routerLink="{{homePageData.extra_data.type5[0].btn_url}}">{{homePageData.extra_data.type5[0].btn_text}}</a>
+                </div>
+                <!-- end works learnmore btn -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Homefix Works Area -->
+
+
+<!-- Homefix blog Area Start -->
+<section class="homefix_blog_area  pt-120 pb-120"
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type7">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xxl-12">
+                <h3 class="section_title text-lg-start text-center" [routerLink]="['/blog']">
+                    {{homePageData.extra_data.type7[0].title}}</h3>
+            </div>
+            <!-- end section title -->
+        </div>
+        <!-- blog single items -->
+        <div class="row justify-content-center">
+            <!-- blog single item -->
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6" *ngFor="let blog of homePageData.blogs | slice:0:3">
+                <div class="blog_single_items">
+                    <div class="blog_single_inner">
+                        <!-- single thumb -->
+                        <a [routerLink]="['/blog-details', blog.slug]" class="blog_single_thumb">
+                            <img [src]="image_path ? image_path + blog?.image2 : ''"
+                                onerror="this.src='assets/images/no-image.png';" alt="">
+                        </a>
+                        <div class="single_blog_content">
+                            <!-- single item title -->
+                            <a [routerLink]="['/blog-details', blog.slug]">
+                                <h3>{{blog.page_name.length>30 ? (blog.page_name | slice:0:30)+'...' : blog.page_name}}
+                                </h3>
+                            </a><br />
+                            <!-- readmore -->
+                            <a [routerLink]="['/blog-details', blog.slug]">
+                                <p>read more..</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- blog single item -->
+            <!-- <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="blog_single_items">
+                    <div class="blog_single_inner">
+                        
+                        <a href="# 0" class="blog_single_thumb">
+                            <img src="assets/images/home/blog2.png" alt="">
+                        </a>
+                        <div class="single_blog_content">
+                            
+                            <a href="#0">
+                                <h3>Sustainable Kitchen Design Renovation Ideas for 2022...</h3>
+                            </a>
+                            
+                            <a href="#">
+                                <p>read more..</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
+                <div class="blog_single_items">
+                    <div class="blog_single_inner">
+                        
+                        <a href="#0" class="blog_single_thumb">
+                            <img src="assets/images/home/blog1.png" alt="">
+                        </a>
+                        <div class="single_blog_content">
+                            
+                            <a href="#">
+                                <h3>Sustainable Kitchen Design Renovation Ideas for 2022...</h3>
+                            </a>
+                            
+                            <a href="#">
+                                <p>read more..</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- end blog single item -->
+        </div>
+        <!-- end blog items -->
+    </div>
+</section>
+<!-- End Homefix blog Area -->
+
+
+
+<!-- Homefix Signup Area Start -->
+<section class="homefix_signup_area pt-60 pb-60"
+    *ngIf="homePageData && homePageData.extra_data && homePageData.extra_data.type8">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12">
+                <!-- singup title  -->
+                <div class="signup_title_area">
+                    <div class="signup_title_inner">
+                        <div class="singup_title_content text-lg-start text-center">
+                            <h2 class="signup_title">{{homePageData.extra_data.type8[0].title}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- end singup title  -->
+            </div>
+
+            <!-- signup mail area -->
+            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-12">
+                <div class="signup_mail_area">
+                    <div class="signup_mail_inner text-lg-start text-center">
+                        <form action="">
+                            <input type="email" placeholder="Enter Your E-mail" name="" id="">
+                            <input type="text" placeholder="Zip Code(optional)" name="" id="">
+                            <input type="submit" value="sing up">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end signup mail area -->
+        </div>
+    </div>
+</section>
+<!-- Homefix Signup Area End -->
+
+<app-footer></app-footer>

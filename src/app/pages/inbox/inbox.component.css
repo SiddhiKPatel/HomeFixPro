@@ -1,0 +1,24 @@
+.chat-users img{
+    border-radius: 20px;
+}
+.list-group-item.active{
+    border-color: #DEDEDE !important;
+}
+.nav-pills .nav-link{
+    border-radius: 0 !important;
+    border-bottom: 1px solid #E9EDF0 !important;
+}
+.user-msg-detsils img{
+    border-radius: 50px;
+    width: 45px;
+}
+
+.bg-offline{
+    background: gray;
+}
+
+#msg-img{
+    visibility: hidden;
+    width:0;
+    height:0
+}

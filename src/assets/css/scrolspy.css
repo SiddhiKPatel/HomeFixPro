@@ -1,0 +1,12 @@
+.mystyle {
+            
+    border-left: 3px solid #00A3FF!important;
+    color: #00A3FF!important;
+}
+
+.list-group-item.active {
+    z-index: 2;
+    color: #000;
+    background-color: #fff;
+    border-color: rgb(216, 214, 214);
+}

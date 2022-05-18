@@ -1,0 +1,508 @@
+<app-header></app-header>
+
+<div class="progectBox pt-60">
+    <div class="container">
+        <div class="row mt--30">
+            <div class="col-xxl-7 col-lg-6 mt-30">
+                <form [formGroup]="searchForm" class="slider_sea_form mt-3 destopfrom">
+                    <div class="slide_from_fileds">
+                        <div class="slide_form_field_inner">
+                            <input type="search" placeholder="What's on your to-do list?">
+                        </div>
+                        <div class="slide_form_field_inner zip_c"> <i class="bi bi-geo-alt icofont-bubble-down"></i>
+                            <input type="text" placeholder="Zip Code">
+                        </div>
+                        <input class="search" type="submit" value="Search">
+                    </div>
+                </form>
+                <div class="topBox"> <a href="javascript:void(0);" (click)="back()" class="pros"> <i
+                            class="icofont-rounded-left"></i> <span>See
+                            pros</span> </a>
+
+                </div>
+                <div class="infolink border-bottom">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <ul>
+                                <li> <a href="javascript:void(0);">About </a> </li>
+                                <li> <a href="javascript:void(0);">FAQs </a> </li>
+                                <li> <a href="javascript:void(0);">Reviews </a> </li>
+                                <li> <a href="javascript:void(0);">Previous Work</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-6 text-lg-end"> <a href="javascript:void(0);" class="seeall"> See all his
+                                services</a> </div>
+                    </div>
+                </div>
+                <div class="authordBox flex-wrap">
+                    <div class="thubm pt2 "> <img
+                            [src]="image_path && serviceDetails && serviceDetails.user && serviceDetails.user.avatar ? image_path + serviceDetails?.user.avatar : ''"
+                            onerror="this.src='./assets/images/Group2094.png';" class="img-fluid " />
+                        <!-- <span></span> -->
+                    </div>
+                    <div class="right pt2">
+                        <p class="me-4"> <span class="profileName">{{ serviceDetails && serviceDetails.user &&
+                                serviceDetails.user.name ? serviceDetails.user.name : 'Admin'}}</span><br />
+                            <span class="profileReview"> <strong>4.9</strong> <i class="icofont-star p-1"></i><span>(2
+                                    reviews)</span> </span>
+                        </p>
+                        <div class="bage" *ngIf="serviceDetails && serviceDetails.tag"> <span
+                                *ngFor="let t of serviceDetails.tag">{{t.name}}</span> </div>
+                    </div>
+                </div>
+                <div class="project-thumb">
+                    <h2> {{serviceDetails?.title}} </h2>
+                    <div class="imgbox"> <img
+                            [src]="image_path && serviceDetails?.gallery[0] ? image_path + serviceDetails?.gallery[0].file : ''"
+                            onerror="this.src='assets/images/no-image.png';" class="img-fluid" alt=""> </div>
+                </div>
+                <div class="sliderbox">
+                    <div class="row mt-3">
+                        <div class="col-md-8">
+                            <p style="color:#000;font-size: 18px;">What people loved about this solution</p>
+                        </div>
+                        <div class="col-md-4 text-md-end"> <a href="javascript:void(0);" class="see">See all reviews</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="card border-0">
+                                            <div class="card-body"
+                                                style="border: 1px solid whitesmoke; border-radius: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="text-lg-end"> <img
+                                                                src="./assets/images/profileCard.png" alt=""> </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p style="font-size: 20px; color: #000;">Linuxdeo1 </p>
+                                                        <p style="font-size: 12px; color: #000;"><i
+                                                                class="icofont-location-pin pe-1"></i> New York </p>
+                                                        <p style="font-size: 12px; color: #000;">So good!!!!!!
+                                                            I'm very satisfied with this.</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p>5 <i class="icofont-star star"></i> </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="card border-0">
+                                            <div class="card-body"
+                                                style="border: 1px solid whitesmoke; border-radius: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="text-lg-end"> <img
+                                                                src="./assets/images/profileCard.png" alt=""> </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p style="font-size: 20px; color: #000;">Linuxdeo1 </p>
+                                                        <p style="font-size: 12px; color: #000;"><i
+                                                                class="icofont-location-pin pe-1"></i> New York </p>
+                                                        <p style="font-size: 12px; color: #000;">So good!!!!!!
+                                                            I'm very satisfied with this.</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p>5 <i class="icofont-star star"></i> </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item ">
+                                        <div class="card border-0">
+                                            <div class="card-body"
+                                                style="border: 1px solid whitesmoke; border-radius: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="text-lg-end"> <img
+                                                                src="./assets/images/profileCard.png" alt=""> </div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p style="font-size: 20px; color: #000;">Linuxdeo1 </p>
+                                                        <p style="font-size: 12px; color: #000;"><i
+                                                                class="icofont-location-pin pe-1"></i> New York </p>
+                                                        <p style="font-size: 12px; color: #000;">So good!!!!!!
+                                                            I'm very satisfied with this.</p>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <p>5 <i class="icofont-star star"></i> </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleControls" data-bs-slide="prev"> <span
+                                        class="carousel-control-prev-icon text-danger" aria-hidden="true"> <i
+                                            class="icofont-rounded-left"></i></span> <span
+                                        class="visually-hidden">Previous</span> </button>
+                                <button class="carousel-control-next" data-bs-target="#carouselExampleControls"
+                                    data-bs-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"><i
+                                            class="icofont-rounded-right"></i></span> <span
+                                        class="visually-hidden">Next</span> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom">
+                    <div class="col-md-12">
+                        <div class="aboutWorkers">
+                            <h4>About Workers:</h4>
+                            <div [innerHTML]="serviceDetails?.body"></div>
+                            <!-- <p style="text-align: justify;">NEW to Homefixpros! Been Cleaning and
+                                organizing
+                                homes since 2014. I am from
+                                Denver CO. Been in Daytona FL area for three years. Helping people in
+                                their
+                                homes is my Passion. I do all things related to Housekeeping. Cooking,
+                                cleaning,
+                                laundry, organizing and errands. Message me today for appointments this
+                                week. </p>
+                            <p class="mt-3 pb-1" style="font-size: 20px; color: #000;">Overview</p>
+                            <ul class="p-0 m-0 listb">
+                                <li class="mb-2"><i class="bi bi-person-check-fill"></i> Highly
+                                    Experienced </li>
+                                <li class="mb-2"><i class="bi bi-search"></i> Hired three times </li>
+                                <li class="mb-2"><i class="bi bi-clock"></i> 6 years Experienced </li>
+                                <li class="mb-2"><i class="bi bi-people"></i> 2 Employees </li>
+                                <li class="mb-2"><i class="bi bi-geo-alt-fill"></i> Server Orlando FL </li>
+                            </ul>
+                            <p class="mt-3 pb-1" style="font-size: 20px; color: #000;">Payment methods </p>
+                            <p>Cash, Check, Credit Card, Zelle, Square Cash App</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom pb-lg-5 mt-5" *ngIf="serviceDetails">
+                    <div class="col-md-12">
+                        <div class="faqbox">
+                            <h5>FAQ</h5>
+                            <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+                                <div class="accordion-item"
+                                    *ngFor="let serviceFaq of serviceDetails.faq; let i = index;">
+                                    <h2 class="accordion-header" [id]="'panelsStayOpen-headingOne_'+i">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse"
+                                            [attr.data-bs-target]="'#panelsStayOpen-collapseOne_'+i"
+                                            aria-expanded="false"
+                                            [attr.aria-controls]="'panelsStayOpen-collapseOne_'+i">
+                                            {{serviceFaq.question}}
+                                        </button>
+                                    </h2>
+                                    <div [id]="'panelsStayOpen-collapseOne_'+i" class="accordion-collapse collapse"
+                                        [attr.aria-labelledby]="'panelsStayOpen-headingOne_'+i">
+                                        <div class="accordion-body" style="text-align: justify;">
+                                            <p [innerHTML]="serviceFaq.answer"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                            aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"> What is
+                                            your typical process for working with a new customer? </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                        <div class="accordion-body">
+                                            <p> My price is below market value yet comparable to my years of
+                                                experience
+                                                in this field. I want you to be able to afford me on a
+                                                regular
+                                                basis. I
+                                                do offer discounts to clients who subscribe to weekly or
+                                                bi-weekly
+                                                service. If you want to hire me for more then 10 hours a
+                                                week
+                                                let's
+                                                negotiate. </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                            aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"> What
+                                            education and/or training do you have that relates to your
+                                            work? </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="panelsStayOpen-headingThree">
+                                        <div class="accordion-body">
+                                            <p> My price is below market value yet comparable to my years of
+                                                experience
+                                                in this field. I want you to be able to afford me on a
+                                                regular
+                                                basis. I
+                                                do offer discounts to clients who subscribe to weekly or
+                                                bi-weekly
+                                                service. If you want to hire me for more then 10 hours a
+                                                week
+                                                let's
+                                                negotiate. </p>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-lg-4 mt-5 border-bottom" id="reviews">
+                    <div class="col-md-12">
+                        <div class="review-box">
+                            <div class="top-box">
+                                <h5>Reviews</h5>
+                                <p class="one"> Customers rated this pro highly for <a href="javascript:void(0);">work
+                                        quality</a>, <a href="javascript:void(0);">professionalism</a>, and <a
+                                        href="javascript:void(0);">responsiveness</a> </p>
+                                <div class="info">
+                                    <div class="left">
+                                        <h5 class="pe-2">2 Reviews</h5>
+                                        <div class="star "> <i class="icofont-star"></i> <i class="icofont-star"></i> <i
+                                                class="icofont-star"></i> <i class="icofont-star"></i> <i
+                                                class="icofont-star"></i> <span>5</span> </div>
+                                    </div>
+                                    <div class="right"> <span>Sort By</span>
+                                        <select>
+                                            <option selected> Positive </option>
+                                            <option>Negative</option>
+                                            <option>3 Star</option>
+                                            <option>2 Star</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <ul class="review-list pt-2">
+                                    <li>
+                                        <p> 5 <span><i class="icofont-star"></i></span> </p>
+                                        <span class="two bg"> </span> <span> 100%</span>
+                                    </li>
+                                    <li>
+                                        <p> 4 <span><i class="icofont-star"></i></span> </p>
+                                        <span class="two"> </span> <span> 0%</span>
+                                    </li>
+                                    <li>
+                                        <p> 3 <span><i class="icofont-star"></i></span> </p>
+                                        <span class="two"> </span> <span> 0%</span>
+                                    </li>
+                                    <li>
+                                        <p> 2 <span><i class="icofont-star"></i></span> </p>
+                                        <span class="two"> </span> <span> 0%</span>
+                                    </li>
+                                    <li>
+                                        <p> 1 <span><i class="icofont-star"></i></span> </p>
+                                        <span class="two "> </span> <span> 0%</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment">
+                                    <div class="left">
+                                        <div class="thumb"> <img src="assets/images/innerpage/review-1.png" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>Delaw12<span class="ps-1">5 <i class="icofont-star"></i> </span> </h4>
+                                            <div class="loc"> <i class="icofont-location-pin p1-2"></i> New York </div>
+                                            <p class="pt-1"> It was an excellent experience to work with this worker.
+                                                Thank you so much for the final work and patience. </p>
+                                        </div>
+                                    </div>
+                                    <div class="right d-xl-block d-none ">
+                                        <div class="thumb"> <img src="assets/images/innerpage/thumb-1.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="replay pt-3">
+                                    <div class="comment">
+                                        <div class="left">
+                                            <div class="thumb"> <img src="assets/images/innerpage/review-3.png" alt="">
+                                            </div>
+                                            <div class="content">
+                                                <h4>Musak Khan<span class="ps-1">5 <i class="icofont-star"></i> </span>
+                                                </h4>
+                                                <div class="loc"> <i class="icofont-bag-alt p1-2"></i> Plumber </div>
+                                                <p class="pt-1"> Thank you so much </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-item">
+                                <div class="comment">
+                                    <div class="left">
+                                        <div class="thumb"> <img src="assets/images/innerpage/review-2.png" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>Linuxdeo1<span class="ps-1">5 <i class="icofont-star"></i> </span> </h4>
+                                            <div class="loc"> <i class="icofont-location-pin p1-2"></i> New York </div>
+                                            <p class="pt-1"> It was an excellent experience to work with this worker.
+                                                Thank you so much for the final work and patience. </p>
+                                        </div>
+                                    </div>
+                                    <div class="right d-xl-flex align-items-center d-none">
+                                        <div class="thumb m-2"> <img src="assets/images/innerpage/thumb-1.png" alt="">
+                                        </div>
+                                        <div class="thumb"> <img src="assets/images/innerpage/thumb-1.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-item pb-0 border-bottom-0">
+                                <div class="comment">
+                                    <div class="left">
+                                        <div class="thumb"> <img src="assets/images/innerpage/review-3.png" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h4>shadin21<span class="ps-1">4.2 <i class="icofont-star"></i> </span>
+                                            </h4>
+                                            <div class="loc"> <i class="icofont-location-pin p1-2"></i> New York </div>
+                                            <p class="pt-1"> It was an excellent experience to work with this worker.
+                                                Thank you so much for the final work and patience. </p>
+                                        </div>
+                                    </div>
+                                    <div class="right d-xl-block d-none">
+                                        <div class="thumb"> <img src="assets/images/innerpage/thumb-1.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-5 col-lg-6 mt-30">
+                <div class="rounded px-2 px-md-4 mx-md-3 my-3 my-md-0 my-lg-0 my-xl-0 my-xxl-0 position-sticky  rightammountbox"
+                    style="border: 1px solid #DCDCDC;">
+                    <form [formGroup]="contactForm">
+                        <p class="mt-3 text-center text-md-start text-lg-start text-xl-start text-xxl-start"
+                            style="color: black;">contact for price</p>
+                        <p class="d-flex align-items-center pt-1"><img src="./assets/images/profileGroup.png" alt=""
+                                srcset=""><a href="javascript:void(0);" class="ms-1" style="color: #00A3FF;">See how
+                                much
+                                your
+                                project will cost</a></p>
+                        <div class="mb-3 mt-3">
+                            <label for="exampleFormControlInput1" class="form-label">Zip Code</label>
+                            <input type="text" placeholder="Enter zip code" formControlName="zip_code"
+                                [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
+                                class="form-control form-select-sm  rounded-0" id="exampleInputZip_code" name="zip_code"
+                                aria-describedby="emailHelp" />
+                            <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
+                                <div *ngIf="f.zip_code.errors.required">Zip code is required</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Amount</label>
+                            <input type="number" placeholder="Enter Amount" formControlName="amount"
+                                [ngClass]="{ 'is-invalid': submitted && f.amount.errors }"
+                                class="form-control form-select-sm  rounded-0" id="exampleInputamount" name="amount"
+                                aria-describedby="emailHelp" />
+                            <div *ngIf="submitted && f.amount.errors" class="invalid-feedback">
+                                <div *ngIf="f.amount.errors.required">Amount is required</div>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Number of
+                                bedrooms</label>
+                            <select class="form-select form-select-sm rounded-0" aria-label=".form-select-sm example">
+                                <option selected>Select answer</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div> -->
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Scheduling</label>
+                            <input type="date" placeholder="Select date" formControlName="contract_estimate_end"
+                                class="form-control form-select-sm  rounded-0" id="exampleInputamount"
+                                [ngClass]="{ 'is-invalid': submitted && f.contract_estimate_end.errors }"
+                                aria-describedby="emailHelp" (change)="tDate()" />
+                            <div *ngIf="submitted && f.contract_estimate_end.errors" class="invalid-feedback">
+                                <div *ngIf="f.contract_estimate_end.errors.required">Scheduling is required</div>
+                            </div>
+                            <!-- <select class="form-select form-select-sm  rounded-0" aria-label=".form-select-sm example">
+                                <option selected>Select one</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select> -->
+                        </div>
+                        <div class="text-md-center mb-3">
+                            <div class=" button-group "> <button (click)="sendContract()" class="button1">
+                                    Availability</button> <a href="#0" class="button2"> Message</a> </div>
+                            <div class="mt-2 text-center"> <img src="./assets/images/prof.png">Responds in about <span
+                                    class="text-dark fw-bolder ps-1 "> 1 hour</span> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix slider Area End -->
+
+<!-- Homefix Service Area Start -->
+<section class="homefix_service_area pt-60 pb-60 " id="previous_work">
+    <div class="container">
+        <!-- section title area -->
+        <div class="row">
+            <!-- section title -->
+            <div class="col-xl-6">
+                <h3 class="section_title mb-3 text-start">
+                    Previous Work
+                </h3>
+            </div>
+            <div class="col-xl-6 text-xl-end"> <a href="javascript:void(0);" class="alink mb-3"> See all work </a>
+            </div>
+            <!-- end section title -->
+        </div>
+        <!-- end section title area -->
+        <!-- service items -->
+        <div class="row g-0">
+            <div class="service-slider"> <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb"> <img src="assets/images/home/ser_1.png" alt=""> </div>
+                        <div class="service_single_title">
+                            <h3>Home Pattycommercial plumbing </h3>
+                        </div>
+                    </div>
+                </a> <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb"> <img src="assets/images/home/ser_2.png" alt=""> </div>
+                        <div class="service_single_title">
+                            <h3>Residential Plumbing Services </h3>
+                        </div>
+                    </div>
+                </a> <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb"> <img src="assets/images/home/ser_1.png" alt=""> </div>
+                        <div class="service_single_title">
+                            <h3>Repairing Underground Pipe Leaks</h3>
+                        </div>
+                    </div>
+                </a> <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb"> <img src="assets/images/home/ser_2.png" alt=""> </div>
+                        <div class="service_single_title">
+                            <h3>Home Pattycommercial plumbing </h3>
+                        </div>
+                    </div>
+                </a> <a href="#0" class="homefix_service_single">
+                    <div class="homefix_ser_single_inner">
+                        <div class="service_single_thumb"> <img src="assets/images/home/ser_2.png" alt=""> </div>
+                        <div class="service_single_title">
+                            <h3>Repairing Underground Pipe Leaks </h3>
+                        </div>
+                    </div>
+                </a> </div>
+        </div>
+    </div>
+</section>
+<!-- End Homefix Service Area -->
+
+<app-footer></app-footer>

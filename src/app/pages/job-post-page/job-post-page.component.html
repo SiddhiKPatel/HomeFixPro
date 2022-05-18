@@ -1,0 +1,89 @@
+<app-header></app-header>
+<!-- Homefix slider Area Start -->
+<div class="jobPostboxholder pt-60 pb-60">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h4 class="text-center">What service are you looking for?</h4>
+                <form class="jobPostbox" [formGroup]="jobPostForm" (ngSubmit)="addJob()">
+                    <div class="col-12">
+                        <div class="form-group position-relative ">
+                            <label for="exampleInputJobTitle" class="form-label">Job title</label>
+                            <input type="text" placeholder="ex: Plumber needed" class="form-control rounded-0"
+                                id="exampleInputJobTitle" formControlName="title" aria-describedby="emailHelp">
+                        </div>
+                        <div *ngIf="f.title.errors?.required && submitted" class="error-disp">
+                            <small class="text-danger danger-custom">Please enter job title.</small>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group position-relative ">
+                            <label for="exampleInputPassword1" class="form-label">Tell us a bit about this
+                                project</label>
+                            <textarea class="form-control" formControlName="body" placeholder="Let us know"
+                                id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div *ngIf="f.body.errors?.required && submitted" class="error-disp">
+                            <small class="text-danger danger-custom">Please write about this project.</small>
+                        </div>
+                    </div>
+                    <div class="col-12">
+
+                        <div class="form-group position-relative " *ngIf="jobPageData">
+                            <label for="exampleInputEmail1" class="form-label">Choose category</label>
+                            <select class="form-select" formControlName="category_id"
+                                aria-label="Default select example">
+                                <option selected value="">Select category</option>
+                                <option *ngFor="let s of jobPageData.categories" [value]="s.id">{{s.name}}</option>
+                                <!-- <option value="2">Two</option>
+                                <option value="3">Three</option> -->
+                            </select>
+                        </div>
+                        <div *ngIf="f.category_id.errors?.required && submitted" class="error-disp">
+                            <small class="text-danger danger-custom">Please select a category.</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group position-relative " *ngIf="jobPageData">
+                                <label for="exampleInputEmail1" class="form-label">Delivery Time</label>
+                                <select class="form-select" formControlName="delivery_time_id"
+                                    aria-label="Default select example">
+                                    <option selected value="">Delivery Time</option>
+                                    <option *ngFor="let d of jobPageData.delivery_times" [value]="d.id">{{d.name}}
+                                    </option>
+                                    <!-- <option value="2">Two day</option>
+                                    <option value="3">Three day</option> -->
+                                </select>
+                            </div>
+                            <div *ngIf="f.delivery_time_id.errors?.required && submitted" class="error-disp">
+                                <small class="text-danger danger-custom">Please select delivery time.</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group position-relative ">
+                                <label for="exampleInputEmail1" class="form-label">Project Image</label>
+                                <input type="file" (change)="importFile($event)" formControlName="img_choose"
+                                    class="form-control" id="inputGroupFile02">
+                            </div>
+                            <!-- <div *ngIf="f.img_choose.errors?.required && submitted" class="error-disp">
+                                <small class="text-danger danger-custom">Please select an image.</small>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="text-start">
+                        <p class="infop">
+                            By submitting this form you agree to our <a href="#0">terms and conditions</a> and
+                            our <a href="#0">Privacy Policy</a>
+                            which explains how we may collect, use and disclose your personal information
+                            including to third parties.
+                        </p>
+                        <button class="button1 mt-30" type="submit"> Post a Job</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix slider Area End -->
+<app-footer></app-footer>

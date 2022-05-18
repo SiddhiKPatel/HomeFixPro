@@ -1,0 +1,45 @@
+.invalid-feedback{
+    display: block;
+    text-align: left;
+}
+.homefix_login_details form.loginStep1{
+    border: none;
+    padding: 0;
+}
+.remember label{
+    width: auto;
+}
+.pt-85{
+    padding-top: 85px;
+}
+.form_title .login_form_title{
+    color: black;
+}
+.registration-box .login_form_title{
+    color: black;
+}
+input{
+    cursor: auto;
+}
+.registration-box .customborder, .registration-box .form-select{
+    border: 2px solid #ddd !important;
+}
+
+#btnrole0{
+    border: 1px solid #ddd !important;
+    border-radius: 5px 0 0 5px;
+    color: #595954;
+}
+#btnrole1{
+    border: 1px solid #ddd !important;
+    border-radius: 0px 5px 5px 0;
+    color: #595954;
+}
+
+.btn-check:checked+.btn-outline-primary, .btn-outline-primary:hover{
+    background-color: #00a3ff;
+    color: #fff !important;
+}
+.accountbtn{
+    border-color: #00a3ff;
+}

@@ -1,0 +1,150 @@
+<app-header></app-header>
+<!-- Homefix oppurtunity area start -->
+<div class="oppurtunity pt-60 pb-60">
+    <div class="container ">
+        <div class="row mt--30">
+            <div class="col-lg-12 mt-30" *ngIf="jobDetails">
+                <div class="left-box">
+                    <h2 class="fs-2">{{jobDetails.title}}</h2>
+                    <p>3 hours ago. <br />
+                        <!-- <a href="javascript:void(0);" style="color: #00A3FF; font-size: 14px;" class="text-decoration-none">1 pro responded</a> -->
+                        <a href="javascript:void(0);" style="color: #00A3FF; font-size: 14px;"
+                            class="text-decoration-none">{{jobDetails.category.name}}</a>
+                    </p>
+
+                    <p [innerHTML]="jobDetails.body"></p>
+                    <!-- <p class="fs-3 mt-3" style="font-weight: 600;">Job Responsibilities</p>
+                    <p style="text-align: justify;">is simply dummy text of the printing and typesetting
+                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                        1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                        specimen book. It has survived not only five centuries, but also the leap into
+                        electronic typesetting, remaining essentially unchanged. It was popularised in the
+                        1960s with the release of Letraset sheets containing
+                        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+                        PageMaker including versions of Lorem Ipsum.</p> -->
+                    <div class="mt-3">
+                        <p class="fs-4">Project photo</p>
+                        <div id="image-gallery">
+                            <div class="row g-3 mt-1">
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img [src]="image_path + jobDetails.image" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-2.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-3.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-4.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-5.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-6.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-7.png" alt="Image" class="img-fluid rounded-1">
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <img src="assets/images/blog/blog-9.png" alt="Image" class="img-fluid rounded-1">
+                                </div> -->
+                            </div>
+                            <!-- End row -->
+                            <!-- <button type="button" class="button1 mt-4">Show More</button> -->
+                        </div>
+                        <!-- End image gallery -->
+                    </div>
+                    <!-- End container -->
+
+                    <h5 class="mt-5">Proposals</h5>
+                    <div class="card rounded-0 my-3" *ngFor="let jobproposal of jobDetails.jobproposals">
+                        <div class="card-header bg-white">
+                            <div class="row">
+                                <div class="col-md-8 pt-2">
+                                    <h4> {{jobproposal.title}}</h4>
+                                    <p class="text2" *ngIf="jobproposal.amount">Amount: ${{jobproposal.amount}}</p>
+                                    <p *ngIf="jobproposal.delivery_time">
+                                        {{jobproposal.delivery_time.name}} delivery
+                                    </p>
+                                </div>
+                                <div class="col-md-4 pt-2">
+                                    <div class="text-md-end">
+                                        <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
+                                            type="button" (click)="acceptMessage(jobproposal)">Message
+                                        </button>
+                                        <!-- <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
+                                            type="button"><a href="submit-proposal.html" class="text-white" target="_blank"
+                                                rel="noopener noreferrer">send
+                                                proposals</a></button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- <p class="card-text"> -->
+                            <div id="section">
+                                <div class="article">
+                                    <p [innerHTML]="jobproposal.body"></p>
+                                </div>
+                                <p style="color: #00a3ff;" *ngIf="responseData && responseData.proposal_status_array">Status: 
+                                    <span *ngFor="let pp of responseData.proposal_status_array; let i=index">
+                                        <span *ngIf="jobproposal.status == i">{{pp}}</span>
+                                    </span>
+                                </p>
+                            </div>
+                            <!-- </p> -->
+                            <!-- <div><span class="badge rounded-pill bg-light text-dark me-3">{{ job.category.name}}</span> -->
+                            <!-- <span class="badge rounded-pill bg-light text-dark">cleaner</span> -->
+                            <!-- </div> -->
+                            <div class="infobox">
+                                <!-- <p> -->
+                                <!-- <span class="pe-2">
+                                        <i class="icofont-location-pin"></i>
+                                    </span> -->
+                                <!-- <span class="pe-2">
+                                        <i class="icofont-clock-time"></i>
+                                    </span>
+                                    <span>{{jobproposal.amount}} </span>
+                                </p> -->
+                                <!-- <p>
+                                    <span class="pe-2">
+                                        <i class="icofont-clock-time"></i>
+                                    </span>
+                                    <span>
+                                        {{job.delivery_time.name}}
+                                    </span>
+                                </p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="col-lg-4 col-md-7 mt-30">
+                <div class="bg-white rounded-3 px-5 py-4 shadow-sm">
+
+                    <div class="d-grid gap-2 ">
+                        <button class="btn btn-primary" type="button"><i class="bi bi-envelope-fill me-3"></i>Send
+                            Proposals</button>
+                        <button class="btn btn-outline-primary mt-3" type="button"> <span
+                                style="text-align: left; display: inline-block;">Share now</span> <i
+                                class="bi bi-share-fill ms-5"></i></button>
+                    </div>
+                    <div class="mt-3">
+                        <p class="fs-4 fw-bold text-dark">9 Aug, 2019</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Location</p>
+                        <p class="">Seattle</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Frequency</p>
+                        <p class="">Every 2 weeks</p>
+                        <p class="lh-1 text-dark fw-bold mt-3">Experience</p>
+                        <p class="">2 years</p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Homefix oppurtunity area end -->
+<app-footer></app-footer>

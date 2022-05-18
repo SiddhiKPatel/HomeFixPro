@@ -1,0 +1,273 @@
+<app-header></app-header>
+
+<div style="background-color: #FBFBFB;">
+    <div class="text-center py-3" style="background-color: #F4FBFF; " *ngIf="jobDetails && (jobDetails.status != 4)"> <a
+            href="javascript:void(0);" class="btn btn-link text-decoration-none" style="color: #00A3FF;">Delivery your
+            Project</a>
+        <a href="javascript:void(0);" class="button1" style="background:#00A3FF; color: white;" data-bs-toggle="modal"
+            data-bs-target="#submitProjModal" *ngIf="roleId == 2">Submit</a>
+
+        <a href="javascript:void(0);" class="button1" style="background:#00A3FF; color: white;" data-bs-toggle="modal"
+            data-bs-target="#withdrawProjModal" *ngIf="roleId == 3">Withdraw</a>
+        <a href="javascript:void(0);" class="button1" style="background:#00A3FF; color: white;margin-left: 3px;"
+            data-bs-toggle="modal" data-bs-target="#completedProjModal" *ngIf="roleId == 3">Completed</a>
+    </div>
+
+    <div class="text-center py-3" style="background-color: #F4FBFF; " *ngIf="jobDetails && (jobDetails.status == 4) && roleId==2"> <a
+            href="javascript:void(0);" class="btn btn-link text-decoration-none" style="color: #00A3FF;">Delivery your
+            Project</a>
+        <a href="javascript:void(0);" class="button1" style="background:#00A3FF; color: white;" data-bs-toggle="modal"
+            data-bs-target="#reviewProjModal" *ngIf="roleId == 2">Review</a>
+    </div>
+    <div class="container caunter-holder ">
+        <div class="row">
+            <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-12  order-1">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist"
+                    style="flex-wrap: nowrap;border-bottom: 1px solid #DCDCDC;">
+                    <li class="nav-item" role="presentation" style="cursor: pointer;">
+                        <div class="nav-link active text-secondary pt-3 px-2 px-md-3 px-lg-3 px-xl-3 px-xxl-3 pb-1"
+                            id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
+                            aria-controls="pills-home" aria-selected="true" style="text-transform: uppercase;"> Activity
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation" style="cursor: pointer;">
+                        <div class="nav-link text-secondary  pt-3 px-2 px-md-3 px-lg-3 px-xl-3 px-xxl-3 pb-1"
+                            id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" role="tab"
+                            aria-controls="pills-profile" aria-selected="false" style="text-transform: uppercase;">
+                            Requirements</div>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <!-- first tab -->
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                        aria-labelledby="pills-home-tab">
+                        <div>
+                            <div class="card mt-4">
+                                <div class="card-header ">
+                                    <p class="fs-4 fw-bold text-dark">{{jobDetails?.title}}</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row  ">
+                                        <div class="ccounter-content">
+                                            <p class="card-text">Your Contract includes</p>
+                                            <p class="text-end"> <i class="bi bi-clock me-2"
+                                                    style="color: #00A3FF;"></i><span>{{jobDetails?.delivery_time.name}}
+                                                    delivery</span> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="countdown-box">
+                                <div id="defaultCountdown"></div>
+
+                                <h2 *ngIf="jobDetails && (jobDetails.status == 4)">Completed</h2>
+                                <h2 *ngIf="jobDetails && (jobDetails.status == 3)">Withdraw</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- first tab end -->
+                    <!-- second tab -->
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="text-end"> <a href="#0" class="mt-4" style="color: #00A3FF;"><i
+                                    class="bi bi-download"></i> Download</a> </div>
+                        <div class="card mt-4">
+                            <h5 class="card-header bg-white">{{jobDetails?.title}}</h5>
+                            <div class="card-body">
+                                <div class="bg-white mt-2">
+                                    <div class=" pb-3">
+                                        <p class="fs-3" style="font-weight: 600;">Job Responsibilities</p>
+                                        <p>{{jobDetails?.created_at | date: 'MMM d, h:mm:ss a'}}</p>
+                                        <p [innerHTML]="jobDetails?.body"></p>
+                                        <!-- <p style="text-align: justify;">is simply dummy text of the printing and
+                                            typesetting
+                                            industry. Lorem Ipsum has been the industry's standard dummy text
+                                            ever since the
+                                            1500s, when an unknown printer took a galley of type and scrambled
+                                            it to make a type
+                                            specimen book. It has survived not only five centuries, but also the
+                                            leap into
+                                            electronic typesetting, remaining essentially unchanged. It was
+                                            popularised in the
+                                            1960s with the release of Letraset sheets containing
+                                            Lorem Ipsum passages, and more recently with desktop publishing
+                                            software like Aldus
+                                            PageMaker including versions of Lorem Ipsum.</p> -->
+                                        <div class="contactimgboxholder pt-3"
+                                            *ngIf="jobDetails && jobDetails.gallery && image_path">
+                                            <p class="fs-4">Project photos</p>
+                                            <div id="image-gallery" class="contactimgbox">
+                                                <div class="csingleimg" *ngFor="let g of jobDetails.gallery"> <img
+                                                        [src]="image_path + g.file" alt="Image"
+                                                        class="img-fluid rounded-1"> </div>
+                                                <!-- <div class="csingleimg"> <img src="assets/images/img-2.png" alt="Image"
+                                                        class="img-fluid rounded-1"> </div>
+                                                <div class="csingleimg"> <img src="assets/images/img-1.png" alt="Image"
+                                                        class="img-fluid rounded-1"> <a href="#0" class="cseemore">See
+                                                        more</a> </div> -->
+                                                <!-- End row -->
+                                            </div>
+                                            <!-- End image gallery -->
+                                        </div>
+                                        <!-- End container -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- second tab end -->
+                    <!-- third tab -->
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    </div>
+                    <!-- third tab end -->
+                </div>
+            </div>
+            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 mobile_profile_detail order-2">
+                <div class="pt-4">
+                    <div class="card mt-5" style="background-color: #F4FBFF; border: 1px solid #94D8FF; ">
+                        <div class="card-body">
+                            <p style="font-size: 18px;">Have any issues with your Contract ?</p>
+                            <p style="font-size: 13px;"> Visit the <a href="javascript:void(0);" style="color: #00A3FF;"
+                                    class="helpcenterlink">Help Center.</a> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-start">
+    <div class="modal fade" id="submitProjModal" tabindex="-1" aria-labelledby="submitProjModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="submitProjModalLabel">
+                        Project Submit</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="submitForm">
+                        <div class="text-start pb-3 fw-bold border-bottom" style="font-size: 20px;">
+                            Deliver your work</div>
+                        <div class="pt-3 pb-5 border-bottom mb-2 text-start">
+
+                            <angular-editor id="editor1" formControlName="body" [config]="editorConfig">
+                            </angular-editor>
+                            <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+                                <div *ngIf="f.body.errors.required">Please write something</div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+                                    style="display: inline-block">
+                                    <li (click)="countStar(star)" id="{{'starId'+i}}"
+                                        [ngClass]="{'selected': (star <= selectedValue)}" (mouseover)="addClass(star)"
+                                        (mouseout)="removeClass(star)"> ★
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                        <button (click)="submitProject()" class="btn" style="background:#00A3FF; color: white;"
+                            type="button"><i class="bi bi-envelope-fill me-3"></i>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="text-start">
+    <div class="modal fade" id="reviewProjModal" tabindex="-1" aria-labelledby="reviewProjModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="reviewProjModalLabel">
+                        Review</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="ratingForm">
+                        <div class="text-start pb-3 fw-bold border-bottom" style="font-size: 20px;">
+                            Deliver your work</div>
+                        <div class="pt-3 pb-5 border-bottom mb-2 text-start">
+
+                            <angular-editor id="editor1" formControlName="body" [config]="editorConfig">
+                            </angular-editor>
+                            <div *ngIf="submitted1 && g.body.errors" class="invalid-feedback">
+                                <div *ngIf="g.body.errors.required">Please write something</div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+                                    style="display: inline-block">
+                                    <li (click)="countStar(star)" id="{{'starId'+i}}"
+                                        [ngClass]="{'selected': (star <= selectedValue)}" (mouseover)="addClass(star)"
+                                        (mouseout)="removeClass(star)"> ★
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <button (click)="addRating()" class="btn" style="background:#00A3FF; color: white;"
+                            type="button"><i class="bi bi-envelope-fill me-3"></i>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-start">
+    <div class="modal fade" id="withdrawProjModal" tabindex="-1" aria-labelledby="withdrawProjModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="withdrawProjModalLabel">
+                        Withdraw</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="with-body">
+                    <p>Are you sure you want to withdraw this work?</p>
+                    <button (click)="submitWithdraw()" class="btn" style="background:#00A3FF; color: white;"
+                        type="button">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-start">
+    <div class="modal fade" id="completedProjModal" tabindex="-1" aria-labelledby="completedProjModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="completedProjModalLabel">
+                        Completed</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="with-body">
+                    <p>Are you sure this work is completed?</p>
+                    <button (click)="completed()" class="btn" style="background:#00A3FF; color: white;"
+                        type="button">Yes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

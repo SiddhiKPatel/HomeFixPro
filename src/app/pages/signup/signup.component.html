@@ -1,0 +1,285 @@
+<app-header></app-header>
+<section class="homefix_login_area pt-85 pb-120" [hidden]="step1success">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-8">
+                <div class="homefix_login_inner">
+                    <div class="homefix_login_details">
+                        <!-- login_form title-->
+                        <div class="form_title">
+                            <h2 class="login_form_title">Get your free account</h2>
+                        </div>
+                        <form action="">
+                            <!-- facebook button -->
+                            <a class="login_facebook_btn" href="#"><img src="assets/images/facebook.png" alt="facebook">
+                                Log in with facebook</a>
+                            <a class="login_google_btn" href="#"><img src="assets/images/email.png" alt="email">
+                                Log in
+                                with Google</a>
+                            <!-- or title -->
+                            <div class="or_cont">
+                                <hr><span>or</span>
+                            </div>
+                            <!-- input email or password -->
+                            <form class="loginStep1" [formGroup]="registerFormStep1" (ngSubmit)="registrationStep1Submit()">
+                                <div class="login_from_field">
+
+                                    <div class="login_from_field_inner">
+                                        <span><i class="icofont-envelope"></i></span>
+                                        <input type="email" placeholder="Email Address" formControlName="email"
+                                            [ngClass]="{ 'is-invalid': submittedStep1 && g.email.errors }" name="email"
+                                            id="email">
+                                        <div *ngIf="submittedStep1 && g.email.errors" class="invalid-feedback">
+                                            <div *ngIf="g.email.errors.required">Email is required</div>
+                                            <div *ngIf="g.email.errors.email">Please, enter valid email
+                                                address.</div>
+                                        </div>
+                                    </div>
+                                    <!-- submit button -->
+                                    <input type="submit" value="Continue with Email">
+
+                                </div>
+                            </form>
+                            <hr>
+                            <!-- remember or sing up -->
+                            <div class="remember">
+                                <label for="">Already a member ?</label><a [routerLink]="['/login']"
+                                    style="color: #00a3ff;">Sign in</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="registration-box pt-85 pb-120" *ngIf="!registerResponse && step1success">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <h2 class="text-center login_form_title">Complete your free account setup</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <form [formGroup]="registerForm">
+                            <div class="reg-email-disp text-center mb-3" *ngIf="registerFormStep1.value.email">
+                                <p>{{registerFormStep1.value.email}}</p>
+                            </div>
+                            <div *ngIf="submitted && registerResponseError && registerResponseError.message"
+                                class="invalid-feedback text-center mb-4">
+                                <div>{{registerResponseError.message}}</div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <div class="input-group customborder">
+                                        <span class="input-group-text bg-white  border-0 " id="basic-addon1"><i
+                                                class="bi bi-person-fill" style="color: #00a3ff"></i></span>
+                                        <input type="text" placeholder="First name" formControlName="fname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
+                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1" name="fname"
+                                            aria-describedby="emailHelp" />
+                                    </div>
+                                    <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fname.errors.required">First name is required</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group customborder">
+                                        <span class="input-group-text bg-white  border-0 " id="basic-addon1"><i
+                                                class="bi bi-person-fill" style="color: #00a3ff"></i></span>
+                                        <input type="text" placeholder="Last name" formControlName="lname"
+                                            [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
+                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1" name="lname"
+                                            aria-describedby="emailHelp" />
+                                    </div>
+                                    <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lname.errors.required">Last name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="mb-4">
+                                <div class="input-group customborder">
+                                    <span class="input-group-text bg-white  border-0" id="basic-addon1"><i
+                                            class="bi bi-envelope-fill" style="color: #00a3ff"></i></span>
+                                    <input type="text" placeholder="Enter email address" formControlName="email"
+                                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                                        class="form-control rounded-0" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
+                                </div>
+                                
+                            </div> -->
+
+                            <div class="mb-4">
+                                <div class="input-group customborder">
+                                    <span class="input-group-text bg-white  border-0" id="basic-addon1"><i
+                                            class="bi bi-key-fill" style="color: #00a3ff"></i></span>
+                                    <input type="password" placeholder="Create a new Password"
+                                        formControlName="password"
+                                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                        class="form-control rounded-0" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
+                                </div>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.pattern || f.password.errors.minlength">Password
+                                        must be 8
+                                        characters, at least 1 upper & 1 lowercase
+                                        letter</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-3">
+                                    <div class="mb-4">
+                                        <select aria-placeholder="Country" class="form-select customborder"
+                                            formControlName="country_id"
+                                            [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }"
+                                            aria-label="Default select example" (change)="changeCountry($event)">
+                                            <option selected value="">Country</option>
+                                            <option *ngFor="let country of registerPageData?.countries"
+                                                [value]="country.id">{{country.name}}</option>
+                                            <!-- <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option> -->
+                                        </select>
+                                        <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">
+                                            <div *ngIf="f.country_id.errors.required">Country is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-4">
+                                        <select aria-placeholder="State" class="form-select customborder"
+                                            formControlName="state_id"
+                                            [ngClass]="{ 'is-invalid': submitted && f.state_id.errors }"
+                                            aria-label="Default select example">
+                                            <option selected value="">Select State</option>
+                                            <option *ngFor="let state of stateList"
+                                                [value]="state.id">{{state.name}}</option>
+                                            <!-- <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option> -->
+                                        </select>
+                                        <div *ngIf="submitted && f.state_id.errors" class="invalid-feedback">
+                                            <div *ngIf="f.state_id.errors.required">State is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-4">
+                                        <!-- <select aria-placeholder="City" class="form-select customborder"
+                                            formControlName="city"
+                                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                            aria-label="Default select example">
+                                            <option selected value="">City</option>
+                                            <option value="One">One</option>
+                                            <option value="Two">Two</option>
+                                            <option value="Three">Three</option>
+                                        </select> -->
+                                        <input type="text" placeholder="City"
+                                            class="form-control customborder rounded-0" formControlName="city"
+                                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                            <div *ngIf="f.city.errors.required">City is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="mb-4">
+                                        <input type="number" placeholder="Zip code"
+                                            class="form-control customborder rounded-0" formControlName="zip_code"
+                                            [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
+                                            <div *ngIf="f.zip_code.errors.required">Zip code is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="text-center text-dark">
+                                        <strong>I want to</strong>
+                                    </p>
+                                    <div class="text-center">
+                                        <div class="btn-group" role="group"
+                                            aria-label="Basic radio toggle button group">
+                                            <div *ngFor="let roles of registerPageData?.roles;let i = index;">
+                                                <input type="radio" class="btn-check " name="btnradio"
+                                                    id="btnradio{{i}}" autocomplete="off" checked="i==0" />
+                                                <label (click)="selectRole(roles)"
+                                                    class="btn btn-outline-primary radBtn    "
+                                                    for="btnradio{{i}}" id="btnrole{{i}}">{{roles.display_name}}</label>
+                                            </div>
+                                            <!-- <div>
+                                                <input type="radio" class="btn-check " name="btnradio" id="btnradio1"
+                                                    autocomplete="off" checked />
+                                                <label (click)="selectRole(paymentSelect[i+1])" class="btn btn-outline-primary radBtn    " for="btnradio1">Hire a
+                                                    Pro</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" class="btn-check  " name="btnradio" id="btnradio2"
+                                                    autocomplete="off" />
+                                                <label (click)="selectRole(paymentSelect[i+1])" class="btn btn-outline-primary   " for="btnradio2">Work as a
+                                                    Constructor</label>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="my-3 form-check">
+                                        <input type="checkbox" formControlName="terms" class="form-check-input"
+                                            id="exampleCheck1" />
+                                        <label class="form-check-label fs-6 " for="exampleCheck1">Yes i understand and
+                                            agree to the
+                                            Homefixpros <a href="#0" style="color: #00a3ff;">Terms of
+                                                Use</a> and <a href="#0" style="color: #00a3ff;"> Privacy Policy</a>.
+                                        </label>
+                                        <div *ngIf="submitted && f.terms.errors" class="invalid-feedback">
+                                            <div *ngIf="f.terms.errors.required">Please accept terms & policy</div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary accountbtn" type="button"
+                                            (click)="registrationSubmit()" style="background-color: #00A3FF;">Create My
+                                            Account</button>
+                                    </div>
+                                    <hr class="my-3" />
+                                    <p class="text-center"> Already a member? <a routerLink="/login"
+                                            style="color: #00a3ff;">Sign
+                                            in </a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-block conta" *ngIf="registerResponse && registerResponse.status">
+    <div class="card border-0">
+        <div class="card-body px-3 px-md-5 py-5">
+            <div class="text-center py-3">
+                <img src="./assets/images/Group2089.png" alt="" />
+            </div>
+            <div class="text-center">
+                <p class="fs-3 fw-bold text-dark">
+                    Verify your email to proceed
+                </p>
+                <p class="mb-4">
+                    {{registerResponse?.message}}
+                </p>
+
+                <div class="d-grid gap-2">
+                    <button [routerLink]="['/login']" class="btn btn-primary" type="button"
+                        style="background-color: #00A3FF;">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Homefix reg Area End -->
+<app-footer></app-footer>

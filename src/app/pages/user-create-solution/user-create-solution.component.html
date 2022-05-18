@@ -1,0 +1,409 @@
+<app-header></app-header>
+<!-- Homefix slider Area Start -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 
+            col-lg-12 col-xl-12 text-center p-0 mt-3 mb-2 ">
+            <div class="px-0 pt-4 pb-0 mt-3 mb-3">
+                <form id="form" class="mobile_profile_detail">
+                    <ul id="progressbar" class="m-0 p-0">
+                        <li class="active align-items-center" id="step1">
+                            <strong>Overview</strong>
+                            <span class="img d-none d-md-inline-block float-md-end ">
+                                <i class="bi bi-chevron-right"></i>
+                            </span>
+                            <!-- <img src="./assets/images/Vector39.png"  alt=""> -->
+                        </li>
+                        <li id="step2">
+                            <strong>Description & FAQ</strong>
+                            <span class="img d-none d-md-inline-block float-md-end">
+                                <i class="bi bi-chevron-right"></i>
+                            </span>
+                        </li>
+                        <li id="step3">
+                            <strong>Gallery</strong>
+                            <span class="img d-none d-md-inline-block float-md-end">
+                                <i class="bi bi-chevron-right"></i>
+                            </span>
+                        </li>
+                        <li id="step4">
+                            <strong>Publish</strong>
+                        </li>
+                    </ul>
+                    <!-- <div class="progress">
+                        <div class="progress-bar"></div>
+                    </div>  -->
+                    <br>
+                    <fieldset>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card px-3 pt-3 pb-5">
+                                    <form [formGroup]="overViewForm">
+                                        <div class="mb-3 row">
+                                            <label for="staticTitle"
+                                                class="col-sm-2 col-form-label text-start text-md-end">Project
+                                                Title</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" formControlName="title"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.title.errors }"
+                                                    class="form-control form-control-sm" id="staticTitle" value=""
+                                                    placeholder="Enter project title">
+                                            </div>
+                                            <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                                <div *ngIf="f.title.errors.required">Title is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="inputPassword"
+                                                class="col-sm-2 col-form-label text-start text-md-end">Category</label>
+                                            <div class="col-sm-10">
+
+                                                <select class="form-select form-select-sm" formControlName="category_id"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.category_id.errors }"
+                                                    aria-label=".form-select-sm example">
+                                                    <option selected value="">Select category</option>
+                                                    <option *ngFor="let c of categories" [value]="c.id">{{c.name}}
+                                                    </option>
+                                                </select>
+                                                <div *ngIf="submitted && f.category_id.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.category_id.errors.required">Select a category</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="inputPassword"
+                                                class="col-sm-2 col-form-label text-start text-md-end">Tag</label>
+                                            <div class="col-sm-10">
+
+                                                <!-- <input style="width: 100%" class="form-select form-select-sm" formControlName="tag_id"
+                                                [ngClass]="{ 'is-invalid': submitted && f.tag_id.errors }"
+                                                    type="text" value=""
+                                                    data-role="tagsinput"> -->
+
+                                                <ng-select [items]="tags" bindLabel="name" placeholder="Select Tags"
+                                                    appendTo="body" [multiple]="true" formControlName="selectedTags">
+                                                </ng-select>
+
+                                                <!-- <div *ngIf="submitted && f.tag_id.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.tag_id.errors.required">Select a tag</div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card p-3">
+                                    <p><strong>How it works</strong></p>
+                                    <img src="./assets/images/Rectangle200.png" alt="" srcset="">
+                                    <div class="position-relative">
+                                        <div class="wrapper">
+                                            <div class="video-main">
+                                                <div class="promo-video">
+                                                    <div class="waves-block">
+                                                        <div class="waves wave-1"></div>
+                                                        <div class="waves wave-2"></div>
+                                                        <div class="waves wave-3"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="https://www.youtube.com/watch?v=BqI0Q7e4kbk"
+                                                    class="video video-popup mfp-iframe" data-lity><i class="bi bi-play"
+                                                        style="font-size: 50px;"></i></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="button" name="next-step"
+                            class="next-step btn btn-sm btn-primary mx-auto d-block  float-md-start"
+                            value="Save and Continue" [disabled]="overViewForm.invalid" />
+
+                    </fieldset>
+                    <fieldset>
+                        <div class="row p-3 p-md-0">
+                            <div class="col-md-8">
+                                <form [formGroup]="descForm">
+                                    <div class="text-start pb-3 fw-bold border-bottom" style="font-size: 20px;">
+                                        Description</div>
+                                    <div class="pt-3 pb-5 border-bottom mb-2 text-start">
+                                        <p class="text-start">Briefly Describe your project</p>
+
+                                        <angular-editor id="editor1" formControlName="body" [config]="editorConfig">
+                                        </angular-editor>
+
+                                        <!-- <div class="editButtons" class="text-start" style="background-color: #EFEFEF;">
+                                            <span title="STYLES" class="float-start">
+                                        
+                                                <button data-edit="bold"><b>B</b></button>
+                                   
+                                                <button data-edit="italic"><i>I</i></button>
+                                      
+                                                <button data-edit="underline"><u>U</u></button>
+                                              
+                                                <button data-edit="strikeThrough"><s>S</s></button>
+                                            </span>
+
+                                            <span title="FONT SIZE" class="float-start">
+                                              
+                                                <button data-edit="fontSize:1">s</button>
+                                                <button data-edit="fontSize:3">M</button>
+                                                <button data-edit="fontSize:5">L</button>
+                                            </span>
+
+
+
+                                            <span title="CLEAR FORMATTING" style="visibility: hidden;">
+                                                
+                                                <button data-edit="removeFormat">&times;</button>
+                                            </span>
+                                        </div>
+                                        <div contenteditable id="textbox" class="text-start bg-white  border border-1">
+                                            <p></p>
+                                        </div> -->
+
+
+                                        <!-- <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Leave a comment here"
+                                            id="floatingTextarea2" style="height: 200px"></textarea>
+                                    </div> -->
+
+
+                                    </div>
+
+                                </form>
+                                <div>
+                                    <div class="row border-bottom">
+                                        <div class="col-md-8 col-8">
+                                            <p class="text-start  fw-bold" style="font-size: 20px;"> Frequently
+                                                Asked Question</p>
+                                        </div>
+                                        <div class="col-md-4 col-4">
+                                            <div class="text-end">
+                                                <button type="button" class="btn " style="color: #00A3FF;"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    +Add FAQ
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="text-start">
+                                            Add Question and Answer for your Buyers.
+                                            <div class="">
+                                                <!-- <button class="btn btn-link text-decoration-none"
+                                                    style="color: #00A3FF;">
+                                                    +Add FAQ
+                                                </button> -->
+                                                <!-- Button trigger modal -->
+                                                <!-- <button type="button" class="btn " style="color: #00A3FF;"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    +Add FAQ
+                                                </button> -->
+
+
+                                            </div>
+                                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                                <div class="accordion-item" *ngFor="let q of question;let ii=index;">
+                                                    <h2 class="accordion-header" [attr.id]="'flush-headingOne' + ii">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse"
+                                                            [attr.data-bs-target]="'#flush-collapseOne' + ii"
+                                                            aria-expanded="false"
+                                                            [attr.aria-controls]="'#flush-collapseOne' + ii">
+                                                            {{q}}
+                                                        </button>
+                                                    </h2>
+                                                    <div [attr.id]="'flush-collapseOne' + ii"
+                                                        class="accordion-collapse collapse"
+                                                        [attr.aria-labelledby]="'flush-headingOne' + ii"
+                                                        data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body"
+                                                            *ngFor="let a of answer;let jj=index;" [hidden]="ii!=jj">
+                                                            {{a}}</div>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="flush-headingOne">
+                                                        <button class="accordion-button collapsed" type="button"
+                                                            data-bs-toggle="collapse"
+                                                            data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                                            aria-controls="flush-collapseOne">
+                                                            Question One
+                                                        </button>
+                                                    </h2>
+                                                    <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                        aria-labelledby="flush-headingOne"
+                                                        data-bs-parent="#accordionFlushExample">
+                                                        <div class="accordion-body">answer</div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card p-3">
+                                    <p><strong>How it works</strong></p>
+                                    <img src="./assets/images/Rectangle200.png" alt="" srcset="">
+                                    <div class="position-relative">
+                                        <div class="wrapper">
+                                            <div class="video-main">
+                                                <div class="promo-video">
+                                                    <div class="waves-block">
+                                                        <div class="waves wave-1"></div>
+                                                        <div class="waves wave-2"></div>
+                                                        <div class="waves wave-3"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="https://www.youtube.com/watch?v=BqI0Q7e4kbk"
+                                                    class="video video-popup mfp-iframe" data-lity><i class="bi bi-play"
+                                                        style="font-size: 50px;"></i></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="button" name="next-step"
+                            class="next-step btn btn-sm btn-primary mx-auto d-block  float-md-start mt-3"
+                            value="Save and Continue" [disabled]="descForm.invalid" />
+                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                    </fieldset>
+                    <fieldset>
+                        <div class="row p-3 p-md-0">
+                            <div class="col-md-8">
+                                <form [formGroup]="imgForm">
+                                    <div class="text-start pb-3 fw-bold border-bottom" style="font-size: 20px;">
+                                        Add gallery image</div>
+                                    <div class="pt-3 pb-5 border-bottom mb-2">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="rounded-2 bg-light"
+                                                    style="height: 350px; border:2px dashed #00A3FF; padding-top: 120px;">
+                                                    <div
+                                                        class="align-middle text-center create-solu upload-btn-wrapper">
+                                                        <img src="./assets/images/iconuploadicon.png" alt="">
+                                                        <p class="text-dark">Uplaod Project Image</p>
+                                                        <input type="file" formControlName="file" name="" id="file"
+                                                            multiple="" (change)="onFileChange($event)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2" *ngFor='let url of images'>
+                                                <div class="rounded-2 bg-light"
+                                                    style="height: 350px; overflow: hidden; border:2px dashed #00A3FF;">
+                                                    <div
+                                                        class="align-middle text-center create-solu upload-btn-wrapper">
+                                                        <img [src]="url">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card p-3">
+                                    <p><strong>How it works</strong></p>
+                                    <img src="./assets/images/Rectangle200.png" alt="" srcset="">
+                                    <div class="position-relative">
+                                        <div class="wrapper">
+                                            <div class="video-main">
+                                                <div class="promo-video">
+                                                    <div class="waves-block">
+                                                        <div class="waves wave-1"></div>
+                                                        <div class="waves wave-2"></div>
+                                                        <div class="waves wave-3"></div>
+                                                    </div>
+                                                </div>
+                                                <a href="https://www.youtube.com/watch?v=BqI0Q7e4kbk"
+                                                    class="video video-popup mfp-iframe" data-lity><i class="bi bi-play"
+                                                        style="font-size: 50px;"></i></a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="next-step" id="next-step"
+                            class="next-step btn btn-sm btn-primary mx-auto d-block float-md-start" value="Publish" />
+                            <button type="button" [disabled]="imgForm.invalid" (click)="addService()" class="btn btn-sm btn-primary mx-auto d-block float-md-start">Publish</button>
+                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                    </fieldset>
+                    <fieldset>
+                        <div class="finish">
+                            <div class="text-dark text-center">
+                                <img src="./assets/images/Group2089.png" /><br />
+                                <h2>Congratulation</h2>
+                                <p>Your project has been published. Clients will be able to find you through
+                                    your project.</p>
+                            </div>
+                        </div>
+                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                        <a [routerLink]="['/user-profile']"><input type="button"
+                                class="btn btn-sm btn-primary mx-auto d-block"
+                                value="Go to your Profile" /></a>
+                    </fieldset>
+                </form>
+
+
+                <!-- Modal -->
+                <div class="text-start">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog  modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="exampleModalLabel">
+                                        Add FAQ</h6>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form [formGroup]="faqForm" (ngSubmit)="faqAdd()">
+                                    <div class="modal-body">
+
+                                        <div class="form-floating mb-3">
+                                            <input type="email" class="form-control rounded-0" id="floatingInput"
+                                                placeholder="name@example.com" formControlName="question"
+                                                [ngClass]="{ 'is-invalid': submittedFaq && fq.question.errors }">
+                                            <label for="floatingInput">Question</label>
+
+                                            <div *ngIf="submittedFaq && fq.question.errors" class="invalid-feedback">
+                                                <div *ngIf="fq.question.errors.required">Question is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control rounded-0" placeholder="Leave a comment here"
+                                                id="floatingTextarea2" style="height: 100px" formControlName="answer"
+                                                [ngClass]="{ 'is-invalid': submittedFaq && fq.answer.errors }"></textarea>
+                                            <label for="floatingTextarea2">Answer</label>
+                                            <div *ngIf="submittedFaq && fq.answer.errors" class="invalid-feedback">
+                                                <div *ngIf="fq.answer.errors.required">Answer is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm rounded-0 btn-outline-secondary"
+                                            data-bs-dismiss="modal" id="closeModalButton">Close</button>
+                                        <button type="submit"
+                                            class="btn btn-sm btn-outline-primary rounded-0">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix slider Area End -->
+<app-footer></app-footer>

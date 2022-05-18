@@ -1,0 +1,67 @@
+<app-header></app-header>
+<!-- Homefix Login Area Start -->
+<section class="homefix_login_area pt-85 pb-120">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-6 col-lg-8">
+        <div class="homefix_login_inner">
+          <div class="homefix_login_details">
+            <!-- login_form title-->
+            <div class="form_title">
+              <h2 class="login_form_title">Login to Homefixpros</h2>
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+              <!-- facebook button -->
+              <a class="login_facebook_btn" href="#"><img src="assets/images/facebook.png" alt="facebook"> Log in with
+                facebook</a> <a class="login_google_btn" href="#"><img src="assets/images/email.png" alt="email"> Log in
+                with Google</a>
+              <!-- or title -->
+              <div class="or_cont">
+                <hr>
+                <span>or</span>
+              </div>
+              <!-- input email or password -->
+              <div class="login_from_field">
+                <div class="login_from_field_inner">
+                  <span><i class="icofont-envelope"></i></span>
+                  <input type="email" placeholder="Email Address" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" name="email" id="loginemail">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Please, enter valid email
+                      address.</div>
+                  </div>
+                </div>
+                <div class="login_from_field_inner">
+                  <span><i class="icofont-key"></i></span>
+                  <input type="password" name="password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" value="" placeholder="Password">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+                <!-- submit button -->
+                <input type="submit" value="Continue">
+                <div class="input_checked">
+                  <input id="checked" type="checkbox">
+                  <label for="checked">Remember Me?</label>
+                </div>
+              </div>
+
+              <!-- forgot	 -->
+              <div class="forgot_pass"> <a [routerLink]="['/forgot-password']">Forgot Password</a> </div>
+              <hr>
+              <!-- remember or sing up -->
+              <div class="remember">
+                <label for="">Not a member yet ?</label>
+                <a [routerLink]="['/signup']">Sign up now</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Homefix Login Area -->
+<app-footer></app-footer>

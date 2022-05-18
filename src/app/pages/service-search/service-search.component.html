@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<section class="homefix_service_area" style="padding: 0px 0 15px 0" *ngIf="serviceList && serviceList.data">
+    <div class="container">
+
+        <a [routerLink]="['/project-details', service.slug]" class="homefix_service_single" *ngFor="let service of serviceList.data">
+            <div class="homefix_ser_single_inner">
+                <div class="service_single_thumb">
+                    <img [src]="image_path && service.gallery[0] ? image_path + service?.gallery[0].file : ''"
+                    onerror="this.src='assets/images/no-image.png';" alt="">
+                </div>
+                <div class="service_single_title">
+                    <h3>{{service.title}}</h3>
+                    <!-- <div style="display: flex; font-size: 14px;">
+                        <img src="./assets/images/dollar.png" class="pe-2" alt="" srcset="">
+                        <span style="color:#0062FF;">Avg. Price $170</span>
+                    </div> -->
+                </div>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+<app-footer></app-footer>

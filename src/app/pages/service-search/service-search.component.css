@@ -1,0 +1,9 @@
+.service_single_thumb img{
+    max-width: 300px;
+    height: 350px;
+    object-fit: contain;
+    border: 1px solid #d2d2d2;
+}
+.homefix_service_area{
+    margin: 90px 0;
+}

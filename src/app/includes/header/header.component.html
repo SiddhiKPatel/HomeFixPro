@@ -1,0 +1,159 @@
+<section class="homefix_header_area">
+    <div class="homefix_header_inner">
+        <div class="homefix_header_sti" id="sticker" style="height: 95.188px;">
+            <div class="container resp_menu">
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3">
+                        <!-- logo area -->
+                        <div class="homefix_header_logo">
+                            <!-- <a [routerLink]="['/']"><img src="assets/images/logo.png" alt="homefix Logo"></a> -->
+                            <a [routerLink]="['/']"><img [src]="headerData?.site_logo"
+                                    onerror="this.src='assets/images/logo.png';" alt="homefix Logo"></a>
+
+                        </div>
+                        <!-- end logo area -->
+                    </div>
+
+                    <div class="menus col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12" *ngIf="!token">
+                        <!-- homefix main menu -->
+                        <div class="homefix_main_menu">
+                            <!-- bars -->
+                            <a class="bar" href="javascript:void(0);"><i class="icofont-navigation-menu"></i></a>
+                            <nav class="main_menu menu_items">
+                                <ul id="main_menu" *ngIf="headerData && headerData.site_header_menu.length > 0">
+                                    <li *ngFor="let h of headerData.site_header_menu"> <a
+                                            [routerLink]="'/' + h.slug">{{h.page_title}}</a>
+                                        <ul class="submenu megamenu">
+                                            <li>
+                                                <ul>
+                                                    <li><span>Home</span></li>
+                                                    <li *ngFor="let hs of h.sub_menu"><a
+                                                            [routerLink]="['/search-result']"
+                                                            [queryParams]="{ keyword: hs.page_title}">{{hs.page_title}}</a>
+                                                    </li>
+                                                    <!-- <li><a href="#">Drywall</a></li>
+                                                    <li><a href="#">Framing</a></li>
+                                                    <li><a href="#">Finish Carpentry</a></li>
+                                                    <li><a href="#">Flooring Installation</a></li>
+                                                    <li><a href="#">Electrical</a></li> -->
+                                                </ul>
+                                            </li>
+                                            <!-- <li>
+                                                <ul>
+                                                    <li>
+                                                        <span></span>
+                                                    </li>
+                                                    <li> <a href="#">Fence Work</a> </li>
+                                                    <li> <a href="#">Glazier (glass specialist)</a> </li>
+                                                    <li> <a href="#">HVAC</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <span></span>
+                                                    </li>
+                                                    <li> <a href="#">Fence Work</a> </li>
+                                                    <li> <a href="#">Glazier (glass specialist)</a> </li>
+                                                    <li> <a href="#">HVAC</a> </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <ul>
+                                                    <li>
+                                                        <span></span>
+                                                    </li>
+                                                    <li> <a href="#">Articles & Advice</a> </li>
+                                                    <li> <a href="#">Tell us problem</a> </li>
+                                                    <li> <a href="#">View all worker</a> </li>
+                                                </ul>
+                                            </li> -->
+                                            <!-- <li>
+                                                <ul>
+                                                    <li> <span>Other thing</span> </li>
+                                                    <li> <a href="#">Articles & Advice</a> </li>
+                                                    <li> <a href="#">Tell us problem</a> </li>
+                                                    <li> <a href="#">View all worker</a> </li>
+                                                </ul>
+                                            </li> -->
+                                        </ul>
+                                    </li>
+                                    <div *ngIf="!token" class="d-md-inline-block mx-2 mx-md-4"><a
+                                            routerLinkActive="active" [routerLink]="['/signup']"
+                                            style="font-size: 18px;">sign up</a></div>
+                                    <div *ngIf="!token" class="d-md-inline-block mx-2 mx-md-4"><a
+                                            routerLinkActive="active" [routerLink]="['/login']"
+                                            style="font-size: 18px;">log in </a></div>
+                                    <div *ngIf="token" class="d-md-inline-block mx-2 mx-md-4"><a
+                                            href="javascript:void(0);" (click)="logout()"
+                                            style="font-size: 18px;">Logout</a></div>
+                                    <li class="homefix_menu_button"><a *ngIf="!token" routerLinkActive="active"
+                                            [routerLink]="['/signup']">Join us a pro</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- end main menu -->
+                    </div>
+                    <div class="menus topmenu col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12" *ngIf="token">
+                        <!-- homefix main menu -->
+                        <div class="homefix_main_menu">
+                            <!-- bars -->
+                            <a class="bar" href="#"><i class="icofont-navigation-menu"></i></a>
+                            <nav class="main_menu menu_items">
+                                <ul id="main_menu">
+                                    <li class="d-md-inline-block" *ngIf="role && role == 2">
+                                        <div class="d-md-inline-block"><a [routerLink]="['/create-estimates']"
+                                                style="font-size: 18px;">Create Estimates</a> </div>
+                                    </li>
+                                    <li class="d-md-inline-block" *ngIf="role && role == 2">
+                                        <div class="d-md-inline-block"><a [routerLink]="['/opportunity']"
+                                                style="font-size: 18px;">Opportunity</a> </div>
+                                    </li>
+                                    <li class="d-md-inline-block" *ngIf="role && role == 3">
+                                        <div class="d-md-inline-block"><a [routerLink]="['/my-posts']"
+                                                style="font-size: 18px;">Posted Jobs</a> </div>
+                                    </li>
+                                    <li class="d-md-inline-block" *ngIf="role && role == 3">
+                                        <div class="d-md-inline-block"><a [routerLink]="['/job-post']"
+                                                style="font-size: 18px;">Post a Job</a> </div>
+                                    </li>
+                                    <!-- <li class="d-md-inline-block">
+                                        <div class="d-md-inline-block"><a href="#" style="font-size: 18px;"
+                                                target="_blank">Project</a> </div>
+                                    </li> -->
+                                    <!-- <li class="d-md-inline-block">
+                                        <div class="d-md-inline-block"><a href="#" style="font-size: 18px;"
+                                                target="_blank">Manage</a> </div>
+                                    </li> -->
+                                    <li class="d-md-inline-block">
+                                        <div class="d-md-inline-block"><a href="#" style="font-size: 18px;"
+                                                [routerLink]="['/inbox']">Inbox</a> </div>
+                                    </li>
+                                    <li class="d-md-inline-block">
+                                        <div class="d-md-inline-block mx-24 menuprofile">
+                                            <a href="javascript:void(0);" style="font-size: 18px;">
+                                                <img [src]="headerData && headerData.user && headerData.user.avatar_url ? headerData.user.avatar_url : ''"
+                                                onerror="this.src='./assets/images/Group2094.png'" alt="">
+                                                <span *ngIf="headerData && headerData.user && headerData.user.name" style="font-size: 12px;margin-left: 5px;">{{headerData.user.name}}</span>
+                                            </a>
+                                            <div class="icon"><i class="icofont-rounded-down"></i></div>
+                                            <div class="pdropdownbox">
+                                                <p><a [routerLink]="['/user-profile']">Dashboard </a></p>
+                                                <p><a [routerLink]="['/edit-profile']">Profile </a></p>
+                                                <p><a href="javascript:void(0);">Help </a></p>
+                                                <p><a [routerLink]="['/settings']">Setting </a></p>
+                                                <p><a href="javascript:void(0);" (click)="logout()" class="mlogout"> <i
+                                                            class="icofont-logout pe-1"></i> Log Out </a></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- end main menu -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

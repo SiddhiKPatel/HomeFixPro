@@ -1,0 +1,10 @@
+.slider_sea_form{
+    border-radius: 6px;
+    box-shadow: 0 0 30px #0000001c;
+}
+.slider_sea_form input{
+    font-size: 12px;
+}
+.main_menu > ul > li > a{
+    font-size: 13px;
+}

@@ -1,0 +1,284 @@
+<app-header></app-header>
+<!-- banner section start from here -->
+<div class="blog-banner" style="background-image: url(assets/images/blog-banner.png);">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+                <div class="blog-banner-content">
+                    <span class="lebel">Latest news</span>
+                    <h2>Read our latest news to increase your knowledge</h2>
+                    <div class="group-form">
+                        <input type="text" placeholder="Search by keyword.">
+                        <input type="submit" value="Search">
+                    </div>
+                    <p>Do you want to write? <a href="javascript:void(0);">click here</a> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner section end here -->
+
+<!-- post section start from here -->
+<div class="blog-area pt-120 pb-120">
+    <div class="container">
+        <div class="row mt--30">
+            <div class="col-lg-4 col-md-6 mt-30" *ngFor="let blog of blogList.data">
+                <div class="blog-item">
+                    <a [routerLink]="['/blog-details', blog.slug]" class="featured-img text-center">
+                        <img [src]="image_path ? image_path + blog?.image2 : ''"
+                        onerror="this.src='assets/images/no-image.png';" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date ps-1">{{blog.created_at | date: 'mediumDate'}}</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by admin</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a [routerLink]="['/blog-details', blog.slug]" class="title">
+                        <h5>{{blog.page_name.length>30 ? (blog.page_name | slice:0:30)+'...' : blog.page_name}}</h5>
+                    </a>
+                    <div class="continue">
+                        <a [routerLink]="['/blog-details', blog.slug]">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-2.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You? </h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-3.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>Kitchen Design Plan: Cabinets, Countertops and Colors</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-4.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You?</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-5.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You?</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-6.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You?</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- find a pro start from here -->
+        <!-- <div class="row mt-30">
+            <div class="col-lg-12">
+                <div class="find-pro_box" style="background-image: url('assets/images/blog/blog-sec-bg-2.png');">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div>
+                                <a href="index.html" class="logo-box">
+                                    <img src="assets/images/logo.png" alt="">
+                                </a>
+                            </div>
+                            <h2>The best option is having options.</h2>
+                            <div class="button">
+                                <a href="#0">Find A Pro</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- find a pro end here -->
+        <!-- <div class="row">
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-7.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You?</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-8.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>Kitchen Design Plan: Cabinets, Countertops and Colors</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mt-30">
+                <div class="blog-item">
+                    <a routerLink="/blog-details" class="featured-img text-center">
+                        <img src="assets/images/blog/blog-9.png" alt="" class="img-fluid ">
+                    </a>
+                    <div class="publish-area">
+                        <div class="date-area">
+                            <div class="dates">
+                                <i class="icofont-clock-time"></i>
+                                <span class="date">14 January, 2020</span>
+                            </div>
+                            <div class="author">
+                                <span>Posted by rubel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="/blog-details" class="title">
+                        <h5>What Aren’t Home Remodeling Shows Telling You?</h5>
+                    </a>
+                    <div class="continue">
+                        <a href="">Continue reading...</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- pagination start from here -->
+        <!-- <div class="row">
+            <div class="col-lg-12">
+                <nav>
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item"><a class="page-link" href="">PREVIOUS</a> </li>
+                        <li class="page-item "><a class="page-link active" href="">1</a> </li>
+                        <li class="page-item"><a class="page-link" href="">2</a> </li>
+                        <li class="page-item"><a class="page-link" href="">3</a> </li>
+                        <li class="page-item"><a class="page-link active" href="">NEXT</a> </li>
+                    </ul>
+                </nav>
+            </div>
+        </div> -->
+    </div>
+</div>
+<!-- pagination end here -->
+<app-footer></app-footer>

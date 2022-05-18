@@ -1,0 +1,33 @@
+@media only screen and (min-width: 767px) {
+    .homefix_slider_content {
+        width: 50%;
+    }
+}
+
+.homefix_project_area{
+    padding: 80px 0;
+}
+
+.homefix_project_area .container .row .homefix_proj_left_area{
+    padding: 0 10px;
+}
+
+.section_title{
+    color: #000;
+}
+
+.homefix_project_area .container{
+    padding-right: unset;
+    padding-left: unset;
+}
+.homefix_service_area .container{
+    padding: 0;
+}
+/* .homefix_about_area{
+    padding: 69px 0;
+    margin: 65px 0;
+}
+.homefix_about_area .about_right_thumb{
+    margin-top: 0px;
+    position: relative;
+} */

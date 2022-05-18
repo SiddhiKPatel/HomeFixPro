@@ -1,0 +1,251 @@
+<!-- homefix Footer Top Area Start -->
+<section class="homefix_footer_top_area">
+    <div class="container">
+        <div class="row">
+            <!-- widget single item -->
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+                <div class="homefix_footer_widget_area">
+                    <!-- footer logo -->
+                    <div class="widget_homefixle_foot_logo">
+                        <a [routerLink]="['/']"><img [src]="footerData?.site_footer_logo"
+                                onerror="this.src='assets/images/logo.png';" alt="homefix logo"></a>
+                    </div>
+                    <!-- widget content -->
+                    <div class="widget_content">
+                        <p *ngIf="footerData?.site_email"><a
+                                href="mailto:{{footerData?.site_email}}">{{footerData?.site_email}}</a></p>
+                        <p *ngIf="footerData?.site_phone"><a
+                                href="tel:{{footerData?.site_phone}}">{{footerData?.site_phone}}</a></p>
+                        <!-- widget social -->
+                        <div class="social_icon">
+                            <a *ngIf="footerData?.facebook_link" href="footerData?.facebook_link"><i
+                                    class="icofont-facebook"></i></a>
+                            <a *ngIf="footerData?.instagram_link" href="footerData?.instagram_link"><i
+                                    class="icofont-instagram"></i></a>
+                            <a *ngIf="footerData?.twitter_link" href="footerData?.twitter_link"><i
+                                    class="icofont-twitter"></i></a>
+                            <a *ngIf="footerData?.site_linkedin_link" href="footerData?.site_linkedin_link"><i
+                                    class="icofont-linkedin"></i></a>
+                            <a *ngIf="footerData?.site_youtube_link" href="footerData?.site_youtube_link"><i
+                                    class="icofont-youtube"></i></a>
+                            <a *ngIf="footerData?.site_pinterest_link" href="footerData?.site_pinterest_link"><i
+                                    class="icofont-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- widget single item -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                <div class="homefix_footer_widget_area">
+                    <!-- widget homefixle -->
+                    <h2 class="widget_homefixle">{{footerData?.site_footer1_title}}</h2>
+                    <!-- widget content -->
+                    <div class="widget_content">
+                        <ul>
+                            <li *ngFor="let se of footerData?.site_footer1_menu"><a
+                                    href="#">{{se.page_name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- widget single item -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                <div class="homefix_footer_widget_area">
+                    <!-- widget homefixle -->
+                    <h2 class="widget_homefixle">{{footerData?.site_footer2_title}}</h2>
+                    <!-- widget content -->
+                    <div class="widget_content">
+                        <ul>
+                            <li *ngFor="let se of footerData?.site_footer2_menu"><a
+                                    href="#">{{se.page_name}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- widget single item -->
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                <div class="homefix_footer_widget_area">
+                    <!-- widget homefixle -->
+                    <h2 class="widget_homefixle">{{footerData?.site_footer3_title}}</h2>
+                    <!-- widget content -->
+                    <div class="widget_content">
+                        <!-- foot_down_btn area -->
+                        <div class="foot_down_button_area">
+                            <div class="foot_down_btn">
+                                <a href="#">
+                                    <i class="icofont-brand-apple"></i>
+                                    <p class="down_text">Download on the</p>
+                                    <p class="btn_text">App Store</p>
+                                </a>
+                                <a href="#">
+                                    <img src="assets/images/playstore.png" alt="">
+                                    <p class="down_text">GET IT ON </p>
+                                    <p class="btn_text">Google Play</p>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end foot_down_btn btn area -->
+                    </div>
+                </div>
+            </div>
+            <!-- end widget single item -->
+        </div>
+    </div>
+</section>
+<!-- homefix Footer Top Area End -->
+
+<!-- Mobile homefix Footer Top Area Start -->
+<section class="homefix_footer_top_area mobliefooter">
+    <div class="container">
+
+        <div class="accordion" id="accordionExample">
+            <div class="row">
+                <!-- widget single item -->
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="homefix_footer_widget_area footerlogo">
+                        <!-- footer logo -->
+                        <div class="widget_homefixle_foot_logo"> <a [routerLink]="['/']"><img
+                                    [src]="footerData?.site_footer_logo" onerror="this.src='assets/images/logo.png';"
+                                    alt=""></a> </div>
+                        <!-- widget content -->
+                        <div class="widget_content">
+                            <p><a href="mailto:{{footerData?.site_email}}">{{footerData?.site_email}}</a></p>
+                            <p><a href="tel:{{footerData?.site_phone}}">{{footerData?.site_phone}}</a></p>
+                            <!-- widget social -->
+                            <div class="social_icon">
+                                <a *ngIf="footerData?.facebook_link" target="_blank" href="footerData?.facebook_link"><i
+                                        class="icofont-facebook"></i></a>
+                                <a *ngIf="footerData?.instagram_link" target="_blank"
+                                    href="footerData?.instagram_link"><i class="icofont-instagram"></i></a>
+                                <a *ngIf="footerData?.twitter_link" target="_blank" href="footerData?.twitter_link"><i
+                                        class="icofont-twitter"></i></a>
+                                <a *ngIf="footerData?.site_linkedin_link" target="_blank"
+                                    href="footerData?.site_linkedin_link"><i class="icofont-linkedin"></i></a>
+                                <a *ngIf="footerData?.site_youtube_link" target="_blank"
+                                    href="footerData?.site_youtube_link"><i class="icofont-youtube"></i></a>
+                                <a *ngIf="footerData?.site_pinterest_link" target="_blank"
+                                    href="footerData?.site_pinterest_link"><i class="icofont-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget single item -->
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="homefix_footer_widget_area">
+                        <!-- widget homefixle -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header widget_homefixle" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {{footerData?.site_footer1_title}}
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="widget_content">
+                                        <ul>
+                                            <li *ngFor="let se of footerData?.site_footer1_menu"><a href="#">{{se.page_name}}</a></li>
+                                            <!-- <li><a href="#">Who we are</a></li>
+                                            <li><a href="#">Careers</a></li>
+                                            <li><a href="#">Contact Us</a></li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- widget single item -->
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="homefix_footer_widget_area">
+                        <!-- widget homefixle -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header widget_homefixle" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{footerData?.site_footer2_title}}
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="widget_content">
+                                        <ul>
+                                            <li *ngFor="let se of footerData?.site_footer2_menu"><a href="#">{{se.page_name}}</a></li>
+                                            <!-- <li><a href="#">Privacy and Policy</a></li>
+                                            <li><a href="#">Center</a></li>
+                                            <li><a href="#">Privacy and Policy</a></li>
+                                            <li><a href="#">Privacy and Policy</a></li>
+                                            <li><a href="#">Privacy and Policy</a></li>
+                                            <li><a href="#">Turms as Use</a></li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- widget single item -->
+                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-6">
+                    <div class="homefix_footer_widget_area">
+                        <!-- widget homefixle -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header widget_homefixle" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    {{footerData?.site_footer3_title}}
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div class="widget_content">
+                                        <!-- foot_down_btn area -->
+                                        <div class="foot_down_button_area">
+                                            <div class="foot_down_btn"> <a href="#"> <i class="icofont-brand-apple"></i>
+                                                    <p class="down_text">Download on the</p>
+                                                    <p class="btn_text">App Store</p>
+                                                </a> <a href="#"> <img src="assets/images/playstore.png" alt="">
+                                                    <p class="down_text">GET IT ON </p>
+                                                    <p class="btn_text">Google Play</p>
+                                                </a> </div>
+                                        </div>
+                                        <!-- end foot_down_btn btn area -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end widget single item -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Mobile Footer Top Area End -->
+
+<!-- footer Copyright Area Start -->
+<section class="footer_copyright_area">
+    <div class="container">
+        <div class="row footer_border">
+            <div class="col-xxl-12">
+                <!-- copyright area -->
+                <div class="copyright_area">
+                    <p>{{footerData?.site_copyright}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- footer Copyright Area End -->
+
+<!-- scroll top -->
+<div class="scrollto">
+    <a href="javascript:void(0);" id="toTop7" (click)="scrollTop()"><i class="icofont-rounded-up"></i></a>
+</div>
+<!-- end scroll top -->

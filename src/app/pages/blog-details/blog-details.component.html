@@ -1,0 +1,290 @@
+<app-header></app-header>
+<!-- post section start from here -->
+<div class="single-blog-area pt-120 pb-60">
+    <div class="container">
+        <div class="site-bredcrumb">
+            <a href="javascript:void(0);" (click)="back()"><img src="assets/images/blog-details/left.png" alt="">
+                Back</a>
+        </div>
+        <div class="row mt--30 justify-content-center">
+            <div class="col-lg-8 mt-30" *ngIf="blogDetails">
+                <div class="single-blog-content">
+                    <div class="blog-thumb">
+                        <img [src]="image_path ? image_path + blogDetails?.image2 : ''"
+                            onerror="this.src='assets/images/no-image.png';" alt="">
+                    </div>
+                    <div class="blog-meta d-flex justify-content-between">
+                        <div class="blog-meta-left">
+                            <a href="javascript:void(0);">{{blogDetails.created_at | date: 'mediumDate'}}</a>
+                            <a href="javascript:void(0);">15 COMMENTS</a>
+                        </div>
+                        <!-- <div class="blog-meta-right">
+                            <a href="#">By Takim</a>
+                        </div> -->
+                    </div>
+                    <div class="blog-desc-wrap">
+                        <h2 class="blog-title">{{blogDetails.page_name}}</h2>
+                        <div class="blog-desc" [innerHTML]="blogDetails.body">
+                            <!-- <p>The kitchen is the most-used room in most homes, so it pays to invest plenty of
+                                time and effort when renovating or redesigning one. However, given how much is
+                                at stake, it’s easy to feel overwhelmed when setting out to redesign this
+                                crucial area. By breaking the process down into more manageable chunks, you’ll
+                                have an easier time deciding what you want, ensuring that you end up with a
+                                design that’s inviting, warm and reflective of your personal style.</p>
+                            <div class="row align-items-center">
+                                <div class="col-lg-7">
+                                    <p>When setting out to redesign this part of your home, start by
+                                        establishing a basic plan. By choosing the room’s color scheme, cabinets
+                                        and countertops first, other elements will fall into place more easily.
+                                    </p>
+                                </div>
+                                <div class="col-lg-5">
+                                    <img src="assets/images/blog-details/blog-inner-img.png" alt="" class="fullimg">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="blog-navigation">
+                        <div class="blog-nav-content mt-30">
+                            <a *ngIf="responseData?.previous_blog" [routerLink]="['/blog-details', responseData.previous_blog]"><img src="assets/images/blog-details/left.png" alt=""> PREVIOUS POST</a>
+                            <!-- <h3 class="blog-nav-title">Heading Title of blog post </h3> -->
+                        </div>
+                        <div class="blog-nav-content mt-30">
+                            <a *ngIf="responseData?.next_blog" [routerLink]="['/blog-details', responseData.next_blog]">NEXT POST <img src="assets/images/blog-details/right.png" alt=""></a>
+                            <!-- <h3 class="blog-nav-title">Heading Title of blog post</h3> -->
+                        </div>
+                    </div>
+                    <div class="blog-author-area">
+                        <div class="blog-author-thumb">
+                            <img src="assets/images/blog-details/blog-author.jpg" alt="">
+                        </div>
+                        <div class="blog-author-info">
+                            <h3>Homefix Admin</h3>
+                            <h4>AUTHOR</h4>
+                            <p>Vestibulum vestibulum purus ante, nec facilisis augue ultricies lorem ipsuac el
+                                ac lacinia tristique, nulla nisl tempus erat agittis finelit ut lorem feugiat
+                                ultrices.</p>
+                            <a [routerLink]="['/blog']">VIEW ALL POST</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-recent-post-area">
+                    <h2 class="recent-title m-0">Resent Post </h2>
+                    <div class="recent-post-wrap">
+                        <div class="row">
+                            <div class="col-sm-6" *ngFor="let recent_b of recent_blogs">
+                                <div class="recent-post-content">
+                                    <a [routerLink]="['/blog-details', recent_b.slug]"
+                                        class="recent-post-thumb d-block">
+                                        <img [src]="image_path ? image_path + recent_b?.image2 : ''"
+                                            onerror="this.src='assets/images/no-image.png';" alt="">
+                                    </a>
+                                    <div class="recent-meta">
+                                        <a [routerLink]="['/blog-details', recent_b.slug]">{{recent_b.created_at | date:
+                                            'MMM d, h:mm:ss a'}}</a>
+                                        <a [routerLink]="['/blog-details', recent_b.slug]">3 COMMENTS</a>
+                                    </div>
+                                    <a [routerLink]="['/blog-details', recent_b.slug]" class="recent-post-link">
+                                        <h4 class="recent-post-title">{{recent_b.page_name.length>30 ?
+                                            (recent_b.page_name | slice:0:30)+'...' : recent_b.page_name}}</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-6">
+                                <div class="recent-post-content">
+                                    <a routerLink="/blog-details" class="recent-post-thumb d-block">
+                                        <img src="assets/images/blog-details/recent-thumb2.jpg" alt="">
+                                    </a>
+                                    <div class="recent-meta">
+                                        <a routerLink="/blog-details">MAY 29,2017</a>
+                                        <a routerLink="/blog-details">3 COMMENTS</a>
+                                    </div>
+                                    <a routerLink="/blog-details" class="recent-post-link">
+                                        <h4 class="recent-post-title">Cum sociis natoque penatibus</h4>
+                                    </a>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-blog-comment-area">
+                    <div class="single-blog-comment-list-wrap">
+                        <h3>({{blogDetails?.comment.length}}) Comments</h3>
+                        <ol class="commet-list">
+                            <li class="d-flex" *ngFor="let c of blogDetails.comment">
+                                <div class="catuhor-thumb">
+                                    <img [src]="c?.avatar_url" onerror="this.src='assets/images/no-image.png';" alt="">
+                                </div>
+                                <div class="comment-content">
+                                    <h3>{{c?.name}}</h3>
+                                    <span class="cdate">{{c?.created_at | date: 'mediumDate'}}</span>
+                                    <p>{{c?.body}}</p>
+                                    <!-- <a href="#" class="replay">Reply</a> -->
+                                </div>
+                            </li>
+                            <!-- <li class="d-flex">
+                                <div class="catuhor-thumb">
+                                    <img src="assets/images/blog-details/cauthor2.png" alt="">
+                                </div>
+                                <div class="comment-content">
+                                    <h3>Sophie Willmore</h3>
+                                    <span class="cdate">MAY 28, 2017</span>
+                                    <p>Curabitur sagittis elit ut lorem feugiat ultrices. Maecenas venenatis
+                                        felis quisnt, dignissim aliquet lorem iaculis. Integer a vestibulu.
+                                    </p>
+                                    <a href="#" class="replay">Reply</a>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="catuhor-thumb">
+                                    <img src="assets/images/blog-details/cauthor3.png" alt="">
+                                </div>
+                                <div class="comment-content">
+                                    <h3>Sophie Willmore</h3>
+                                    <span class="cdate">MAY 28, 2017</span>
+                                    <p>Curabitur sagittis elit ut lorem feugiat ultrices. Maecenas venenatis
+                                        felis quisnt, dignissim aliquet lorem iaculis. Integer a vestibulu.</p>
+                                    <a href="#" class="replay">Reply</a>
+                                </div>
+                            </li> -->
+                        </ol>
+                    </div><!-- comment list wrap -->
+                    <div class="comment-form-wrap">
+                        <h2 class="commet-form-title">Leave Comments</h2>
+                        <div class="comment-field-wrap">
+
+                            <div class="row">
+                                <form [formGroup]="postCommentForm">
+                                    <div class="col-12">
+                                        <div class="comment-field">
+                                            <textarea class="comment-textarea-field"
+                                            placeholder="Message" rows="3"
+                                            formControlName="comment_text"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- <div class="col-sm-6">
+                                    <div class="comment-field">
+                                        <input type="text" name="cname" class="comment-input-field"
+                                            placeholder="Your Name ">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="comment-field">
+                                        <input type="email" name="cemail" class="comment-input-field"
+                                            placeholder="Your Email ">
+                                    </div>
+                                </div> -->
+                                <div class="col-12">
+                                    <div class="comment-submit-area" *ngIf="token">
+                                        <button class="comment-submit" (click)="postComment()">SEND A
+                                            COMMENTS</button>
+                                    </div>
+                                    <div class="comment-submit-area" *ngIf="!token">
+                                        <button class="comment-submit" [routerLink]="['/login']">Login
+                                            First</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- comment form-wrap -->
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-8 mt-30">
+                <aside>
+                    <div class="sidear">
+                        <div class="widget search-widget">
+                            <div class="search-field-wrap">
+                                <input type="text" placeholder="Search here" class="search-field">
+                                <button class="search-btn"><i class="icofont-search-1"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <h3 class="widget-title">Categories</h3>
+                            <ul class="category-list">
+                                <li *ngFor="let c of categoryList">
+                                    <a href="javascript:void(0);">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt="">
+                                            {{c.name}}</span>
+                                        <span>({{c.blog.length}})</span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="#">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt="">
+                                            Contractor</span>
+                                        <span>(3)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt="">
+                                            Plumber</span>
+                                        <span>(9)</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+
+                        <!-- <div class="widget">
+                            <h3 class="widget-title">Archives</h3>
+                            <ul class="category-list">
+                                <li>
+                                    <a href="#">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt=""> May
+                                            2021</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt=""> March
+                                            2021</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span><img src="assets/images/blog-details/arrow-right.png" alt=""> Jun
+                                            2021</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> -->
+
+                        <div class="widget">
+                            <h3 class="widget-title">Resent Post</h3>
+                            <div class="side-recent-post-wrap">
+                                <div class="side-recent-post" *ngFor="let recent_b of recent_blogs">
+                                    <a [routerLink]="['/blog-details', recent_b.slug]"
+                                        class="recent-post-thumb d-block">
+                                        <img [src]="image_path ? image_path + recent_b?.image2 : ''"
+                                            onerror="this.src='assets/images/no-image.png';" alt="">
+                                    </a>
+                                    <div class="recent-meta">
+                                        <a [routerLink]="['/blog-details', recent_b.slug]">{{recent_b.created_at | date:
+                                            'MMM d, h:mm:ss a'}}</a><br />
+                                        <a [routerLink]="['/blog-details', recent_b.slug]">3 COMMENTS</a>
+                                    </div>
+                                    <a [routerLink]="['/blog-details', recent_b.slug]" class="sr-author">By Homefix</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget mb-0" *ngIf="blogDetails && blogDetails.tag">
+                            <h3 class="widget-title">Tags</h3>
+                            <div class="sidebar-tags">
+                                <a href="#" *ngFor="let t of blogDetails.tag">{{t.name}}</a>
+                                <!-- <a href="#">Contractor</a>
+                                <a href="#">Plumber</a>
+                                <a href="#">Contractor</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

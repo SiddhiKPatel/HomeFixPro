@@ -1,0 +1,311 @@
+<app-header></app-header>
+<!-- Account Page Start -->
+<div class="account-page pt-120 pb-120">
+    <div class="container">
+        <div class="row mt--30">
+            <div class="col-lg-4 ">
+                <ul class="nav nav-pills  mt-30 " id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-account-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-account" type="button" role="tab" aria-controls="pills-account"
+                            aria-selected="true">
+                            Account information
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-password-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-password" type="button" role="tab" aria-controls="pills-password"
+                            aria-selected="false">
+                            Password
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-notification-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-notification" type="button" role="tab"
+                            aria-controls="pills-notification" aria-selected="false">
+                            Notification
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-delete-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-delete" type="button" role="tab" aria-controls="pills-delete"
+                            aria-selected="false">
+                            Delete Account
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xl-6 col-lg-8 mt-30 ">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-account" role="tabpanel"
+                        aria-labelledby="pills-account-tab">
+                        <div class="account-input-box">
+                            <form [formGroup]="profileSecOne">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group position-relative ">
+                                            <div class="icon">
+                                                <i class="icofont-user-alt-7"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="First Name" 
+                                            formControlName="fname" [ngClass]="{ 'is-invalid': profileSubmitted && g.fname.errors }">
+                                            <div *ngIf="profileSubmitted && g.fname.errors" class="invalid-feedback">
+                                                <div *ngIf="g.fname.errors.required">First name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group position-relative">
+                                            <div class="icon">
+                                                <i class="icofont-user-alt-7"></i>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Last name" 
+                                            formControlName="lname" [ngClass]="{ 'is-invalid': profileSubmitted && g.lname.errors }">
+                                            <div *ngIf="profileSubmitted && g.lname.errors" class="invalid-feedback">
+                                                <div *ngIf="g.lname.errors.required">Last name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <div class="icon">
+                                                <i class="icofont-envelope"></i>
+                                            </div>
+                                            <input type="email" readonly="readonly" class="form-control" placeholder="Email" formControlName="email">
+                                        </div>
+                                    </div>
+                                    <div class="co-12">
+                                        <div class="button-group  d-md-flex justify-content-md-end">
+                                            <button class="button1" (click)="saveProfile()">Save</button>
+                                            <!-- <button class="button2">Cancel</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab">
+                        <div class="account-input-box">
+                            <form [formGroup]="changePassForm" (ngSubmit)="changePasswordSubmit()">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group position-relative ">
+                                            <div class="icon">
+                                                <i class="icofont-ui-password"></i>
+                                            </div>
+                                            <input type="password" formControlName="old_password" class="form-control"
+                                                placeholder="Old Password">
+
+                                        </div>
+                                        <div *ngIf="f.old_password.errors?.required && changePassSubmitted" class="error-disp">
+                                            <small class="text-danger danger-custom">Please enter old password.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <div class="icon">
+                                                <i class="icofont-ui-password"></i>
+                                            </div>
+                                            <input type="password" formControlName="password" class="form-control"
+                                                placeholder="New password">
+                                        </div>
+                                        <div *ngIf="f.password.errors?.required && changePassSubmitted" class="error-disp">
+                                            <small class="text-danger danger-custom">Please enter new password.</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group position-relative">
+                                            <div class="icon">
+                                                <i class="icofont-ui-password"></i>
+                                            </div>
+                                            <input type="password" formControlName="password_confirmation"
+                                                class="form-control" placeholder="Confirm new password ">
+                                        </div>
+                                        <div *ngIf="f.password_confirmation.errors?.required && changePassSubmitted" class="error-disp">
+                                            <small class="text-danger danger-custom signin-email">Please enter your password for
+                                                confirmation.</small>
+                                        </div>
+                                        <div *ngIf="f.password_confirmation.errors && f.password_confirmation.errors.mustMatch"
+                                            class="error-disp">
+                                            <small class="text-danger danger-custom signin-email">Password and Confirm Password must
+                                                be match.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="password-info mt-30">
+                                            <p>Your password must:</p>
+                                            <label class="col"
+                                                [ngClass]="changePassForm.controls['password'].hasError('required') || changePassForm.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                                                <i class="icofont-{{ changePassForm.controls['password'].hasError('required') ||
+                                changePassForm.controls['password'].hasError('minlength') ? 'close-circled' :
+                                'check-circled' }}" aria-hidden="true"></i>
+                                                be at least 8 characters!
+                                            </label>
+
+                                            <label class="col"
+                                                [ngClass]="changePassForm.controls['password'].hasError('required') || changePassForm.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                                                <i class="icofont-{{ changePassForm.controls['password'].hasError('required') ||
+                                changePassForm.controls['password'].hasError('hasNumber') ? 'close-circled' :
+                                'check-circled' }}" aria-hidden="true"></i>
+                                                contain at least 1 number!
+                                            </label>
+
+                                            <label class="col"
+                                                [ngClass]="changePassForm.controls['password'].hasError('required') || changePassForm.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+                                                <i class="icofont-{{ changePassForm.controls['password'].hasError('required') ||
+                                changePassForm.controls['password'].hasError('hasCapitalCase') ? 'close-circled' :
+                                'check-circled' }}" aria-hidden="true"></i>
+                                                contain at least 1 in Capital Case!
+                                            </label>
+
+                                            <label class="col mb-3"
+                                                [ngClass]="changePassForm.controls['password'].hasError('required') || changePassForm.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+                                                <i class="icofont-{{ changePassForm.controls['password'].hasError('required') ||
+                                changePassForm.controls['password'].hasError('hasSmallCase') ? 'close-circled' :
+                                'check-circled' }}" aria-hidden="true"></i>
+                                                contain at least 1 Letter in Small Case!
+                                            </label>
+                                            <!-- <ul>
+                                                <li>
+                                                    be 8 to 72 characters long
+                                                </li>
+                                                <li>
+                                                    not contain your name or email
+                                                </li>
+                                                <li>
+                                                    not be commonly used, easily guessed or contain any
+                                                    variation of the word not be commonly used, easily guessed
+                                                    or contain any
+                                                    variation of the word <a href="#0">
+                                                        “Homefixpros”
+                                                    </a>
+                                                </li>
+                                            </ul> -->
+                                        </div>
+
+                                    </div>
+                                    <div class="co-12">
+                                        <div class="button-group  d-md-flex justify-content-md-end">
+                                            <button class="button1 pass">Save your password</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-notification" role="tabpanel"
+                        aria-labelledby="pills-notification-tab">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ol class="list-group notificationBox">
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <div class="">
+                                                    <p class="mb-3">Get push notifications when:</p>
+                                                    <h6> Messages</h6>
+                                                </div>
+                                                <p>
+                                                    Cras justo odio
+                                                </p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input mt-5 mt-md-5 " type="checkbox"
+                                                    id="flexSwitchCheckDefault">
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+
+                                                <h6> Project reminders and updates </h6>
+                                                <p>
+                                                    You’ve got upcoming projects or there are other updates
+                                                    about your projects.
+                                                </p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="flexSwitchCheckDefault">
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+
+                                                <h6> Promotions and tips </h6>
+                                                <p>
+                                                    There are coupons, promotions, surveys, and project ideas
+                                                    you might like.
+                                                </p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="flexSwitchCheckDefault">
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <div class="ms-2 me-auto">
+                                                <h6> Account support</h6>
+                                                <p>
+                                                    We have updates about your account, projects, and
+                                                    security/privacy matters.
+                                                </p>
+                                            </div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="flexSwitchCheckDefault">
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                                            <button class="btn btn-outline-warning">Unsubscribe all</button>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="tab-pane fade" id="pills-delete" role="tabpanel" aria-labelledby="pills-delete-tab">
+                        <div class="account-input-box">
+                            <div class="delet-account-box">
+                                <h6>Delete account:</h6>
+                                <h5>Are you sure you want to deactivate your account? </h5>
+
+                                <p>When you deactivate
+                                    your account, you will lose access to all of your projects, profile
+                                    information, and any reviews you've written or received on Homefixpros.</p>
+                                <p>If you are receiving too many emails from us, then you can
+                                    <a href="#0"> change your notification settings.
+                                    </a>
+                                </p>
+                                <p> We'd hate to see you go. If there's anything we can do to help,
+                                    please visit our <a href="#0">Help Center</a>.</p>
+
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Reason for deactivating your
+                                        account(optional)</label>
+                                    <div class="mb-2 mt-2 form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">I
+                                            confirm I
+                                            want to delete this account</label>
+                                    </div>
+                                </div>
+                                <div class="button-group  d-md-flex justify-content-md-end">
+                                    <button class="button1">Delete</button>
+                                    <button class="button2">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Account Page Start -->
+<app-footer></app-footer>

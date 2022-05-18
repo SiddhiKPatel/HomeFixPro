@@ -1,0 +1,174 @@
+<app-header></app-header>
+<!-- Homefix oppurtunity area start -->
+<div style="background-color: #FCFCFC;">
+    <div class="container mobile_profile_detail">
+        <div class="row">
+            <div class="col-md-12">
+
+                <form [formGroup]="proposalForm">
+                    <div class="mt-5 bg-white rounded-3 px-md-5 py-3">
+                        <p class="fs-2 text-dark" style="font-weight: 500;">Select a Project to Proposals</p>
+                        <div class="">
+
+
+                            <div class="row">
+
+                                <div class="col-md-4 col-lg-4 col-sm-4" *ngFor="let s of services">
+
+                                    <label (click)="serviceChoose(s)">
+                                        <input type="radio" name="product" class="card-input-element" />
+
+                                        <div class="panel panel-default card-input">
+                                            <div class="panel-heading"></div>
+                                            <div class="panel-body">
+                                                <div class="card border-0"
+                                                    style="box-shadow: 4px 4px 20px rgba(206, 187, 187, 0.25); border-radius: 10px;">
+                                                    <img [src]="image_path && s.gallery[0] ? image_path + s.gallery[0].file : ''"
+                                                    onerror="this.src='assets/images/no-image.png';" class="card-img-top"
+                                                        alt="...">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <!-- <div class="col-md-6">
+                                                                <div>
+                                                                    <img [src]="image_path && s.user && s.user.avatar ? image_path + s.user.avatar : ''" onerror="this.src='assets/images/home/proj_client_img.png';" />
+                                                                    <strong>Tory
+                                                                        Husan</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="text-end"><strong>4.9</strong> <img
+                                                                        src="./assets/images/star.png" /> <span>(7
+                                                                        reviews)</span> </div>
+                                                            </div> -->
+                                                        </div>
+                                                        <h5 class="card-title my-2">{{s.title}}</h5>
+
+                                                        <a href="#" class="btn btn-sm rounded-0"
+                                                            style="background:#00A3FF; color: white;">View
+                                                            Profile</a>
+                                                        <button type="button"
+                                                            class="btn btn-link text-decoration-none text-muted"><i
+                                                                class="bi bi-chat-right"></i> Contact for
+                                                            Price</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </label>
+
+                                </div>
+
+                                <div *ngIf="submitted && f.service_id.errors" class="invalid-feedback-msg">
+                                    <div *ngIf="f.service_id.errors.required">Please choose a service</div>
+                                </div>
+                                <!-- <div class="col-md-4 col-lg-4 col-sm-4">
+
+                                    <label>
+                                        <input type="radio" name="product" formControlName="service_id" class="card-input-element" />
+
+                                        <div class="panel panel-default card-input">
+                                            <div class="panel-heading"></div>
+                                            <div class="panel-body">
+                                                <div class="card border-0"
+                                                    style="box-shadow: 4px 4px 20px rgba(206, 187, 187, 0.25); border-radius: 10px;">
+                                                    <img src="./assets/images/searchResultOne.png" class="card-img-top"
+                                                        alt="...">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div>
+                                                                    <img src="./assets/images/searchCardOne.png" />
+                                                                    <strong>Tory
+                                                                        Husan</strong>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="text-end"><strong>4.9</strong> <img
+                                                                        src="./assets/images/star.png" /> <span>(7
+                                                                        reviews)</span> </div>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="card-title my-2">House Cleaning </h5>
+
+                                                        <a href="#" class="btn btn-sm rounded-0"
+                                                            style="background:#00A3FF; color: white;">View
+                                                            Profile</a>
+                                                        <button type="button"
+                                                            class="btn btn-link text-decoration-none text-muted"><i
+                                                                class="bi bi-chat-right"></i> Contact for
+                                                            Price</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </label>
+
+                                </div> -->
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5">
+                            <!-- <form> -->
+                                <div class="my-4">
+                                    <label for="exampleInputPassword1" class="form-label">Tell us a bit about this
+                                        project</label>
+                                    <textarea class="form-control rounded-0" placeholder="Let us know"
+                                        id="exampleFormControlTextarea1" rows="3" formControlName="body"
+                                        [ngClass]="{ 'is-invalid': submitted && f.body.errors }"></textarea>
+                                    <div *ngIf="submitted && f.body.errors" class="invalid-feedback">
+                                        <div *ngIf="f.body.errors.required">Tell us a bit about this
+                                            project</div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="exampleInputEmail1" class="form-label">Cost</label>
+                                    <input type="number" formControlName="cost" [ngClass]="{ 'is-invalid': submitted && f.cost.errors }" placeholder="2000005" class="form-control rounded-0"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
+                                            <div *ngIf="f.cost.errors.required">Cost required</div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="exampleInputEmail1" class="form-label">Delivery Time</label>
+                                            <select class="form-select" formControlName="delivery_time_id" [ngClass]="{ 'is-invalid': submitted && f.delivery_time_id.errors }" aria-label="Default select example">
+                                                <option value="" selected>Delivery Time</option>
+                                                <option [value]="d.id" *ngFor="let d of deliveryTime">{{d.name}}</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <label for="exampleInputEmail1" class="form-label">Project Image</label>
+                                            <div class="input-group mb-3">
+                                                <input type="file" (change)="importFile($event)" class="form-control" id="inputGroupFile02">
+                                                <!-- <input type="text" class="form-control"> -->
+                                                <!-- <label class="input-group-text" for="inputGroupFile02">Choose</label> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-start my-3">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor dicta
+                                        repellat consequuntur eveniet ducimus. Aut, iusto repellendus molestias at
+                                        tempora itaque doloremque assumenda, laborum tenetur saepe laudantium!
+                                        Rerum, ratione corporis.</p>
+                                    <button (click)="sendProposals()" class="btn" style="background:#00A3FF; color: white;" type="button"><i
+                                            class="bi bi-envelope-fill me-3"></i>Send Proposals</button>
+                                </div>
+                            <!-- </form> -->
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Homefix oppurtunity area end -->
+<app-footer></app-footer>

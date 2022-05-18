@@ -1,0 +1,219 @@
+<app-header></app-header>
+<div class="project-page pt-120 pb-120">
+    <div class="container">
+        <h4>Project Status</h4>
+        <div class="row mt--30">
+            <div class="col-lg-12 ">
+                <ul class="nav nav-pills  mt-30 " id="pills-tab" role="tablist">
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-contract-tab" data-bs-toggle="pill"
+                            data-bs-target="#contract" type="button" role="tab" aria-controls="contract"
+                            aria-selected="false">Contract</button>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link " id="pills-activeproject-tab" data-bs-toggle="pill"
+                            data-bs-target="#activeproject" type="button" role="tab" aria-controls="activeproject"
+                            aria-selected="false">Active Project </button>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-pendingapproval-tab" data-bs-toggle="pill"
+                            data-bs-target="#pendingapproval" type="button" role="tab" aria-controls="pendingapproval"
+                            aria-selected="true"> Pending Approval </button>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-requiresmodification-tab" data-bs-toggle="pill"
+                            data-bs-target="#requiresmodification" type="button" role="tab" aria-controls="pills-delete"
+                            aria-selected="false"> Requires Modification </button>
+                    </li>
+
+
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-draft-tab" data-bs-toggle="pill" data-bs-target="#draft"
+                            type="button" role="tab" aria-controls="draft" aria-selected="false"> Draft </button>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-xl-12 col-lg-12 mt-30 ">
+                <div class="tab-content" id="pills-contract">
+                    <div class="tab-pane fade show active" id="contract" role="tabpanel"
+                        aria-labelledby="pills-contract-tab">
+                        <div class="table-responsive" *ngIf="roleId == 2">
+                            <table border="1">
+                                <tr>
+                                    <td>Buyer</td>
+                                    <td>Project </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                                <tr *ngFor="let p of proposalList" [hidden]="p.job.status !=2">
+                                    <td class="all">
+                                        <!-- <span> -->
+                                        <img src="responseData && responseData.image_path ? responseData.image_path + p.user.avatar : ''"
+                                            onerror="this.src='assets/images/home/proj_client_img.png';" alt=" ">
+                                        <!-- </span> -->
+                                        {{p.user.name}}
+                                    </td>
+                                    <td class="allone">{{p.service.title}} </td>
+                                    <td class="text-right"><a *ngIf="p.job" [routerLink]="['/contract', p.job.slug]"
+                                            class="view">View Details</a></td>
+                                </tr>
+                                <!-- <tr>
+                                    <td class="all all20"><span><img src="assets/images/Ellipse12.png"
+                                                alt=" "></span>Piku Sorkar</td>
+                                    <td class="allone">Plumbing Services </td>
+                                    <td class="text-right"><a href="#" class="view">View Details</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="all all20"><span><img src="assets/images/Ellipse12.png"
+                                                alt=" "></span>Rajib Nath</td>
+                                    <td class="allone">Plumbing Services </td>
+                                    <td class="text-right"><a href="#" class="view view20">End </a></td>
+                                </tr> -->
+                            </table>
+                        </div>
+
+                        <div class="table-responsive" *ngIf="roleId == 3">
+                            <table border="1">
+                                <tr>
+                                    <!-- <td>Buyer</td> -->
+                                    <td>Project </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+
+                                <span *ngFor="let p of jobList">
+                                    <span *ngFor="let pp of p.jobproposals">
+                                        <tr *ngFor="let cc of pp.jobcontracts" [hidden]="cc.status != 2">
+                                            <!-- <td class="all">
+                                            <img src="responseData && responseData.image_path ? responseData.image_path + p.user.avatar : ''"
+                                                onerror="this.src='assets/images/home/proj_client_img.png';" alt=" ">
+                                            
+                                            {{p.user.name}}
+                                        </td> -->
+                                            <td class="allone">{{p.title}} </td>
+                                            <td class="text-right"><a *ngIf="p.slug"
+                                                    [routerLink]="['/contract', p.slug]" class="view">View Details</a>
+                                            </td>
+                                        </tr>
+                                    </span>
+                                </span>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="activeproject" role="tabpanel"
+                        aria-labelledby="pills-activeproject-tab">
+                        <div class="table-responsive" *ngIf="roleId == 2">
+                            <table border="1">
+                                <tr *ngFor="let p of proposalList" [hidden]="p.job.status !=2">
+                                    <td class="alltwo"><span><img
+                                                src="p.service && responseData.image_path ? responseData.image_path + p.service.image2 : ''"
+                                                onerror="this.src='assets/images/no-image.png';"
+                                                alt=" "></span>{{p.service.title}}</td>
+                                    <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <td class="alltwo"><span><img src="assets/images/tabimg.png"
+                                                alt=" "></span>Professinal Cleaning Services</td>
+                                    <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alltwo"><span><img src="assets/images/tabimg1.png" alt=" "></span>House
+                                        Cleaning Services </td>
+                                    <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
+                                    </td>
+                                </tr> -->
+                            </table>
+                        </div>
+                        <div class="table-responsive" *ngIf="roleId == 3">
+                            <table border="1">
+                                <span *ngFor="let p of jobList">
+                                    <span *ngFor="let pp of p.jobproposals">
+                                        <tr *ngFor="let cc of pp.jobcontracts" [hidden]="cc.status != 2">
+                                            <td class="alltwo"><span><img
+                                                        src="p && responseData.image_path ? responseData.image_path + p.image2 : ''"
+                                                        onerror="this.src='assets/images/no-image.png';"
+                                                        alt=" "></span>{{p.title}}</td>
+                                            <td class="text-right"><a href="#"><i
+                                                        class="bi bi-three-dots-vertical"></i></a>
+                                            </td>
+                                        </tr>
+                                    </span>
+                                </span>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="pendingapproval" role="tabpanel"
+                        aria-labelledby="pills-pendingapproval-tab">
+                        <div class="table-responsive" *ngIf="roleId == 2">
+                            <table border="1">
+                                <tr>
+                                    <td>Buyer</td>
+                                    <td>Project </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr *ngFor="let p of proposalList" [hidden]="p.job.status !=0">
+                                    <td class="all">
+                                        <!-- <span> -->
+                                        <img src="responseData && responseData.image_path ? responseData.image_path + p.user.avatar : ''"
+                                            onerror="this.src='assets/images/home/proj_client_img.png';" alt=" ">
+                                        <!-- </span> -->
+                                        {{p.user.name}}
+                                    </td>
+                                    <td class="allone">{{p.service.title}} </td>
+                                    <td class="text-right"><a *ngIf="p.job"
+                                            [routerLink]="['/opportunity-details', p.job.slug]" class="view">View
+                                            Details</a></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive" *ngIf="roleId == 3">
+                            <table border="1">
+                                <tr>
+                                    <!-- <td>Buyer</td> -->
+                                    <td>Project </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <!-- <span *ngFor="let p of jobList">
+                                    <span *ngFor="let pp of p.jobproposals"> -->
+                                        <tr *ngFor="let p of jobList" [hidden]="p.status != 0">
+                                            
+                                            <td class="allone">{{p.title}} </td>
+                                            <td class="text-right"><a *ngIf="p.id"
+                                                    [routerLink]="['/my-post-details', p.id]"
+                                                    class="view">View
+                                                    Details</a></td>
+                                        </tr>
+                                    <!-- </span>
+                                </span> -->
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="requiresmodification" role="tabpanel"
+                        aria-labelledby="pills-requiresmodification-tab"> </div>
+
+
+                    <div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-draft-tab"> </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
