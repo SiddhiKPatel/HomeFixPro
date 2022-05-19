@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   userId: any;
+  show_button: Boolean = false;
+  show_eye: Boolean = false;
   constructor(private page: PagesService, 
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService, private userService: UserService, private formBuilder: FormBuilder) { }
@@ -69,5 +71,8 @@ export class LoginComponent implements OnInit {
 
     }
   }
-
+  showPassword() {
+    this.show_button = !this.show_button;
+    this.show_eye = !this.show_eye;
+  }
 }
