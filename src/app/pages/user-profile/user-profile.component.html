@@ -90,7 +90,7 @@
                             </div>
                             <div class="row pb-1 border-bottom mb-2" *ngIf="profileData && profileData.description">
                                 <div class="col-md-12">
-                                    <h6 class="text-center fw-light text-md-start">About Me</h6>
+                                    <h1 class="text-center1 fw-light text-md-start">About Me</h1>
                                     <p style="text-align: justify;" [innerHTML]="profileData?.description"></p>
                                     <!-- <p style="text-align: justify;">Plumbers install and repair pipes that
                                         supply water and gas to, as well as carry waste away from, homes and
@@ -102,7 +102,7 @@
                             <div class="row mb-3"
                                 *ngIf="profileData && profileData.skill && profileData.skill.length > 0">
                                 <div class="col-md-12">
-                                    <h6 class="text-center fw-light text-md-start">Skill</h6>
+                                    <h1 class="text-center1 fw-light text-md-start">Skill</h1>
                                     <div class="mt-3">
                                         <span class="px-3 py-2 badge rounded-pill" *ngFor="let s of profileData.skill"
                                             style="background: rgba(140, 140, 140, 0.07);color: #535353; ">{{s.name}}
