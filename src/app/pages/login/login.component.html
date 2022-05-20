@@ -36,8 +36,9 @@
                   <span><i class="icofont-key"></i></span>
                   <input [type]="show_button ? 'text' : 'password'" name="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" value="" placeholder="Password">
-                  <span style="padding-left: 10%;"><i [class]="show_eye ? 'icofont-eye' : 'icofont-eye-blocked'" (click)="showPassword()"></i></span>
-                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <span class="righticon"><i [class]="show_eye ? 'icofont-eye' : 'icofont-eye-blocked'"
+                      (click)="showPassword()"></i></span>
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                   </div>
                 </div>
