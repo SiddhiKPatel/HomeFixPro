@@ -18,6 +18,8 @@ export class SignupComponent implements OnInit {
   role_id: any = 3;
   registerResponse: any;
   registerResponseError: any;
+  show_button: Boolean = false;
+  show_eye: Boolean = false;
   constructor(private page: PagesService, 
     private apiService:  ApiService,
     private formBuilder: FormBuilder) { }
@@ -153,5 +155,8 @@ export class SignupComponent implements OnInit {
       console.log(err);
     })
   }
-  
+  showPassword() {
+    this.show_button = !this.show_button;
+    this.show_eye = !this.show_eye;
+  }
 }
