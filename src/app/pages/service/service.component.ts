@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { PagesService } from 'src/app/service/pages.service';
 declare var $;
 
@@ -11,9 +12,13 @@ export class ServiceComponent implements OnInit {
   servicesList: any = [];
   image_path: any;
 
-  constructor(private pageService : PagesService) { }
+  constructor(private pageService : PagesService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.getServices().then(()=>{
       this.getPage();
     });

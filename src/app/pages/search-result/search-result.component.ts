@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PagesService } from 'src/app/service/pages.service';
 
 @Component({
@@ -11,9 +11,14 @@ export class SearchResultComponent implements OnInit {
   category: any;
   categoryList; any = [];
   zipcode: any = '';
-  constructor(private route: ActivatedRoute, public pageService: PagesService) { }
+  constructor(private route: ActivatedRoute, 
+    private router : Router,
+    public pageService: PagesService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.route.queryParams
       .subscribe(params => {
         console.log(params); 

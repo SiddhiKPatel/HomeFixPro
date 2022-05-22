@@ -47,8 +47,9 @@
                                             <div class="icon">
                                                 <i class="icofont-user-alt-7"></i>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="First Name" 
-                                            formControlName="fname" [ngClass]="{ 'is-invalid': profileSubmitted && g.fname.errors }">
+                                            <input type="text" class="form-control" placeholder="First Name"
+                                                formControlName="fname"
+                                                [ngClass]="{ 'is-invalid': profileSubmitted && g.fname.errors }">
                                             <div *ngIf="profileSubmitted && g.fname.errors" class="invalid-feedback">
                                                 <div *ngIf="g.fname.errors.required">First name is required</div>
                                             </div>
@@ -59,8 +60,9 @@
                                             <div class="icon">
                                                 <i class="icofont-user-alt-7"></i>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Last name" 
-                                            formControlName="lname" [ngClass]="{ 'is-invalid': profileSubmitted && g.lname.errors }">
+                                            <input type="text" class="form-control" placeholder="Last name"
+                                                formControlName="lname"
+                                                [ngClass]="{ 'is-invalid': profileSubmitted && g.lname.errors }">
                                             <div *ngIf="profileSubmitted && g.lname.errors" class="invalid-feedback">
                                                 <div *ngIf="g.lname.errors.required">Last name is required</div>
                                             </div>
@@ -71,7 +73,8 @@
                                             <div class="icon">
                                                 <i class="icofont-envelope"></i>
                                             </div>
-                                            <input type="email" readonly="readonly" class="form-control" placeholder="Email" formControlName="email">
+                                            <input type="email" readonly="readonly" class="form-control"
+                                                placeholder="Email" formControlName="email">
                                         </div>
                                     </div>
                                     <div class="co-12">
@@ -97,7 +100,8 @@
                                                 placeholder="Old Password">
 
                                         </div>
-                                        <div *ngIf="f.old_password.errors?.required && changePassSubmitted" class="error-disp">
+                                        <div *ngIf="f.old_password.errors?.required && changePassSubmitted"
+                                            class="error-disp">
                                             <small class="text-danger danger-custom">Please enter old password.</small>
                                         </div>
                                     </div>
@@ -109,7 +113,8 @@
                                             <input type="password" formControlName="password" class="form-control"
                                                 placeholder="New password">
                                         </div>
-                                        <div *ngIf="f.password.errors?.required && changePassSubmitted" class="error-disp">
+                                        <div *ngIf="f.password.errors?.required && changePassSubmitted"
+                                            class="error-disp">
                                             <small class="text-danger danger-custom">Please enter new password.</small>
                                         </div>
                                     </div>
@@ -121,13 +126,16 @@
                                             <input type="password" formControlName="password_confirmation"
                                                 class="form-control" placeholder="Confirm new password ">
                                         </div>
-                                        <div *ngIf="f.password_confirmation.errors?.required && changePassSubmitted" class="error-disp">
-                                            <small class="text-danger danger-custom signin-email">Please enter your password for
+                                        <div *ngIf="f.password_confirmation.errors?.required && changePassSubmitted"
+                                            class="error-disp">
+                                            <small class="text-danger danger-custom signin-email">Please enter your
+                                                password for
                                                 confirmation.</small>
                                         </div>
                                         <div *ngIf="f.password_confirmation.errors && f.password_confirmation.errors.mustMatch"
                                             class="error-disp">
-                                            <small class="text-danger danger-custom signin-email">Password and Confirm Password must
+                                            <small class="text-danger danger-custom signin-email">Password and Confirm
+                                                Password must
                                                 be match.</small>
                                         </div>
                                     </div>

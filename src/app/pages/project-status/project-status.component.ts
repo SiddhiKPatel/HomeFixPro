@@ -25,7 +25,9 @@ export class ProjectStatusComponent implements OnInit {
     private pageService: PagesService) { }
 
   ngOnInit(): void {
-
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.getMyProposal();
   }
 

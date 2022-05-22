@@ -22,6 +22,9 @@ export class JobPostPageComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.jobPostForm = this.formBuilder.group({
       title: ['', [Validators.required]],
       category_id: ['', [Validators.required]],

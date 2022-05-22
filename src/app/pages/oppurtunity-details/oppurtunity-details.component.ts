@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PagesService } from 'src/app/service/pages.service';
 
 @Component({
@@ -15,9 +15,13 @@ export class OppurtunityDetailsComponent implements OnInit {
 
   constructor(private _location: Location, 
     private route: ActivatedRoute, 
+    private router: Router,
     private pageService: PagesService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.slug = this.route.snapshot.paramMap.get('slug');
     console.log(this.slug);
     if (this.slug) {

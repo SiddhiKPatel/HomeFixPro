@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
@@ -75,6 +75,7 @@ export class ContractComponent implements OnInit {
 
   constructor(private _location: Location,
     private route: ActivatedRoute,
+    private router:Router,
     private formBuilder: FormBuilder,
     public apiService: ApiService,
     private toastr: ToastrService,
@@ -134,6 +135,9 @@ export class ContractComponent implements OnInit {
   get f() { return this.submitForm.controls; }
   get g() { return this.ratingForm.controls; }
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.token = localStorage.getItem("token");
     this.roleId = localStorage.getItem("roleId");
     this.slug = this.route.snapshot.paramMap.get('slug');

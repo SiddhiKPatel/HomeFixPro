@@ -114,7 +114,7 @@
                         aria-labelledby="pills-activeproject-tab">
                         <div class="table-responsive" *ngIf="roleId == 2">
                             <table border="1">
-                                <tr *ngIf="proposalList.length == 0">
+                                <tr style="text-align: center;" *ngIf="proposalList.length == 0">
                                     No data Found
                                 </tr>
                                 <tr *ngFor="let p of proposalList" [hidden]="p.job.status !=2">
@@ -142,7 +142,7 @@
                         </div>
                         <div class="table-responsive" *ngIf="roleId == 3">
                             <table border="1">
-                                <tr *ngIf="jobList.length == 0">
+                                <tr style="text-align: center;" *ngIf="jobList.length == 0">
                                     No data Found
                                 </tr>
                                 <span *ngFor="let p of jobList">
@@ -212,10 +212,21 @@
 
 
                     <div class="tab-pane fade" id="requiresmodification" role="tabpanel"
-                        aria-labelledby="pills-requiresmodification-tab"> </div>
+                        aria-labelledby="pills-requiresmodification-tab">
+                        <table border="1">
+                            <tr style="text-align: center;">
+                                No data Found
+                            </tr>
+                        </table>
+                    </div>
 
-
-                    <div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-draft-tab"> </div>
+                    <div class="tab-pane fade" id="draft" role="tabpanel" aria-labelledby="pills-draft-tab">
+                        <table border="1">
+                            <tr style="text-align: center;">
+                                No data Found
+                            </tr>
+                        </table>
+                    </div>
 
                 </div>
             </div>

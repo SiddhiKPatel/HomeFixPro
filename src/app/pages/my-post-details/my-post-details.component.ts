@@ -25,6 +25,9 @@ export class MyPostDetailsComponent implements OnInit {
     private pageService: PagesService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.id = this.route.snapshot.paramMap.get('id');
     console.log(this.id);
     if (this.id) {

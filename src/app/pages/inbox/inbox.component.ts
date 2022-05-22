@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 import { PagesService } from 'src/app/service/pages.service';
@@ -26,9 +27,13 @@ export class InboxComponent implements OnInit {
     private toastr: ToastrService,
     private apiService: ApiService,
     private userService: UserService,
+    private router: Router,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.getProfile().then(() => {
       this.getMessageConnections().then(() => {
         this.usersAutoFetch();
