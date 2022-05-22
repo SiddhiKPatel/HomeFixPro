@@ -34,8 +34,10 @@
                 </div>
                 <div class="login_from_field_inner">
                   <span><i class="icofont-key"></i></span>
-                  <input type="password" name="password" formControlName="password"
+                  <input [type]="show_button ? 'text' : 'password'" name="password" formControlName="password"
                     [ngClass]="{ 'is-invalid': submitted && f.password.errors }" value="" placeholder="Password">
+                  <span class="righticon"><i [class]="show_eye ? 'icofont-eye' : 'icofont-eye-blocked'"
+                      (click)="showPassword()"></i></span>
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                   </div>

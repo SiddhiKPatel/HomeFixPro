@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 import { PagesService } from 'src/app/service/pages.service';
@@ -24,6 +24,7 @@ export class BlogDetailsComponent implements OnInit {
 
   constructor(private _location: Location,
     private route: ActivatedRoute,
+    private router:Router,
     private apiService: ApiService,
     private userService: UserService,
     private formBuilder: FormBuilder,
@@ -31,6 +32,9 @@ export class BlogDetailsComponent implements OnInit {
     private pageService: PagesService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     // this.slug = this.route.snapshot.paramMap.get('slug');
     // console.log(this.slug);
     // if (this.slug) {

@@ -21,7 +21,8 @@
                                 <hr><span>or</span>
                             </div>
                             <!-- input email or password -->
-                            <form class="loginStep1" [formGroup]="registerFormStep1" (ngSubmit)="registrationStep1Submit()">
+                            <form class="loginStep1" [formGroup]="registerFormStep1"
+                                (ngSubmit)="registrationStep1Submit()">
                                 <div class="login_from_field">
 
                                     <div class="login_from_field_inner">
@@ -76,8 +77,8 @@
                                                 class="bi bi-person-fill" style="color: #00a3ff"></i></span>
                                         <input type="text" placeholder="First name" formControlName="fname"
                                             [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
-                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1" name="fname"
-                                            aria-describedby="emailHelp" />
+                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1"
+                                            name="fname" aria-describedby="emailHelp" />
                                     </div>
                                     <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
                                         <div *ngIf="f.fname.errors.required">First name is required</div>
@@ -89,8 +90,8 @@
                                                 class="bi bi-person-fill" style="color: #00a3ff"></i></span>
                                         <input type="text" placeholder="Last name" formControlName="lname"
                                             [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
-                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1" name="lname"
-                                            aria-describedby="emailHelp" />
+                                            class="form-control border-start-0 rounded-0" id="exampleInputEmail1"
+                                            name="lname" aria-describedby="emailHelp" />
                                     </div>
                                     <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
                                         <div *ngIf="f.lname.errors.required">Last name is required</div>
@@ -114,11 +115,14 @@
                                 <div class="input-group customborder">
                                     <span class="input-group-text bg-white  border-0" id="basic-addon1"><i
                                             class="bi bi-key-fill" style="color: #00a3ff"></i></span>
-                                    <input type="password" placeholder="Create a new Password"
+                                    <input [type]="show_button ? 'text' : 'password'"  placeholder="Create a new Password"
                                         formControlName="password"
                                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                                         class="form-control rounded-0" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" />
+                                    <span class="righticon"><i
+                                            [class]="show_eye ? 'bi bi-eye' : 'bi bi-eye-slash'"
+                                            (click)="showPassword()"></i></span>
                                 </div>
                                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                     <div *ngIf="f.password.errors.required">Password is required</div>
@@ -129,7 +133,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                
+
                                 <div class="col-md-3">
                                     <div class="mb-4">
                                         <select aria-placeholder="Country" class="form-select customborder"
@@ -156,8 +160,8 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.state_id.errors }"
                                             aria-label="Default select example">
                                             <option selected value="">Select State</option>
-                                            <option *ngFor="let state of stateList"
-                                                [value]="state.id">{{state.name}}</option>
+                                            <option *ngFor="let state of stateList" [value]="state.id">{{state.name}}
+                                            </option>
                                             <!-- <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option> -->
@@ -210,8 +214,8 @@
                                                 <input type="radio" class="btn-check " name="btnradio"
                                                     id="btnradio{{i}}" autocomplete="off" checked="i==0" />
                                                 <label (click)="selectRole(roles)"
-                                                    class="btn btn-outline-primary radBtn    "
-                                                    for="btnradio{{i}}" id="btnrole{{i}}">{{roles.display_name}}</label>
+                                                    class="btn btn-outline-primary radBtn    " for="btnradio{{i}}"
+                                                    id="btnrole{{i}}">{{roles.display_name}}</label>
                                             </div>
                                             <!-- <div>
                                                 <input type="radio" class="btn-check " name="btnradio" id="btnradio1"

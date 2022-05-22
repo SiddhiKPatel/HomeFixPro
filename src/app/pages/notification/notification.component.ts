@@ -22,6 +22,9 @@ export class NotificationComponent implements OnInit {
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.profileSecOne = this.formBuilder.group({
       fname: ['', [Validators.required]],
       lname: ['', [Validators.required]],
@@ -76,17 +79,14 @@ export class NotificationComponent implements OnInit {
     } else {
       const token = localStorage.getItem("token");
       console.log("valid...");
-      let formData = new FormData();
+      let obj={
+        fname:this.profileSecOne.value.fname,
+        lname:this.profileSecOne.value.lname,
+        email:this.profileData.email,
+        country_id:this.profileData.country_id
+      }
       
-      formData.set('fname', this.profileSecOne.value.fname);
-      formData.set('lname', this.profileSecOne.value.lname);
-
-      formData.set('email', this.profileData.email);
-      formData.set('country_id', this.profileData.country_id);
-      // formData.set('city', this.profileData.city);
-
-      
-      this.userService.updateProfile(token, formData).subscribe((res: any) => {
+      this.userService.updateProfile(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
@@ -111,12 +111,14 @@ export class NotificationComponent implements OnInit {
     } else {
       console.log("valid...");
       const token = localStorage.getItem("token");
-      let formData = new FormData();
-      formData.set('old_password', this.changePassForm.value.old_password);
-      formData.set('password', this.changePassForm.value.password);
-      formData.set('password_confirmation', this.changePassForm.value.password_confirmation);
+      // let formData = new FormData();
+      let obj = {
+        old_password:this.changePassForm.value.old_password,
+        password: this.changePassForm.value.password,
+        password_confirmation:this.changePassForm.value.password_confirmation
+      }
 
-      this.userService.changePassword(token, formData).subscribe((res: any) => {
+      this.userService.changePassword(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
@@ -134,5 +136,4 @@ export class NotificationComponent implements OnInit {
 
     }
   }
-
 }

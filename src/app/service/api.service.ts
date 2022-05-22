@@ -22,11 +22,9 @@ export class ApiService {
   // answer[] = Array of  FAQ Answer
   // galleryimage[]  = Array of gallery images"
   addUpdateService(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/update-service", formData, {
+    return this.http.post(environment.API + "/api/update-service", data, {
       headers: httpHeaders
     });
   }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Router } from '@angular/router';
 declare var $;
 
 @Component({
@@ -72,9 +73,14 @@ export class UserCreateSolutionComponent implements OnInit {
     ]
   };
 
-  constructor(private toastr: ToastrService, private apiService: ApiService, private formBuilder: FormBuilder) { }
+  constructor(private toastr: ToastrService, 
+    private router: Router,
+    private apiService: ApiService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     let self = this;
     $(".next-step").click(function () {
 
@@ -153,7 +159,7 @@ export class UserCreateSolutionComponent implements OnInit {
   }
 
   images: any = [];
-  galleryimages : any = [];
+  galleryimages: any = [];
   onFileChange(event) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -163,7 +169,7 @@ export class UserCreateSolutionComponent implements OnInit {
         reader.onload = (event: any) => {
           // console.log(event.target.result);
           this.images.push(event.target.result);
-      
+
           this.imgForm.patchValue({
             fileSource: this.images
           });
@@ -207,39 +213,35 @@ export class UserCreateSolutionComponent implements OnInit {
       console.log("valid...");
       const token = localStorage.getItem("token");
       let formData = new FormData();
-      
+      let galleryimage: any = []
       for (let k = 0; k < this.galleryimages.length; k++) {
-        formData.append('galleryimage[]', this.galleryimages[k]);
+        galleryimage.push(this.galleryimages[k])
       }
-
+      let question: any = []
       for (let i = 0; i < this.question.length; i++) {
-        formData.append('question[]', this.question[i]);
+        question.push(this.question[i]);
       }
-
+      let answer: any = []
       for (let j = 0; j < this.answer.length; j++) {
-        formData.append('answer[]', this.answer[j]);
+        answer.push(this.answer[j]);
       }
-
-      // let tags: any = [];
+      let tags: any = [];
       for (let i = 0; i < this.overViewForm.value.selectedTags.length; i++) {
-        // skills.push(this.selectedSkills[i].id);
-        formData.append('tag_id[]', this.overViewForm.value.selectedTags[i].id);
+        tags.push(this.overViewForm.value.selectedTags[i].id);
+      }
+      let obj = {
+        galleryimage: galleryimage,
+        question: question,
+        answer: answer,
+        tag_id: tags,
+        id: '0',
+        title: this.overViewForm.value.title,
+        category_id: this.overViewForm.value.category_id,
+        status: '1',
+        body: this.descForm.value.body
       }
 
-      formData.set('id', '0');
-      formData.set('title', this.overViewForm.value.title);
-      formData.set('category_id', this.overViewForm.value.category_id);
-      // formData.set('delivery_time_id', this.createServiceForm.value.delivery_time_id);
-      formData.set('status', '1');
-      formData.set('body', this.descForm.value.body);
-
-
-      // if (this.imageLoaded) {
-      //   formData.set('image', this.image);
-      // }
-
-
-      this.apiService.addUpdateService(token, formData).subscribe((res: any) => {
+      this.apiService.addUpdateService(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
@@ -264,8 +266,10 @@ export class UserCreateSolutionComponent implements OnInit {
   submittedFaq = false;
   question: any = [];
   answer: any = [];
+  close() {
+    this.faqForm.reset();
+  }
   faqAdd() {
-
     this.submittedFaq = true;
     console.log("addService", this.faqForm);
     if (this.faqForm.invalid) {

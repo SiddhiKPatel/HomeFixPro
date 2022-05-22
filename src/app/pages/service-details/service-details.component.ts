@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PagesService } from 'src/app/service/pages.service';
 declare var $;
 
@@ -13,9 +13,14 @@ export class ServiceDetailsComponent implements OnInit {
   image_path: any;
   slug: any;
 
-  constructor(private pageService: PagesService, private route: ActivatedRoute) { }
+  constructor(private pageService: PagesService,
+    private router : Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.route.params.subscribe((parameter: any) => {
       console.log(parameter);
       if (parameter.slug) {

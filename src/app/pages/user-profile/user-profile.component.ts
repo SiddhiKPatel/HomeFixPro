@@ -19,6 +19,9 @@ export class UserProfileComponent implements OnInit {
     private apiService: ApiService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.roleId = localStorage.getItem("roleId");
 
     this.getProfile().then(() => {
@@ -64,7 +67,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   findPros() {
-    this.router.navigate([ '/search-result' ], { queryParams: { keyword: 'all', zipcode: '' } })
+    this.router.navigate(['/search-result'], { queryParams: { keyword: 'all', zipcode: '' } })
   }
 
   getEstimate() {

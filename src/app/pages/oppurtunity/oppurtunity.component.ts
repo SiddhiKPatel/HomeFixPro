@@ -19,6 +19,9 @@ export class OppurtunityComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.activatedRoute.queryParams.subscribe(params => {
       console.log(params);
       console.log(params['p']);

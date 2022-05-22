@@ -21,3 +21,12 @@
 input{
     cursor: auto;
 }
+
+.righticon{
+    position: absolute;
+    right: 60px;
+    top: 0px;
+    display: inline-block;
+    font-size: 30px;
+    color: #00a3ff;
+}

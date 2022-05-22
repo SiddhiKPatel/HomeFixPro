@@ -28,6 +28,9 @@ export class ProjectDetailsComponent implements OnInit {
     private pageService: PagesService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.slug = this.route.snapshot.paramMap.get('slug');
     console.log(this.slug);
     if (this.slug) {

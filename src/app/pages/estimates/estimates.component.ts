@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PagesService } from 'src/app/service/pages.service';
 
 @Component({
@@ -14,9 +14,14 @@ export class EstimatesComponent implements OnInit {
   image_path: any;
   extra_data: any;
 
-  constructor(private pageService: PagesService, private route: ActivatedRoute) { }
+  constructor(private pageService: PagesService, 
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token") == null) {
+      this.router.navigate(['/login']);
+    }
     this.token = localStorage.getItem("token");;
 
     this.route.params.subscribe((parameter: any) => {

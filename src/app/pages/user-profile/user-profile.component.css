@@ -2,3 +2,8 @@
     width: 100px;
     border-radius: 50px;
 }
+
+.text-center1{
+    font-size: 15px !important;
+    text-align: center !important;
+}

@@ -75,11 +75,9 @@ export class UserService {
   // password = New password - required
   // password_confirmation = password confirmation - required"
   changePassword(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this._http.post(environment.API + "/api/update-password", formData, {
+    return this._http.post(environment.API + "/api/update-password", data, {
       headers: httpHeaders
     });
   }
@@ -112,11 +110,9 @@ export class UserService {
   // linkedin_url = linkedin URL - Optional
   // skill_id[] = Array of Skill ID
   updateProfile(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this._http.post(environment.API + "/api/update-profile", formData, {
+    return this._http.post(environment.API + "/api/update-profile", data, {
       headers: httpHeaders
     });
   }

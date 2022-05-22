@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
@@ -31,6 +32,7 @@ export class EditProfileComponent implements OnInit {
   // selectedSkills = [{ id: 3, name: "Volkswagen Ford" }];
 
   constructor(private page: PagesService,
+    private router: Router,
     private toastr: ToastrService,
     private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -108,11 +110,11 @@ export class EditProfileComponent implements OnInit {
       console.log(res);
       if (res.status) {
         this.countries = res.countries;
-        this.image_path  = res.image_path;
+        this.image_path = res.image_path;
         this.profileData = res.response_data;
         this.skills = res.skills;
         this.selectedSkills = res.response_data.skill;
-        if(this.profileData && this.countries){
+        if (this.profileData && this.countries) {
           this.profileSecOne.patchValue(this.profileData);
           this.profileSecTwo.patchValue(this.profileData);
           this.profileSecThree.patchValue(this.profileData);
@@ -170,48 +172,35 @@ export class EditProfileComponent implements OnInit {
     } else {
       console.log("valid...");
       let formData = new FormData();
-      
+
       let skills: any = [];
-      for(let i=0; i<this.selectedSkills.length; i++){
-        // skills.push(this.selectedSkills[i].id);
-        formData.append('skill_id[]', this.selectedSkills[i].id);
-      }
-      // formData.set('skill_id[]', skills);
-
-      formData.set('fname', this.profileSecOne.value.fname);
-      formData.set('lname', this.profileSecOne.value.lname);
-      if (this.profileSecOne.value.occupation) {
-        formData.set('occupation', this.profileSecOne.value.occupation);
-      }
-      formData.set('email', this.profileData.email);
-      formData.set('country_id', this.profileSecOne.value.country_id);
-      formData.set('city', this.profileSecOne.value.city);
-      formData.set('zip_code', this.profileSecOne.value.zip_code);
-
-
-      if (this.profileSecTwo.value.description) {
-        formData.set('description', this.profileSecTwo.value.description);
+      for (let i = 0; i < this.selectedSkills.length; i++) {
+        skills.push(this.selectedSkills[i].id);
+        // formData.append('skill_id[]', this.selectedSkills[i].id);
       }
 
-      if (this.profileSecThree.value.facebook_url) {
-        formData.set('facebook_url', this.profileSecThree.value.facebook_url);
+      let obj = {
+        fname: this.profileSecOne.value.fname,
+        lname: this.profileSecOne.value.lname,
+        occupation: this.profileSecOne.value.occupation ? this.profileSecOne.value.occupation : "",
+        email: this.profileData.email,
+        country_id: this.profileSecOne.value.country_id,
+        city:this.profileSecOne.value.city,
+        zip_code:this.profileSecOne.value.zip_code,
+        description:this.profileSecTwo.value.description ? this.profileSecTwo.value.description:"",
+        facebook_url:this.profileSecThree.value.facebook_url?this.profileSecThree.value.facebook_url:"",
+        instagram_url:this.profileSecThree.value.instagram_url?this.profileSecThree.value.instagram_url:"",
+        twitter_url:this.profileSecThree.value.twitter_url?this.profileSecThree.value.twitter_url:"",
+        linkedin_url:this.profileSecThree.value.linkedin_url?this.profileSecThree.value.linkedin_url:"",
+        skill_id: skills,
       }
-      if (this.profileSecThree.value.instagram_url) {
-        formData.set('instagram_url', this.profileSecThree.value.instagram_url);
-      }
-      if (this.profileSecThree.value.twitter_url) {
-        formData.set('twitter_url', this.profileSecThree.value.twitter_url);
-      }
-      if (this.profileSecThree.value.linkedin_url) {
-        formData.set('linkedin_url', this.profileSecThree.value.linkedin_url);
-      }
-      
-
+      console.log(skills)
       const token = localStorage.getItem("token");
-      this.userService.updateProfile(token, formData).subscribe((res: any) => {
+      this.userService.updateProfile(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
+          this.router.navigate(['/user-profile']);
         } else if (res.message) {
           this.toastr.error(res.message);
         } else {
