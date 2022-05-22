@@ -17,8 +17,8 @@ export class JobPostPageComponent implements OnInit {
   imageLoaded = false;
 
   constructor(private router: Router,
-    private toastr: ToastrService, 
-    private apiService: ApiService, 
+    private toastr: ToastrService,
+    private apiService: ApiService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -63,19 +63,29 @@ export class JobPostPageComponent implements OnInit {
     } else {
       console.log("valid...");
       const token = localStorage.getItem("token");
-      let formData = new FormData();
-      formData.set('id', '0');
-      formData.set('title', this.jobPostForm.value.title);
-      formData.set('category_id', this.jobPostForm.value.category_id);
-      formData.set('delivery_time_id', this.jobPostForm.value.delivery_time_id);
-      formData.set('status', this.jobPostForm.value.status);
-      formData.set('body', this.jobPostForm.value.body);
-      if(this.imageLoaded){
-        formData.set('image', this.image);
-        formData.set('galleryimage[]', this.image);
+      // let formData = new FormData();
+      // formData.set('id', '0');
+      // formData.set('title', this.jobPostForm.value.title);
+      // formData.set('category_id', this.jobPostForm.value.category_id);
+      // formData.set('delivery_time_id', this.jobPostForm.value.delivery_time_id);
+      // formData.set('status', this.jobPostForm.value.status);
+      // formData.set('body', this.jobPostForm.value.body);
+      // if(this.imageLoaded){
+      //   formData.set('image', this.image);
+      //   formData.set('galleryimage[]', this.image);
+      // }
+      let obj = {
+        id: '0',
+        title: this.jobPostForm.value.title,
+        category_id: this.jobPostForm.value.category_id,
+        delivery_time_id: this.jobPostForm.value.delivery_time_id,
+        status: this.jobPostForm.value.status,
+        body: this.jobPostForm.value.body,
+        image: this.imageLoaded ? this.image : "",
+        galleryimage: this.imageLoaded ? this.image : ""
       }
 
-      this.apiService.addUpdateJob(token, formData).subscribe((res: any) => {
+      this.apiService.addUpdateJob(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message);

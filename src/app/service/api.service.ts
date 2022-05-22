@@ -71,11 +71,9 @@ export class ApiService {
   // galleryimage[]  = Array of gallery images"
   // http://creativeonlinezone.com/project/homefix/api/update-job
   addUpdateJob(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/update-job", formData, {
+    return this.http.post(environment.API + "/api/update-job", data, {
       headers: httpHeaders
     });
   }

@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getEstimate() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/estimates']);
   }
 
 }

@@ -66,16 +66,15 @@ export class ProjectDetailsComponent implements OnInit {
     } else {
       console.log("valid...");
 
-      let formData = new FormData();
-      formData.set('service_id', this.serviceDetails.id);
-      formData.set('title', this.serviceDetails.title);
-      formData.set('zip_code', this.contactForm.value.zip_code);
-      formData.set('amount', this.contactForm.value.amount);
-      formData.set('contract_estimate_end', this.contactForm.value.contract_estimate_end);
+      let obj ={
+        service_id:this.serviceDetails.id,
+        title:this.serviceDetails.title,
+        zip_code:this.contactForm.value.zip_code,
+        amount:this.contactForm.value.amount,
+        contract_estimate_end: this.contactForm.value.contract_estimate_end
+      }
 
-      // formData.set('delivery_time_id', '2');
-
-      this.pageService.createJobRequest(this.token, formData).subscribe((res: any) => {
+      this.pageService.createJobRequest(this.token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
           this.toastr.success(res.message ? res.message : '');
