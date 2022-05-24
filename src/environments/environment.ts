@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // API: 'http://creativeonlinezone.com/project/homefix'
   // API: 'https://admin.homefixpros.com'
-  API: 'http://20.237.201.66/homefix-laravel'
+  API: 'http://20.237.248.105/homefix-laravel'
 };
 
 /*

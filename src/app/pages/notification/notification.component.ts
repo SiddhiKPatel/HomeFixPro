@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 import { MustMatch } from 'src/app/_helpers/must-match.validator';
 import { CustomValidatos } from 'src/app/_helpers/custom-validator';
+import { getLocaleEraNames } from '@angular/common';
 
 @Component({
   selector: 'app-notification',
@@ -58,7 +59,7 @@ export class NotificationComponent implements OnInit {
       console.log(res);
       if (res.status) {
         this.profileData = res.response_data;
-        if(this.profileData){
+        if (this.profileData) {
           this.profileSecOne.patchValue(this.profileData);
         }
       }
@@ -70,7 +71,7 @@ export class NotificationComponent implements OnInit {
   get g() { return this.profileSecOne.controls; }
 
   profileSubmitted = false;
-  saveProfile(){
+  saveProfile() {
     this.profileSubmitted = true;
     // this.loginResponseError = null;
     console.log("loginSubmit", this.profileSecOne);
@@ -79,13 +80,13 @@ export class NotificationComponent implements OnInit {
     } else {
       const token = localStorage.getItem("token");
       console.log("valid...");
-      let obj={
-        fname:this.profileSecOne.value.fname,
-        lname:this.profileSecOne.value.lname,
-        email:this.profileData.email,
-        country_id:this.profileData.country_id
+      let obj = {
+        fname: this.profileSecOne.value.fname,
+        lname: this.profileSecOne.value.lname,
+        email: this.profileData.email,
+        country_id: this.profileData.country_id
       }
-      
+
       this.userService.updateProfile(token, obj).subscribe((res: any) => {
         console.log(res);
         if (res.status) {
@@ -113,9 +114,9 @@ export class NotificationComponent implements OnInit {
       const token = localStorage.getItem("token");
       // let formData = new FormData();
       let obj = {
-        old_password:this.changePassForm.value.old_password,
+        old_password: this.changePassForm.value.old_password,
         password: this.changePassForm.value.password,
-        password_confirmation:this.changePassForm.value.password_confirmation
+        password_confirmation: this.changePassForm.value.password_confirmation
       }
 
       this.userService.changePassword(token, obj).subscribe((res: any) => {
@@ -136,4 +137,17 @@ export class NotificationComponent implements OnInit {
 
     }
   }
+  activeTab = 'pills-account';
+
+  accInfo(activeTab) {
+    if (activeTab == 'pills-notification') {
+      let data = document.getElementById('pills-delete');
+      data.classList.remove('show');
+
+      let data1 = document.getElementById('pills-notification');
+      data1.classList.add('show');
+    }
+    this.activeTab = activeTab;
+  }
+
 }
