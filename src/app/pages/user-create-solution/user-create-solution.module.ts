@@ -7,7 +7,7 @@ import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 @NgModule({
   declarations: [UserCreateSolutionComponent],
   imports: [
@@ -17,7 +17,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     UserCreateSolutionRoutingModule,
     NgSelectModule,
     IncludeModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgxSpinnerModule
   ]
 })
 export class UserCreateSolutionModule { }

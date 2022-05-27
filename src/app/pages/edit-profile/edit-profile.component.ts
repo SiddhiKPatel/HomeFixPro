@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
@@ -34,7 +35,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private page: PagesService,
     private router: Router,
     private toastr: ToastrService,
-    private userService: UserService, private formBuilder: FormBuilder) { }
+    private userService: UserService, private formBuilder: FormBuilder,
+    private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
     // this.dropdownList = [
@@ -106,6 +108,7 @@ export class EditProfileComponent implements OnInit {
   getProfile() {
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
+    this.spinner.show();
     this.userService.getProfile(token).subscribe((res: any) => {
       console.log(res);
       if (res.status) {
@@ -119,6 +122,7 @@ export class EditProfileComponent implements OnInit {
           this.profileSecTwo.patchValue(this.profileData);
           this.profileSecThree.patchValue(this.profileData);
         }
+        this.spinner.show();
       }
     }, err => {
       console.log(err);
@@ -126,6 +130,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   async onFileChange(event: any) {
+    this.spinner.show();
     console.log('file call', event);
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -152,6 +157,7 @@ export class EditProfileComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);
@@ -162,6 +168,7 @@ export class EditProfileComponent implements OnInit {
 
   updateProfile() {
     this.submitted = true;
+    this.spinner.show();
     // this.loginResponseError = null;
     console.log("loginSubmit", this.profileSecOne);
     console.log("loginSubmit", this.profileSecTwo);
@@ -206,6 +213,7 @@ export class EditProfileComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);

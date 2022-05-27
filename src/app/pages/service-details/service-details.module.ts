@@ -4,7 +4,7 @@ import { ServiceDetailsRoutingModule } from './service-details-routing.module';
 import { ServiceDetailsComponent } from './service-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IncludeModule } from 'src/app/includes/include.module';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [ServiceDetailsComponent],
@@ -13,7 +13,8 @@ import { IncludeModule } from 'src/app/includes/include.module';
     FormsModule,
     ReactiveFormsModule,
     ServiceDetailsRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class ServiceDetailsModule { }

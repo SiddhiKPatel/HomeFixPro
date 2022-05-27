@@ -5,7 +5,7 @@ import { InboxRoutingModule } from './inbox-routing.module';
 import { InboxComponent } from './inbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IncludeModule } from 'src/app/includes/include.module';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [InboxComponent],
@@ -14,7 +14,8 @@ import { IncludeModule } from 'src/app/includes/include.module';
     InboxRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class InboxModule { }

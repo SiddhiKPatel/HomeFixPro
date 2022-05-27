@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PagesService } from 'src/app/service/pages.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class EstimatesComponent implements OnInit {
 
   constructor(private pageService: PagesService, 
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -38,6 +40,7 @@ export class EstimatesComponent implements OnInit {
   getCategoryPageDetails(slug){
     // let formData = new FormData();
     // formData.set("slug", slug);
+    this.spinner.show()
     this.pageService.getPage(slug).subscribe((res: any) => {
       console.log(res);
       if (res.status) {
@@ -50,6 +53,7 @@ export class EstimatesComponent implements OnInit {
         }
         this.image_path = res.image_path;
       }
+      this.spinner.hide();
     }, err => {
       console.log(err);
     });

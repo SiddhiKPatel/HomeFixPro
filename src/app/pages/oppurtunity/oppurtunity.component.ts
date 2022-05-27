@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -15,13 +16,15 @@ export class OppurtunityComponent implements OnInit {
   constructor(private router: Router,
     private toastr: ToastrService,
     private apiService: ApiService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
+    this.spinner.show();
     this.activatedRoute.queryParams.subscribe(params => {
       console.log(params);
       console.log(params['p']);
@@ -35,6 +38,7 @@ export class OppurtunityComponent implements OnInit {
       }else{
         this.getAllJobs();
       }
+      this.spinner.hide();
     });
   }
 
@@ -47,6 +51,7 @@ export class OppurtunityComponent implements OnInit {
   }
 
   getAllJobs() {
+    this.spinner.show();
     const token = localStorage.getItem("token");
     this.apiService.getAllJobs(token, {}).subscribe((res: any) => {
       console.log(res);
@@ -58,6 +63,7 @@ export class OppurtunityComponent implements OnInit {
       } else {
         this.toastr.error("Server error!! please try again later.");
       }
+      this.spinner.hide();
     }, err => {
       console.log(err);
       this.toastr.error(err.error.message);
@@ -65,6 +71,7 @@ export class OppurtunityComponent implements OnInit {
   }
 
   getMyJobs(){
+    this.spinner.show();
     const token = localStorage.getItem("token");
     this.apiService.myJob(token, {}).subscribe((res: any) => {
       console.log(res);
@@ -76,6 +83,7 @@ export class OppurtunityComponent implements OnInit {
       } else {
         this.toastr.error("Server error!! please try again later.");
       }
+      this.spinner.hide();
     }, err => {
       console.log(err);
       this.toastr.error(err.error.message);

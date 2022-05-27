@@ -7,7 +7,7 @@ import { HeaderComponent } from 'src/app/includes/header/header.component';
 import { FooterComponent } from 'src/app/includes/footer/footer.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 @NgModule({
   declarations: [HomeComponent,
     // HeaderComponent,
@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IncludeModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class HomeModule { }
