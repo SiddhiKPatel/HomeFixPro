@@ -37,7 +37,7 @@ export class ProjectDetailsComponent implements OnInit {
       this.getServiceDetails(this.slug).then(() => { this.sliderLoad(); })
     }
     this.contactForm = this.formBuilder.group({
-      zip_code: [''],
+      zip_code: ['', [Validators.pattern("[0-9]{6}")]],
       // frequency: ['', [Validators.required]],
       // title: ['', [Validators.required]],
       delivery_time_id: [''],
@@ -66,11 +66,11 @@ export class ProjectDetailsComponent implements OnInit {
     } else {
       console.log("valid...");
 
-      let obj ={
-        service_id:this.serviceDetails.id,
-        title:this.serviceDetails.title,
-        zip_code:this.contactForm.value.zip_code,
-        amount:this.contactForm.value.amount,
+      let obj = {
+        service_id: this.serviceDetails.id,
+        title: this.serviceDetails.title,
+        zip_code: this.contactForm.value.zip_code,
+        amount: this.contactForm.value.amount,
         contract_estimate_end: this.contactForm.value.contract_estimate_end
       }
 
@@ -137,7 +137,7 @@ export class ProjectDetailsComponent implements OnInit {
     var ToDate = new Date();
     if (new Date(UserDate).getTime() <= ToDate.getTime()) {
       this.toastr.error("The Date must be Bigger or Equal to today date");
-      this.contactForm.patchValue({"contract_estimate_end":''});
+      this.contactForm.patchValue({ "contract_estimate_end": '' });
       return false;
     }
     return true;

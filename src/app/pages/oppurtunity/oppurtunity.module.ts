@@ -5,6 +5,7 @@ import { OppurtunityRoutingModule } from './oppurtunity-routing.module';
 import { OppurtunityComponent } from './oppurtunity.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [OppurtunityComponent],
@@ -12,7 +13,9 @@ import {NgxSpinnerModule} from "ngx-spinner";
     CommonModule,
     OppurtunityRoutingModule,
     IncludeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class OppurtunityModule { }

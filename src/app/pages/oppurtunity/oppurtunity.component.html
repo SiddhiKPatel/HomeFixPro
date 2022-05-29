@@ -11,15 +11,18 @@
                     <div class="input-group">
                         <input type="text" class="form-control form-control-sm border-0 "
                             placeholder="search by username" aria-label="search by username"
-                            aria-describedby="button-addon2">
-                        <button class="btn btn-warning" type="button" id="button-addon2">Search</button>
+                            aria-describedby="button-addon2" [(ngModel)]="sUsername">
+                        <button class="btn btn-warning" type="button" id="button-addon2"
+                            (click)="getAllJobs()">Search</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <p class="text-up">
-                    <a href="javascript:void(0);" (click)="activeJob()" class="text-decoration-none" [ngStyle]="{'color': projectSelect == 'sent' ? '#171616' : '#00A3FF'}">Active now</a>
-                    <a href="javascript:void(0);" (click)="sentJob()" class="text-decoration-none mx-3" [ngStyle]="{'color': projectSelect == 'sent' ? '#00A3FF' : '#171616'}">Sent Proposals</a>
+                    <a href="javascript:void(0);" (click)="activeJob()" class="text-decoration-none"
+                        [ngStyle]="{'color': projectSelect == 'sent' ? '#171616' : '#00A3FF'}">Active now</a>
+                    <a href="javascript:void(0);" (click)="sentJob()" class="text-decoration-none mx-3"
+                        [ngStyle]="{'color': projectSelect == 'sent' ? '#00A3FF' : '#171616'}">Sent Proposals</a>
                 </p>
                 <div class="card rounded-0 my-3" *ngFor="let job of opportunityList">
                     <div class="card-header bg-white">
@@ -174,13 +177,8 @@
         </div>
     </div>
 </div>
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: white">Loading...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <!-- Homefix oppurtunity area end -->
 <app-footer></app-footer>

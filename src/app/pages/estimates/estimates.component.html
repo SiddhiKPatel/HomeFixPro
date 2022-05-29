@@ -15,7 +15,7 @@
               {{extra_data.type1[0].body}}</h5>
             <div class="form-group">
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                placeholder="Enter a zip code">
+                placeholder="Enter a zip code" minlength="6" maxlength="6">
               <button type="submit" class="btn btn-primary">Search</button>
             </div>
           </form>
@@ -56,20 +56,23 @@
         <!-- <h5>National total cost<span>$150-$185</span></h5>
         <h5>Low-end cost<span>$100-$110</span></h5>
         <h5>High-end cost<span>$300-$375</span></h5> -->
-        <div class="costimg" *ngIf="extra_data && extra_data.type6 && extra_data.type6[0]"><img [src]="image_path && extra_data && extra_data.type6 && extra_data.type6[0] && extra_data.type6[0].image ? image_path + extra_data.type6[0].image : ''"
-          onerror="this.src='assets/images/houseimg1.png';" alt=" "></div>
-        <p *ngIf="extra_data && extra_data.type6 && extra_data.type6[0].body" [innerHTML]="extra_data.type6[0].body"></p>
+        <div class="costimg" *ngIf="extra_data && extra_data.type6 && extra_data.type6[0]"><img
+            [src]="image_path && extra_data && extra_data.type6 && extra_data.type6[0] && extra_data.type6[0].image ? image_path + extra_data.type6[0].image : ''"
+            onerror="this.src='assets/images/houseimg1.png';" alt=" "></div>
+        <p *ngIf="extra_data && extra_data.type6 && extra_data.type6[0].body" [innerHTML]="extra_data.type6[0].body">
+        </p>
       </div>
       <div class="estimates">
         <h4 *ngIf="extra_data && extra_data.type7 && extra_data.type7[0].title">{{extra_data.type7[0].title}}</h4>
         <form>
           <div class="form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Enter a zip code">
+              placeholder="Enter a zip code" minlength="6" maxlength="6">
             <button type="submit" class="btn btn-primary">Search</button>
           </div>
         </form>
-        <p *ngIf="extra_data && extra_data.type8 && extra_data.type8[0].body" [innerHTML]="extra_data.type8[0].body"></p>
+        <p *ngIf="extra_data && extra_data.type8 && extra_data.type8[0].body" [innerHTML]="extra_data.type8[0].body">
+        </p>
         <!-- <p>House cleaning can be a real chore, with so much dust and dirt, all that heavy cleaning equipment, and the
           time it takes — time you need to spend working, taking care of your kids, traveling or volunteering. It's an
           additional challenge if you have any kind of mobility issues. And you can't just do it once and be done; your
@@ -107,7 +110,7 @@
           <div class="signup_mail_inner text-lg-start text-center">
             <form action="">
               <input type="email" placeholder="Enter Your E-mail" name="" id="">
-              <input type="text" placeholder="Zip Code(optional)" name="" id="">
+              <input type="text" placeholder="Zip Code(optional)" minlength="6" maxlength="6" name="" id="">
               <input type="submit" value="sing up">
             </form>
           </div>
@@ -117,12 +120,7 @@
     </div>
   </div>
 </section>
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <app-footer></app-footer>

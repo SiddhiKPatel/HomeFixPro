@@ -10,7 +10,7 @@
                             <input type="search" placeholder="What's on your to-do list?">
                         </div>
                         <div class="slide_form_field_inner zip_c"> <i class="bi bi-geo-alt icofont-bubble-down"></i>
-                            <input type="text" placeholder="Zip Code">
+                            <input type="text" placeholder="Zip Code" minlength="6" maxlength="6">
                         </div>
                         <input class="search" type="submit" value="Search">
                     </div>
@@ -388,12 +388,13 @@
                                 project will cost</a></p>
                         <div class="mb-3 mt-3">
                             <label for="exampleFormControlInput1" class="form-label">Zip Code</label>
-                            <input type="text" placeholder="Enter zip code" formControlName="zip_code"
-                                [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
+                            <input type="text" placeholder="Enter zip code" minlength="6" maxlength="6"
+                                formControlName="zip_code" [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
                                 class="form-control form-select-sm  rounded-0" id="exampleInputZip_code" name="zip_code"
                                 aria-describedby="emailHelp" />
                             <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
                                 <div *ngIf="f.zip_code.errors.required">Zip code is required</div>
+                                <div *ngIf="f.zip_code.errors.pattern"> 6 digit Zip code is required</div>
                             </div>
                         </div>
                         <div class="mb-3">

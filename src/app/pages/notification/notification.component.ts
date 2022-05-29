@@ -76,13 +76,13 @@ export class NotificationComponent implements OnInit {
 
   profileSubmitted = false;
   saveProfile() {
-    this.spinner.show();
     this.profileSubmitted = true;
     // this.loginResponseError = null;
     console.log("loginSubmit", this.profileSecOne);
     if (this.profileSecOne.invalid) {
       return;
     } else {
+      this.spinner.show();
       const token = localStorage.getItem("token");
       console.log("valid...");
       let obj = {
@@ -111,12 +111,12 @@ export class NotificationComponent implements OnInit {
   }
 
   changePasswordSubmit() {
-    this.spinner.show()
     this.changePassSubmitted = true;
     console.log("changePassForm", this.changePassForm);
     if (this.changePassForm.invalid) {
       return;
     } else {
+      this.spinner.show()
       console.log("valid...");
       const token = localStorage.getItem("token");
       // let formData = new FormData();

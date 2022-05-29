@@ -91,11 +91,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/get-job
   getAllJobs(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/get-job", formData, {
+    return this.http.post(environment.API + "/api/get-job",data, {
       headers: httpHeaders
     });
   }

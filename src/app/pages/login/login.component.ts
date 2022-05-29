@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
 
   loginSubmit() {
     this.submitted = true;
-    this.spinner.show();
     if (this.loginForm.invalid) {
       return;
     } else {
+      this.spinner.show();
       let obj = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit {
         } else if (res) {
           this.toastr.error(res.message);
         }
-      }, err => {
         this.spinner.hide();
+      }, err => {
         console.log(err);
       });
     }

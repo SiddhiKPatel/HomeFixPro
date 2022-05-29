@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       country_id: ['', Validators.required],
       state_id: ['', Validators.required],
       city: ['', Validators.required],
-      zip_code: ['', Validators.required],
+      zip_code: ['', Validators.required, Validators.pattern("[0-9]{6}")],
       terms: [false, Validators.requiredTrue]
       // city: ['', Validators.required],
       // zip: ['', Validators.required],
@@ -72,12 +72,12 @@ export class SignupComponent implements OnInit {
   get g() { return this.registerFormStep1.controls; }
 
   registrationSubmit() {
-    this.spinner.show();
     this.submitted = true;
     this.registerResponseError = null;
     if (this.registerForm.invalid) {
       return;
     } else {
+      this.spinner.show();
       let obj = {
         fname: this.registerForm.value.fname,
         lname: this.registerForm.value.lname,

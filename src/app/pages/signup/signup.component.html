@@ -195,11 +195,12 @@
                                 <div class="col-md-3">
                                     <div class="mb-4">
                                         <input type="number" placeholder="Zip code"
-                                            class="form-control customborder rounded-0" formControlName="zip_code"
+                                            class="form-control customborder rounded-0" minlength="6" maxlength="6" formControlName="zip_code"
                                             [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
                                             id="exampleInputEmail1" aria-describedby="emailHelp" />
                                         <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
                                             <div *ngIf="f.zip_code.errors.required">Zip code is required</div>
+                                            <div *ngIf="f.zip_code.errors.pattern">6 digit Zip code is required</div>
                                         </div>
                                     </div>
                                 </div>
