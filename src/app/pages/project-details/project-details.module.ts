@@ -5,7 +5,7 @@ import { ProjectDetailsRoutingModule } from './project-details-routing.module';
 import { ProjectDetailsComponent } from './project-details.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [ProjectDetailsComponent],
@@ -13,7 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     ProjectDetailsRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class ProjectDetailsModule { }

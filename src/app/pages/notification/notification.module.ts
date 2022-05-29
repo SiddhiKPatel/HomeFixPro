@@ -5,7 +5,7 @@ import { NotificationRoutingModule } from './notification-routing.module';
 import { NotificationComponent } from './notification.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [NotificationComponent],
@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NotificationRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class NotificationModule { }

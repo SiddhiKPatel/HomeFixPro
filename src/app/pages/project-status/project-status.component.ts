@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 import { PagesService } from 'src/app/service/pages.service';
@@ -22,7 +23,8 @@ export class ProjectStatusComponent implements OnInit {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private pageService: PagesService) { }
+    private pageService: PagesService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -32,6 +34,7 @@ export class ProjectStatusComponent implements OnInit {
   }
 
   getMyProposal() {
+    this.spinner.show();
     let token = localStorage.getItem("token");
     this.roleId = localStorage.getItem("roleId");
     if (this.roleId == 2) {
@@ -42,7 +45,7 @@ export class ProjectStatusComponent implements OnInit {
       }, err => {
         console.log(err);
       })
-    } else if(this.roleId == 3){
+    } else if (this.roleId == 3) {
       this.apiService.myJob(token, {}).subscribe((res: any) => {
         console.log(res);
         this.responseData = res;
@@ -51,6 +54,7 @@ export class ProjectStatusComponent implements OnInit {
         console.log(err);
       })
     }
+    this.spinner.hide();
   }
 
 }

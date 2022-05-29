@@ -6,7 +6,7 @@ import { EditProfileComponent } from './edit-profile.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [EditProfileComponent],
@@ -16,7 +16,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     EditProfileRoutingModule,
     NgSelectModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class EditProfileModule { }

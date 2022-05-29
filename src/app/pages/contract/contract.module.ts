@@ -6,6 +6,7 @@ import { ContractComponent } from './contract.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [ContractComponent],
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IncludeModule,
     AngularEditorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ]
 })
 export class ContractModule { }

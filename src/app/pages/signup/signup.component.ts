@@ -4,6 +4,7 @@ import { PagesService } from 'src/app/service/pages.service';
 import { CustomValidator } from 'src/app/custom-validator';
 import { MustMatch } from '../../_helpers/must-match.validator';
 import { ApiService } from 'src/app/service/api.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-signup',
@@ -20,9 +21,9 @@ export class SignupComponent implements OnInit {
   registerResponseError: any;
   show_button: Boolean = false;
   show_eye: Boolean = false;
-  constructor(private page: PagesService, 
-    private apiService:  ApiService,
-    private formBuilder: FormBuilder) { }
+  constructor(private page: PagesService,
+    private apiService: ApiService,
+    private formBuilder: FormBuilder, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.registerFormStep1 = this.formBuilder.group({
@@ -32,14 +33,13 @@ export class SignupComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
-      
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z]).{8,}$')]],
       // password_confirmation: ['', Validators.compose([Validators.required, CustomValidator.equalTo('password')])],
       // phone_number: ['', Validators.required],
       country_id: ['', Validators.required],
       state_id: ['', Validators.required],
       city: ['', Validators.required],
-      zip_code: ['', Validators.required],
+      zip_code: ['', Validators.required, Validators.pattern("[0-9]{6}")],
       terms: [false, Validators.requiredTrue]
       // city: ['', Validators.required],
       // zip: ['', Validators.required],
@@ -47,14 +47,8 @@ export class SignupComponent implements OnInit {
       // phone_no: ['', Validators.required],
       // event_date: [''],
       // recaptchaReactive: ['', Validators.required],
-
-
     },
-      // {
-      //   validator: [MustMatch('password', 'password_confirmation')]
-      // }
     );
-
     this.getRegisterPage();
   }
 
@@ -80,12 +74,10 @@ export class SignupComponent implements OnInit {
   registrationSubmit() {
     this.submitted = true;
     this.registerResponseError = null;
-    console.log("registrationSubmit", this.registerForm);
-
     if (this.registerForm.invalid) {
       return;
     } else {
-      console.log("valid...");
+      this.spinner.show();
       let obj = {
         fname: this.registerForm.value.fname,
         lname: this.registerForm.value.lname,
@@ -98,63 +90,46 @@ export class SignupComponent implements OnInit {
         zip_code: this.registerForm.value.zip_code,
         role_id: this.role_id,
       }
-      // let formData = new FormData();
-      // formData.set('fname', this.registerForm.value.fname);
-      // formData.set('lname', this.registerForm.value.lname);
-      // formData.set('email', this.registerFormStep1.value.email);
-      // // formData.set('phone_number', '8899889988');
-      // formData.set('password', this.registerForm.value.password);
-      // formData.set('password_confirmation', this.registerForm.value.password);
-      // formData.set('country_id', this.registerForm.value.country_id);
-      // formData.set('city', this.registerForm.value.city);
-      // formData.set('zip_code', this.registerForm.value.zip_code);
-      // formData.set('role_id', this.role_id);
-
       this.page.register(obj).subscribe((res: any) => {
-        console.log(res);
-        if(res.status){
+        if (res.status) {
           this.registerResponse = res;
-        }else{
+        } else {
           this.registerResponseError = res;
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
       })
-
     }
   }
   submittedStep1 = false;
   step1success = false;
-  registrationStep1Submit(){
+
+  registrationStep1Submit() {
     this.submittedStep1 = true;
-    console.log(this.registerFormStep1);
     if (this.registerFormStep1.invalid) {
       return;
-    }else{
+    } else {
       this.step1success = true;
-    } 
-
+    }
   }
 
-  changeCountry(event){
-    console.log(event);
-    console.log(event.target.value);
-    this.registerForm.patchValue({'state_id': ''});
-
+  changeCountry(event) {
+    this.registerForm.patchValue({ 'state_id': '' });
     this.getSateList(event.target.value);
   }
 
-  stateList: any =[];
-  getSateList(id){
-    this.apiService.getStates(id).subscribe((res: any)=>{
-      console.log(res);
-      if(res && res.status){
+  stateList: any = [];
+  getSateList(id) {
+    this.apiService.getStates(id).subscribe((res: any) => {
+      if (res && res.status) {
         this.stateList = res.states;
       }
-    }, err=>{
+    }, err => {
       console.log(err);
     })
   }
+
   showPassword() {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;

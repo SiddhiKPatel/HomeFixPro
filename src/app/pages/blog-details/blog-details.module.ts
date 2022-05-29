@@ -5,7 +5,7 @@ import { BlogDetailsRoutingModule } from './blog-details-routing.module';
 import { BlogDetailsComponent } from './blog-details.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 @NgModule({
   declarations: [BlogDetailsComponent],
   imports: [
@@ -13,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     BlogDetailsRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class BlogDetailsModule { }

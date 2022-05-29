@@ -5,7 +5,7 @@ import { EstimatesRoutingModule } from './estimates-routing.module';
 import { EstimatesComponent } from './estimates.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [EstimatesComponent],
@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     EstimatesRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class EstimatesModule { }

@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import { MustMatch } from 'src/app/_helpers/must-match.validator';
 import { CustomValidatos } from 'src/app/_helpers/custom-validator';
 import { getLocaleEraNames } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-notification',
@@ -20,7 +21,8 @@ export class NotificationComponent implements OnInit {
   constructor(private userService: UserService,
     private router: Router,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -53,6 +55,7 @@ export class NotificationComponent implements OnInit {
 
   profileData: any;
   getProfile() {
+    this.spinner.show();
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.userService.getProfile(token).subscribe((res: any) => {
@@ -63,6 +66,7 @@ export class NotificationComponent implements OnInit {
           this.profileSecOne.patchValue(this.profileData);
         }
       }
+      this.spinner.hide()
     }, err => {
       console.log(err);
     })
@@ -78,6 +82,7 @@ export class NotificationComponent implements OnInit {
     if (this.profileSecOne.invalid) {
       return;
     } else {
+      this.spinner.show();
       const token = localStorage.getItem("token");
       console.log("valid...");
       let obj = {
@@ -96,6 +101,7 @@ export class NotificationComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);
@@ -110,6 +116,7 @@ export class NotificationComponent implements OnInit {
     if (this.changePassForm.invalid) {
       return;
     } else {
+      this.spinner.show()
       console.log("valid...");
       const token = localStorage.getItem("token");
       // let formData = new FormData();
@@ -130,6 +137,7 @@ export class NotificationComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide()
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);

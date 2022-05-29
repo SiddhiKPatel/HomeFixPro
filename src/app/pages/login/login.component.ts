@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   userId: any;
   show_button: Boolean = false;
   show_eye: Boolean = false;
-  constructor(private page: PagesService, 
+  constructor(private page: PagesService,
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService, private userService: UserService, private formBuilder: FormBuilder) { }
 
@@ -32,24 +32,16 @@ export class LoginComponent implements OnInit {
 
   loginSubmit() {
     this.submitted = true;
-    // this.loginResponseError = null;
-    console.log("loginSubmit", this.loginForm);
     if (this.loginForm.invalid) {
       return;
     } else {
-      console.log("valid...");
-      // let formData = new FormData();
-      // formData.set('email', this.loginForm.value.email);
-      // formData.set('password', this.loginForm.value.password);
+      this.spinner.show();
       let obj = {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       }
-
-      this.userService.userLogin(obj).subscribe((res: any)=>{
-        console.log(res);
-        if(res.status){
-          // this.toastr.success('Hello world!', 'Toastr fun!');
+      this.userService.userLogin(obj).subscribe((res: any) => {
+        if (res.status) {
           this.submitted = false;
           this.userId = res.response_data.id;
           localStorage.setItem("token", res.api_token);
@@ -60,17 +52,17 @@ export class LoginComponent implements OnInit {
           this.userService.storeUserData(res);
           this.loginForm.reset();
           this.router.navigate(['/user-profile']);
-
           this.toastr.success(res.message);
-        }else if(res){
+        } else if (res) {
           this.toastr.error(res.message);
         }
-      }, err=>{
+        this.spinner.hide();
+      }, err => {
         console.log(err);
       });
-
     }
   }
+
   showPassword() {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;

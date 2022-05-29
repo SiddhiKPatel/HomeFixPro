@@ -7,7 +7,7 @@
                         <!-- logo area -->
                         <div class="homefix_header_logo">
                             <a [routerLink]="['/']"><img [src]="headerData?.site_logo"
-                                onerror="this.src='assets/images/logo.png';" alt="homefix Logo"></a>
+                                    onerror="this.src='assets/images/logo.png';" alt="homefix Logo"></a>
 
                         </div>
                         <!-- end logo area -->
@@ -16,11 +16,13 @@
                         <form action="#0" class="slider_sea_form mb-2">
                             <div class="slide_from_fileds">
                                 <div class="slide_form_field_inner">
-                                    <input type="search" placeholder="What's on your to-do list?" [value]="category && category != 'all' ? category : ''" id="search-keyword">
+                                    <input type="search" placeholder="What's on your to-do list?"
+                                        [value]="category && category != 'all' ? category : ''" id="search-keyword">
                                 </div>
                                 <div class="slide_form_field_inner zip_c">
                                     <i class="bi bi-geo-alt icofont-bubble-down"></i>
-                                    <input type="text" placeholder="Zip Code" id="search-zipcode" [value]="zipcode">
+                                    <input type="text" placeholder="Zip Code" id="search-zipcode" [value]="zipcode"
+                                        minlength="6" maxlength="6">
                                 </div>
                                 <input class="search" type="submit" value="Search" (click)="search()">
                             </div>
@@ -141,7 +143,7 @@
                                         <div class="d-md-inline-block mx-24 menuprofile">
                                             <a href="javascript:void(0);" style="font-size: 18px;">
                                                 <img [src]="headerData && headerData.user && headerData.user.avatar_url ? headerData.user.avatar_url : ''"
-                                                onerror="this.src='./assets/images/Group2094.png'" alt="">
+                                                    onerror="this.src='./assets/images/Group2094.png'" alt="">
                                             </a>
                                             <div class="icon"><i class="icofont-rounded-down"></i></div>
                                             <div class="pdropdownbox">

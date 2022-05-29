@@ -5,7 +5,7 @@ import { SubmitProposalRoutingModule } from './submit-proposal-routing.module';
 import { SubmitProposalComponent } from './submit-proposal.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
   declarations: [SubmitProposalComponent],
@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     SubmitProposalRoutingModule,
-    IncludeModule
+    IncludeModule,
+    NgxSpinnerModule
   ]
 })
 export class SubmitProposalModule { }

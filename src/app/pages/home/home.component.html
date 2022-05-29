@@ -52,7 +52,8 @@
                                                 <form [formGroup]="searchForm" class="slider_sea_form">
                                                     <div class="slide_from_fileds">
                                                         <div class="slide_form_field_inner">
-                                                            <input type="search" class="home-search-input" formControlName="keyword"
+                                                            <input type="search" class="home-search-input"
+                                                                formControlName="keyword"
                                                                 placeholder="What's on your to-do list?">
                                                         </div>
                                                         <div class="slide_form_field_inner zip_c">
@@ -60,23 +61,30 @@
                                                             <!-- 4/2/2022 -->
                                                             <i class="bi bi-geo-alt icofont-bubble-down"></i>
                                                             <input class="home-search-input" type="text"
-                                                                placeholder="Zip Code" formControlName="zipcode">
+                                                                placeholder="Zip Code" minlength="6" maxlength="6"
+                                                                formControlName="zipcode">
                                                         </div>
                                                         <input type="submit" value="Search" (click)="search()">
                                                     </div>
                                                 </form>
                                                 <!-- slider options -->
-                                                <div class="slider_options d-none d-md-inline-block" *ngIf="homePageData && homePageData.category && showmore">
-                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category.slice(0,8)">{{c.name}}</a>
-                                                    <a href="javascript:void(0);" (click)="showMore()" style="color: black;background: #ffca06;">Show more</a>
+                                                <div class="slider_options d-none d-md-inline-block"
+                                                    *ngIf="homePageData && homePageData.category && showmore">
+                                                    <a href="javascript:void(0);"
+                                                        *ngFor="let c of homePageData.category.slice(0,8)">{{c.name}}</a>
+                                                    <a href="javascript:void(0);" (click)="showMore()"
+                                                        style="color: black;background: #ffca06;">Show more</a>
                                                     <!-- <a href="#">Carpentry</a>
                                                     <a href="#">Plumbing</a>
                                                     <a href="#">Painting</a>
                                                     <a href="#">Title work</a> -->
                                                 </div>
-                                                <div class="slider_options d-none d-md-inline-block" *ngIf="homePageData && homePageData.category && showless">
-                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category">{{c.name}}</a>
-                                                    <a href="javascript:void(0);" (click)="showLess()" style="color: black;background: #ffca06;">Show less</a>
+                                                <div class="slider_options d-none d-md-inline-block"
+                                                    *ngIf="homePageData && homePageData.category && showless">
+                                                    <a href="javascript:void(0);"
+                                                        *ngFor="let c of homePageData.category">{{c.name}}</a>
+                                                    <a href="javascript:void(0);" (click)="showLess()"
+                                                        style="color: black;background: #ffca06;">Show less</a>
                                                     <!-- <a href="#">Carpentry</a>
                                                     <a href="#">Plumbing</a>
                                                     <a href="#">Painting</a>
@@ -91,11 +99,14 @@
                                                     {{homePageData.extra_data.type1[0].sub_title}} </h2>
                                                 <!-- search option -->
                                                 <form class="slider_sea_form signup" *ngIf="!token">
-                                                    <button class="btn btn-warning" [routerLink]="['/signup']">Sign up</button>
+                                                    <button class="btn btn-warning" [routerLink]="['/signup']">Sign
+                                                        up</button>
                                                 </form>
                                                 <div class="slider_options d-none d-md-inline-block"
-                                                    style="visibility: hidden;" *ngIf="homePageData && homePageData.category">
-                                                    <a href="javascript:void(0);" *ngFor="let c of homePageData.category">{{c.name}}</a>
+                                                    style="visibility: hidden;"
+                                                    *ngIf="homePageData && homePageData.category">
+                                                    <a href="javascript:void(0);"
+                                                        *ngFor="let c of homePageData.category">{{c.name}}</a>
                                                     <!-- <a href="#">Plumbing</a>
                                                     <a href="#">Painting</a>
                                                     <a href="#">Title work</a> -->
@@ -638,7 +649,8 @@
                     <div class="signup_mail_inner text-lg-start text-center">
                         <form action="">
                             <input type="email" placeholder="Enter Your E-mail" name="" id="">
-                            <input type="text" placeholder="Zip Code(optional)" name="" id="">
+                            <input type="text" placeholder="Zip Code(optional)" minlength="6" maxlength="6" name=""
+                                id="">
                             <input type="submit" value="sing up">
                         </form>
                     </div>

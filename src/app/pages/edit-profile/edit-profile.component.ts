@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
@@ -34,7 +35,8 @@ export class EditProfileComponent implements OnInit {
   constructor(private page: PagesService,
     private router: Router,
     private toastr: ToastrService,
-    private userService: UserService, private formBuilder: FormBuilder) { }
+    private userService: UserService, private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     // this.dropdownList = [
@@ -57,7 +59,7 @@ export class EditProfileComponent implements OnInit {
       occupation: [''],
       country_id: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      zip_code: ['', [Validators.required]],
+      zip_code: ['', [Validators.required, Validators.pattern("[0-9]{6}")]],
 
     });
 
@@ -105,7 +107,7 @@ export class EditProfileComponent implements OnInit {
   image_path: any;
   getProfile() {
     const token = localStorage.getItem("token");
-    // const user = { user_id: this.userId };
+    this.spinner.show();
     this.userService.getProfile(token).subscribe((res: any) => {
       console.log(res);
       if (res.status) {
@@ -119,6 +121,7 @@ export class EditProfileComponent implements OnInit {
           this.profileSecTwo.patchValue(this.profileData);
           this.profileSecThree.patchValue(this.profileData);
         }
+        this.spinner.hide();
       }
     }, err => {
       console.log(err);
@@ -126,6 +129,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   async onFileChange(event: any) {
+    this.spinner.show();
     console.log('file call', event);
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -152,6 +156,7 @@ export class EditProfileComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);
@@ -162,21 +167,13 @@ export class EditProfileComponent implements OnInit {
 
   updateProfile() {
     this.submitted = true;
-    // this.loginResponseError = null;
-    console.log("loginSubmit", this.profileSecOne);
-    console.log("loginSubmit", this.profileSecTwo);
-    console.log("loginSubmit", this.profileSecThree);
-    console.log(this.selectedSkills);
     if (this.profileSecOne.invalid) {
       return;
     } else {
-      console.log("valid...");
-      let formData = new FormData();
-
+      this.spinner.show();
       let skills: any = [];
       for (let i = 0; i < this.selectedSkills.length; i++) {
         skills.push(this.selectedSkills[i].id);
-        // formData.append('skill_id[]', this.selectedSkills[i].id);
       }
 
       let obj = {
@@ -185,13 +182,13 @@ export class EditProfileComponent implements OnInit {
         occupation: this.profileSecOne.value.occupation ? this.profileSecOne.value.occupation : "",
         email: this.profileData.email,
         country_id: this.profileSecOne.value.country_id,
-        city:this.profileSecOne.value.city,
-        zip_code:this.profileSecOne.value.zip_code,
-        description:this.profileSecTwo.value.description ? this.profileSecTwo.value.description:"",
-        facebook_url:this.profileSecThree.value.facebook_url?this.profileSecThree.value.facebook_url:"",
-        instagram_url:this.profileSecThree.value.instagram_url?this.profileSecThree.value.instagram_url:"",
-        twitter_url:this.profileSecThree.value.twitter_url?this.profileSecThree.value.twitter_url:"",
-        linkedin_url:this.profileSecThree.value.linkedin_url?this.profileSecThree.value.linkedin_url:"",
+        city: this.profileSecOne.value.city,
+        zip_code: this.profileSecOne.value.zip_code,
+        description: this.profileSecTwo.value.description ? this.profileSecTwo.value.description : "",
+        facebook_url: this.profileSecThree.value.facebook_url ? this.profileSecThree.value.facebook_url : "",
+        instagram_url: this.profileSecThree.value.instagram_url ? this.profileSecThree.value.instagram_url : "",
+        twitter_url: this.profileSecThree.value.twitter_url ? this.profileSecThree.value.twitter_url : "",
+        linkedin_url: this.profileSecThree.value.linkedin_url ? this.profileSecThree.value.linkedin_url : "",
         skill_id: skills,
       }
       console.log(skills)
@@ -206,6 +203,7 @@ export class EditProfileComponent implements OnInit {
         } else {
           this.toastr.error("Server error!! please try again later.");
         }
+        this.spinner.hide();
       }, err => {
         console.log(err);
         this.toastr.error(err.error.message);

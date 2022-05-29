@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from 'src/app/service/api.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -16,7 +17,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -30,6 +32,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   async getProfile() {
+    this.spinner.show();
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.userService.getProfile(token).subscribe((res: any) => {
@@ -44,12 +47,14 @@ export class UserProfileComponent implements OnInit {
         //   this.profileSecOne.patchValue(this.profileData);
         // }
       }
+      this.spinner.hide();
     }, err => {
       console.log(err);
     })
   }
 
   async getServiceList() {
+    this.spinner.show();
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.apiService.serviceList(token).subscribe((res: any) => {
@@ -57,6 +62,7 @@ export class UserProfileComponent implements OnInit {
       if (res.status) {
         this.serviceListData = res;
       }
+      this.spinner.hide();
     }, err => {
       console.log(err);
     })
