@@ -142,10 +142,14 @@ export class EditProfileComponent implements OnInit {
       };
 
       const token = localStorage.getItem("token");
-      let formData = new FormData;
-      formData.set('user_id', this.userId);
-      formData.set('avatar', newFiles);
-      await this.userService.profileImageUpdate(token, formData).subscribe((res: any) => {
+      // let formData = new FormData;
+      // formData.set('user_id', this.userId);
+      // formData.set('avatar', newFiles);
+      let obj={
+        user_id:this.userId,
+        avatar: this.imageSrc
+      }
+      await this.userService.profileImageUpdate(token, obj).subscribe((res: any) => {
         console.log('image update', res);
         if (res.status) {
           this.toastr.success(res.message);

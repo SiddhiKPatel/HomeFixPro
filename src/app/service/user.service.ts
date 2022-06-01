@@ -84,11 +84,11 @@ export class UserService {
 
   // http://creativeonlinezone.com/project/homefix/api/update-avatar
   profileImageUpdate(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this._http.post(environment.API + "/api/update-avatar", formData, {
+    return this._http.post(environment.API + "/api/update-avatar", data, {
       headers: httpHeaders
     });
   }

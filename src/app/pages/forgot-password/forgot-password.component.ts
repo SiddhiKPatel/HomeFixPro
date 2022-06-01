@@ -13,9 +13,9 @@ import { PagesService } from 'src/app/service/pages.service';
 export class ForgotPasswordComponent implements OnInit {
   forgotForm: FormGroup;
   submitted = false;
-  constructor(private page: PagesService, 
+  constructor(private page: PagesService,
     private router: Router,
-    private toastr: ToastrService, 
+    private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService) { }
 
@@ -36,18 +36,21 @@ export class ForgotPasswordComponent implements OnInit {
     } else {
       console.log("valid...");
 
-      let formData = new FormData();
-      formData.set('email', this.forgotForm.value.email);
-      this.page.forgotPassword(formData).subscribe((res: any)=>{
+      // let formData = new FormData();
+      let obj = {
+        email: this.forgotForm.value.email
+      }
+      // formData.set('email', this.forgotForm.value.email);
+      this.page.forgotPassword(obj).subscribe((res: any) => {
         console.log(res);
-        if(res.status){
+        if (res.status) {
           this.toastr.success(res.message);
           this.submitted = false;
           this.forgotForm.reset();
-        }else if(res){
+        } else if (res) {
           this.toastr.error(res.message);
         }
-      }, err=>{
+      }, err => {
         this.toastr.error('Server error, please try again later.');
         console.log(err);
       })
