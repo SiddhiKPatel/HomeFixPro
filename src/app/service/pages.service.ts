@@ -82,9 +82,9 @@ export class PagesService {
   // email = Email
   // password = Password
   forgotPassword(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/forgot-password', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/forgot-password', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-blog-details
