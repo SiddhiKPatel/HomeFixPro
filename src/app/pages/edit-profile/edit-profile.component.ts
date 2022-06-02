@@ -130,7 +130,6 @@ export class EditProfileComponent implements OnInit {
 
   async onFileChange(event: any) {
     this.spinner.show();
-    console.log('file call', event);
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
@@ -140,17 +139,11 @@ export class EditProfileComponent implements OnInit {
         this.ImageFile = event.target.result;
         this.imageSrc = reader.result as string;
       };
-
       const token = localStorage.getItem("token");
-      // let formData = new FormData;
-      // formData.set('user_id', this.userId);
-      // formData.set('avatar', newFiles);
-      let obj={
-        user_id:this.userId,
-        avatar: this.imageSrc
-      }
-      await this.userService.profileImageUpdate(token, obj).subscribe((res: any) => {
-        console.log('image update', res);
+      let formData = new FormData;
+      formData.append('user_id', this.userId);
+      formData.append('avatar', newFiles);
+      await this.userService.profileImageUpdate(token, formData).subscribe((res: any) => {
         if (res.status) {
           this.toastr.success(res.message);
           // this.getProfile();
@@ -165,7 +158,6 @@ export class EditProfileComponent implements OnInit {
         console.log(err);
         this.toastr.error(err.error.message);
       })
-
     }
   }
 
