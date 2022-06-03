@@ -136,6 +136,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/project-status/project-status.module').then(m => m.ProjectStatusModule)
   },
   {
+    path: 'help',
+    loadChildren: () => import('./pages/help/help.module').then(m => m.HelpModule)
+  },
+  {
+    path: 'privious-work',
+    loadChildren: () => import('./pages/privious-work/privious-work.module').then(m => m.PriviousWorkModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'
