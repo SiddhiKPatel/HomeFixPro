@@ -164,11 +164,11 @@ export class PagesService {
   // body= Description - Optional
   // file = Image - Optional"
   addUpdateProposal(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/update-proposal", formData, {
+    return this.http.post(environment.API + "/api/update-proposal", data, {
       headers: httpHeaders
     });
   }

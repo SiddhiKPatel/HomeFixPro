@@ -30,6 +30,8 @@ export class EditProfileComponent implements OnInit {
 
   skills: any = [];
   selectedSkills: any = [];
+  // urlRegEx = '[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}(.[a-z]{2,4})?\b(/[-a-zA-Z0-9@:%_+.~#?&//=]*)?';
+  urlRegEx = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
   // selectedSkills = [{ id: 3, name: "Volkswagen Ford" }];
 
   constructor(private page: PagesService,
@@ -68,10 +70,10 @@ export class EditProfileComponent implements OnInit {
     });
 
     this.profileSecThree = this.formBuilder.group({
-      facebook_url: [''],
-      instagram_url: [''],
-      twitter_url: [''],
-      linkedin_url: [''],
+      facebook_url: ['', [Validators.pattern(this.urlRegEx)]],
+      instagram_url: ['', [Validators.pattern(this.urlRegEx)]],
+      twitter_url: ['', [Validators.pattern(this.urlRegEx)]],
+      linkedin_url: ['', [Validators.pattern(this.urlRegEx)]],
     });
 
     // this.profileSecFour = this.formBuilder.group({
@@ -102,6 +104,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   get f() { return this.profileSecOne.controls; }
+  get f1() { return this.profileSecThree.controls; }
 
   countries: any = [];
   image_path: any;
@@ -162,8 +165,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    debugger
     this.submitted = true;
-    if (this.profileSecOne.invalid) {
+    if (this.profileSecOne.invalid || this.profileSecThree.invalid) {
       return;
     } else {
       this.spinner.show();

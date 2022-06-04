@@ -51,15 +51,18 @@
                         <div class="col-md-12 px-md-0">
                             <div class="text-md-center my-3 ">
                                 <div class="d-grid d-md-block gap-3 ">
-                                    <button class="btn btn-md-lg rounded-0" type="button" *ngIf="roleId && roleId==3" (click)="findPros()"
+                                    <button class="btn btn-md-lg rounded-0" type="button" *ngIf="roleId && roleId==3"
+                                        (click)="findPros()"
                                         style="padding: 0.375rem 2.1rem; background-color: #00A3FF; color: white;margin-right: 10px;border-radius: 3px !important;">Find
                                         Pros</button>
-                                    <button class="btn btn-md-lg rounded-0" type="button" *ngIf="roleId && roleId==2"
+                                    <button class="btn btn-md-lg rounded-0" [routerLink]="['/availability']"
+                                        type="button" *ngIf="roleId && roleId==2"
                                         style="padding: 0.375rem 2.1rem; background-color: #00A3FF; color: white;margin-right: 10px;border-radius: 3px !important;">Availability</button>
                                     <button class="btn btn-outline-dark btn-md-lg rounded-0" type="button"
                                         style="padding: 0.375rem 2.1rem;border-color: #bebcbc;border-radius: 3px !important;"
                                         (click)="getEstimate()" *ngIf="roleId && roleId==3">Get Estimate</button>
-                                    <button class="btn btn-outline-dark btn-md-lg rounded-0" type="button" *ngIf="roleId && roleId==2"
+                                    <button class="btn btn-outline-dark btn-md-lg rounded-0" type="button"
+                                        *ngIf="roleId && roleId==2"
                                         style="padding: 0.375rem 2.1rem;border-color: #bebcbc;border-radius: 3px !important;"
                                         (click)="message()">Message</button>
                                 </div>
@@ -131,7 +134,7 @@
                     <li class="nav-item" role="presentation" style="cursor: pointer;">
                         <div class="nav-link active text-secondary pt-3 px-2 px-md-3 px-lg-3 px-xl-3 px-xxl-3 pb-1"
                             id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" role="tab"
-                            aria-controls="pills-home" aria-selected="true">Availbale for</div>
+                            aria-controls="pills-home" aria-selected="true">Available for</div>
                     </li>
                     <li class="nav-item" role="presentation" style="cursor: pointer;">
                         <div class="nav-link text-secondary  pt-3 px-2 px-md-3 px-lg-3 px-xl-3 px-xxl-3 pb-1"
@@ -185,7 +188,7 @@
                                 *ngFor="let service of serviceListData.response_data">
                                 <div class="proj_single_items mt-30 ">
                                     <div class="proj_single_inner">
-                                        <a routerLink="/blog-details" class="proj_single_thumb d-block">
+                                        <a [routerLink]="['/blog-details',service.title]" class="proj_single_thumb d-block">
                                             <img [src]="service.gallery && service.gallery[0] && service.gallery[0].file ? serviceListData.image_path + service.gallery[0].file : ''"
                                                 onerror="this.src='assets/images/no-image.png';" alt="">
                                         </a>
@@ -214,7 +217,7 @@
                                             </div>
 
                                             <div class="proj_single_item_title">
-                                                <a routerLink="/blog-details">
+                                                <a [routerLink]="['/blog-details',service.title]">
                                                     <h3 class="proj_single_item_tilte">{{service.title.length>36 ?
                                                         (service.title | slice:0:36)+'...' : service.title}} </h3>
                                                 </a>
@@ -225,9 +228,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6"
-                                *ngIf="serviceListData && serviceListData.no_of_service_allow_to_add > 0">
-
+                            <div class="col-md-6">
+                                <!-- *ngIf="serviceListData && serviceListData.no_of_service_allow_to_add > 0" -->
                                 <a [routerLink]="['/user-create-solution']">
                                     <div class="rounded-2 shadow-sm" style="height: 350px; border:1px #c7c7c7;">
                                         <div class="align-middle text-center create-solu m-5"
@@ -561,7 +563,8 @@
 
                                 </div>
                             </div>
-                            <div class="text-center mt-5"><button class="btn btn-outline-primary rounded-0" [routerLink]="['/privious-work']">View
+                            <div class="text-center mt-5"><button class="btn btn-outline-primary rounded-0"
+                                    [routerLink]="['/privious-work']">View
                                     all</button></div>
                         </div>
                     </div>
@@ -571,13 +574,8 @@
         </div>
     </div>
 </div>
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: white">Loading...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <!-- Homefix slider Area End -->
 <app-footer></app-footer>

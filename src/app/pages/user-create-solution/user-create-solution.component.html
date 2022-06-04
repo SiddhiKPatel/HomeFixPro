@@ -273,7 +273,8 @@
                         <input type="button" name="next-step"
                             class="next-step btn btn-sm btn-primary mx-auto d-block  float-md-start mt-3"
                             value="Save and Continue" [disabled]="descForm.invalid" />
-                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                        <input type="button" name="previous-step" style="margin-left: 12% !important;"
+                            class="previous-step btn btn-sm btn-primary mx-auto d-block  mt-3" value="Previous Step" />
                     </fieldset>
                     <fieldset>
                         <div class="row p-3 p-md-0">
@@ -335,8 +336,10 @@
                         </div>
                         <input type="hidden" name="next-step" id="next-step"
                             class="next-step btn btn-sm btn-primary mx-auto d-block float-md-start" value="Publish" />
-                            <button type="button" [disabled]="imgForm.invalid" (click)="addService()" class="btn btn-sm btn-primary mx-auto d-block float-md-start">Publish</button>
-                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                        <button type="button" [disabled]="imgForm.invalid" (click)="addService()"
+                            class="btn btn-sm btn-primary mx-auto d-block float-md-start">Publish</button>
+                        <input type="button" name="previous-step" style="margin-left: 6% !important; margin-top: 1px !important;"
+                            class="previous-step btn btn-sm btn-primary mx-auto d-block  mt-3" value="Previous Step" />
                     </fieldset>
                     <fieldset>
                         <div class="finish">
@@ -347,10 +350,11 @@
                                     your project.</p>
                             </div>
                         </div>
-                        <!-- <input type="button" name="previous-step" class="previous-step" value="Previous Step" /> -->
+                        <!-- <input type="button" name="previous-step" style="margin-left: 12% !important;"
+                            class="previous-step btn btn-sm btn-primary mx-auto d-block  mt-3" value=" Previous
+                            Step" /> -->
                         <a [routerLink]="['/user-profile']"><input type="button"
-                                class="btn btn-sm btn-primary mx-auto d-block"
-                                value="Go to your Profile" /></a>
+                                class="btn btn-sm btn-primary mx-auto d-block" value="Go to your Profile" /></a>
                     </fieldset>
                 </form>
 
@@ -392,7 +396,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-sm rounded-0 btn-outline-secondary"
-                                            data-bs-dismiss="modal" (click)="close()" id="closeModalButton">Close</button>
+                                            data-bs-dismiss="modal" (click)="close()"
+                                            id="closeModalButton">Close</button>
                                         <button type="submit"
                                             class="btn btn-sm btn-outline-primary rounded-0">Submit</button>
                                     </div>
