@@ -135,11 +135,11 @@ export class PagesService {
 
   // http://creativeonlinezone.com/project/homefix/api/get-job-details
   getJobDetails(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/get-job-details", formData, {
+    return this.http.post(environment.API + "/api/get-job-details", data, {
       headers: httpHeaders
     });
   }

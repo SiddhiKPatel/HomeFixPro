@@ -165,7 +165,6 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    debugger
     this.submitted = true;
     if (this.profileSecOne.invalid || this.profileSecThree.invalid) {
       return;

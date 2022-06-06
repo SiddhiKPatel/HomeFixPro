@@ -94,7 +94,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div *ngIf="opportunityList.length == 0">
+                    <div style="text-align: center;border: 1px solid;">No Data found </div>
+                </div>
                 <!-- <div class="card rounded-0 my-3">
                     <div class="card-header bg-white">
                         <div class="row">
