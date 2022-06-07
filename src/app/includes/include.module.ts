@@ -14,16 +14,17 @@ const PAGES_COMPONENTS = [
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        RouterModule
-    ],
-    declarations: [
-        PAGES_COMPONENTS
-    ],
-    exports: [
-        PAGES_COMPONENTS
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule
+  ],
+  declarations: [
+    PAGES_COMPONENTS
+  ],
+  exports: [
+    PAGES_COMPONENTS
+  ],
+  entryComponents: [],
 })
 export class IncludeModule { }
