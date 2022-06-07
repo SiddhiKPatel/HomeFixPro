@@ -107,7 +107,7 @@ export class ContractComponent implements OnInit {
   getjobDetails(slug) {
     const token = localStorage.getItem("token");
     let formData = new FormData();
-    formData.set('slug', slug);
+    formData.append('slug', slug);
     this.pageService.getJobDetails(token, formData).subscribe((res: any) => {
       console.log(res);
       if (res.status && res.response_data) {

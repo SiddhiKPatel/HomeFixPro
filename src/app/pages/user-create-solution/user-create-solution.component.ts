@@ -73,7 +73,7 @@ export class UserCreateSolutionComponent implements OnInit {
     ]
   };
 
-  constructor(private toastr: ToastrService, 
+  constructor(private toastr: ToastrService,
     private router: Router,
     private apiService: ApiService, private formBuilder: FormBuilder) { }
 
@@ -83,7 +83,6 @@ export class UserCreateSolutionComponent implements OnInit {
     }
     let self = this;
     $(".next-step").click(function () {
-
       self.currentGfgStep = $(this).parent();
       self.nextGfgStep = $(this).parent().next();
 

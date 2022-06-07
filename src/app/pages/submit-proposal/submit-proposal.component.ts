@@ -78,18 +78,17 @@ export class SubmitProposalComponent implements OnInit {
       const token = localStorage.getItem("token");
       let formData = new FormData();
 
-      formData.set('job_slug', this.slug);
-      formData.set('service_id', this.proposalForm.value.service_id);
+      formData.append('job_slug', this.slug);
+      formData.append('service_id', this.proposalForm.value.service_id);
 
-      formData.set('id', '0');
-      formData.set('body', this.proposalForm.value.body);
-      formData.set('amount', this.proposalForm.value.cost);
-      formData.set('delivery_time_id', this.proposalForm.value.delivery_time_id);
+      formData.append('id', '0');
+      formData.append('body', this.proposalForm.value.body);
+      formData.append('amount', this.proposalForm.value.cost);
+      formData.append('delivery_time_id', this.proposalForm.value.delivery_time_id);
 
       if (this.imageLoaded) {
-        formData.set('file', this.image);
+        formData.append('file', this.image);
       }
-
 
       this.pageService.addUpdateProposal(token, formData).subscribe((res: any) => {
         console.log(res);

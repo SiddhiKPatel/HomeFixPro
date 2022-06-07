@@ -144,6 +144,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/privious-work/privious-work.module').then(m => m.PriviousWorkModule)
   },
   {
+    path: 'availability',
+    loadChildren: () => import('./pages/availability/availability.module').then(m => m.AvailabilityModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

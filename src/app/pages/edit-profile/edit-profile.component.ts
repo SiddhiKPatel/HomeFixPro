@@ -30,6 +30,8 @@ export class EditProfileComponent implements OnInit {
 
   skills: any = [];
   selectedSkills: any = [];
+  // urlRegEx = '[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}(.[a-z]{2,4})?\b(/[-a-zA-Z0-9@:%_+.~#?&//=]*)?';
+  urlRegEx = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
   // selectedSkills = [{ id: 3, name: "Volkswagen Ford" }];
 
   constructor(private page: PagesService,
@@ -68,10 +70,10 @@ export class EditProfileComponent implements OnInit {
     });
 
     this.profileSecThree = this.formBuilder.group({
-      facebook_url: [''],
-      instagram_url: [''],
-      twitter_url: [''],
-      linkedin_url: [''],
+      facebook_url: ['', [Validators.pattern(this.urlRegEx)]],
+      instagram_url: ['', [Validators.pattern(this.urlRegEx)]],
+      twitter_url: ['', [Validators.pattern(this.urlRegEx)]],
+      linkedin_url: ['', [Validators.pattern(this.urlRegEx)]],
     });
 
     // this.profileSecFour = this.formBuilder.group({
@@ -102,6 +104,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   get f() { return this.profileSecOne.controls; }
+  get f1() { return this.profileSecThree.controls; }
 
   countries: any = [];
   image_path: any;
@@ -130,7 +133,6 @@ export class EditProfileComponent implements OnInit {
 
   async onFileChange(event: any) {
     this.spinner.show();
-    console.log('file call', event);
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
@@ -140,17 +142,11 @@ export class EditProfileComponent implements OnInit {
         this.ImageFile = event.target.result;
         this.imageSrc = reader.result as string;
       };
-
       const token = localStorage.getItem("token");
-      // let formData = new FormData;
-      // formData.set('user_id', this.userId);
-      // formData.set('avatar', newFiles);
-      let obj={
-        user_id:this.userId,
-        avatar: this.imageSrc
-      }
-      await this.userService.profileImageUpdate(token, obj).subscribe((res: any) => {
-        console.log('image update', res);
+      let formData = new FormData;
+      formData.append('user_id', this.userId);
+      formData.append('avatar', newFiles);
+      await this.userService.profileImageUpdate(token, formData).subscribe((res: any) => {
         if (res.status) {
           this.toastr.success(res.message);
           // this.getProfile();
@@ -165,13 +161,12 @@ export class EditProfileComponent implements OnInit {
         console.log(err);
         this.toastr.error(err.error.message);
       })
-
     }
   }
 
   updateProfile() {
     this.submitted = true;
-    if (this.profileSecOne.invalid) {
+    if (this.profileSecOne.invalid || this.profileSecThree.invalid) {
       return;
     } else {
       this.spinner.show();
