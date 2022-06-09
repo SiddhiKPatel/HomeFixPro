@@ -17,12 +17,14 @@ export class NotificationComponent implements OnInit {
   changePassForm: FormGroup;
   profileSecOne: FormGroup;
   changePassSubmitted = false;
+  displayStyle = "none";
+
 
   constructor(private userService: UserService,
     private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private spinner : NgxSpinnerService) { }
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -77,14 +79,11 @@ export class NotificationComponent implements OnInit {
   profileSubmitted = false;
   saveProfile() {
     this.profileSubmitted = true;
-    // this.loginResponseError = null;
-    console.log("loginSubmit", this.profileSecOne);
     if (this.profileSecOne.invalid) {
       return;
     } else {
       this.spinner.show();
       const token = localStorage.getItem("token");
-      console.log("valid...");
       let obj = {
         fname: this.profileSecOne.value.fname,
         lname: this.profileSecOne.value.lname,
@@ -112,14 +111,11 @@ export class NotificationComponent implements OnInit {
 
   changePasswordSubmit() {
     this.changePassSubmitted = true;
-    console.log("changePassForm", this.changePassForm);
     if (this.changePassForm.invalid) {
       return;
     } else {
       this.spinner.show()
-      console.log("valid...");
       const token = localStorage.getItem("token");
-      // let formData = new FormData();
       let obj = {
         old_password: this.changePassForm.value.old_password,
         password: this.changePassForm.value.password,
@@ -157,5 +153,36 @@ export class NotificationComponent implements OnInit {
     }
     this.activeTab = activeTab;
   }
+  deleteAccount() {
+    this.displayStyle = "none";
+    const token = localStorage.getItem("token");
+    const userid = localStorage.getItem("userId");
+    let obj = {
+      user_id: parseInt(userid)
+    }
+    this.userService.deleteAccount(token, obj).subscribe((res: any) => {
+      if (res.status) {
+        this.toastr.success(res.message);
+        this.userService.logOut();
+        this.router.navigate(['/login']);
+      } else if (res.message) {
+        this.toastr.error(res.message);
+      } else {
+        this.toastr.error("Server error!! please try again later.");
+      }
+      this.spinner.hide()
+    }, err => {
+      console.log(err);
+      this.toastr.error(err.error.message);
+    })
 
+  }
+
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
 }
