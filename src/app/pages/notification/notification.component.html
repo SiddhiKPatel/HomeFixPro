@@ -310,7 +310,7 @@
                                     </div>
                                 </div>
                                 <div class="button-group  d-md-flex justify-content-md-end">
-                                    <button class="button1">Delete</button>
+                                    <button class="button1" (click)="openPopup()">Delete</button>
                                     <button class="button2">Cancel</button>
                                 </div>
                             </div>
@@ -322,13 +322,29 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are You sure You want to delete this account ?</p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="deleteAccount()">
+                    Yes
+                </button>
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Account Page Start -->
-<ngx-spinner
-  bdColor="rgba(51,51,51,0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-scale-multiple"
->
-  <p style="font-size: 20px; color: white">Loading...</p>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <app-footer></app-footer>

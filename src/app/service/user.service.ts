@@ -81,7 +81,13 @@ export class UserService {
       headers: httpHeaders
     });
   }
-
+  deleteAccount(token,obj) {
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this._http.post(environment.API + "/api/delete/user", obj, {
+      headers: httpHeaders
+    });
+  }
   // http://creativeonlinezone.com/project/homefix/api/update-avatar
   profileImageUpdate(token, data) {
     let httpHeaders = new HttpHeaders()
