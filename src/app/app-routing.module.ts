@@ -148,6 +148,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/availability/availability.module').then(m => m.AvailabilityModule)
   },
   {
+    path: 'camera',
+    loadChildren: () => import('./pages/camera/camera.module').then(m => m.CameraModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

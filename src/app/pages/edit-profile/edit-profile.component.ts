@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { WebcamImage } from 'ngx-webcam';
 import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
 declare var $;
@@ -30,8 +31,8 @@ export class EditProfileComponent implements OnInit {
 
   skills: any = [];
   selectedSkills: any = [];
-  // urlRegEx = '[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}(.[a-z]{2,4})?\b(/[-a-zA-Z0-9@:%_+.~#?&//=]*)?';
   urlRegEx = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+  displayStyle = "none";
   // selectedSkills = [{ id: 3, name: "Volkswagen Ford" }];
 
   constructor(private page: PagesService,
@@ -132,6 +133,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   async onFileChange(event: any) {
+    this.displayStyle = 'none';
     this.spinner.show();
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -210,5 +212,19 @@ export class EditProfileComponent implements OnInit {
 
     }
   }
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
 
+  openCamera(){
+    this.router.navigate(['/camera']);
+  }
+  webcamImage: WebcamImage | undefined;
+
+  handleImage(webcamImage: WebcamImage) {
+    this.webcamImage = webcamImage;
+  }
 }

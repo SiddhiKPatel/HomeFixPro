@@ -11,6 +11,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { WebcamModule } from 'ngx-webcam';
+import { CameraComponent } from './pages/camera/camera.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     NgxSpinnerModule,
     NgSelectModule,
     IncludeModule,
-    AngularEditorModule
+    AngularEditorModule,
+    WebcamModule
   ],
-  providers: [],
+  providers: [CameraComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
 })
