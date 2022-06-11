@@ -19,6 +19,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     IncludeModule,
     WebcamModule,
+    NgxSpinnerModule
   ],
   exports:[CameraComponent]
 })
