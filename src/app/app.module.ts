@@ -12,11 +12,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { WebcamModule } from 'ngx-webcam';
-import { CameraComponent } from './pages/camera/camera.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,7 @@ import { CameraComponent } from './pages/camera/camera.component';
     AngularEditorModule,
     WebcamModule
   ],
-  providers: [CameraComponent],
+  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent],
 })

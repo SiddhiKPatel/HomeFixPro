@@ -579,3 +579,9 @@
 </ngx-spinner>
 <!-- Homefix slider Area End -->
 <app-footer></app-footer>
+
+<app-camera (getPicture)="handleImage($event)"></app-camera>
+
+<div class="webcam-image" *ngIf="webcamImage">
+  <img [src]="webcamImage.imageAsDataUrl" />
+</div>

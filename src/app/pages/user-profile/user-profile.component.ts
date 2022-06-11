@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { WebcamImage } from 'ngx-webcam';
 import { ApiService } from 'src/app/service/api.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  webcamImage: WebcamImage | undefined;
   profileData: any;
   countries: any = [];
   serviceListData: any = [];
@@ -79,5 +81,7 @@ export class UserProfileComponent implements OnInit {
   getEstimate() {
     this.router.navigate(['/estimates']);
   }
-
+  handleImage(webcamImage: WebcamImage) {
+    this.webcamImage = webcamImage;
+  }
 }
