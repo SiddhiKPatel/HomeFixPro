@@ -15,10 +15,7 @@ export class CameraComponent implements OnInit {
   @Output() getPicture = new EventEmitter<WebcamImage>();
   showWebcam = true;
   isCameraExist = true;
-
   errors: WebcamInitError[] = [];
-
-  // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
   userId: string;
@@ -53,7 +50,6 @@ export class CameraComponent implements OnInit {
   }
 
   handleImage(webcamImage: WebcamImage) {
-    debugger
     this.getPicture.emit(webcamImage);
     const reader = new FileReader();
     const newFiles = webcamImage.imageAsDataUrl;
@@ -61,8 +57,8 @@ export class CameraComponent implements OnInit {
     this.userId = localStorage.getItem("userId");
     let formData = new FormData;
     formData.append('user_id', this.userId);
-    formData.append('avatar', newFiles);
-    this.userService.profileImageUpdate(token, formData).subscribe((res: any) => {
+    formData.append('image', newFiles);
+    this.userService.profileImageUpload(token, formData).subscribe((res: any) => {
       if (res.status) {
         this.toastr.success(res.message);
       } else if (res.message) {
@@ -70,12 +66,12 @@ export class CameraComponent implements OnInit {
       } else {
         this.toastr.error("Server error!! please try again later.");
       }
+      this.router.navigate(['/edit-profile'])
       this.spinner.hide();
     }, err => {
       console.log(err);
       this.toastr.error(err.error.message);
     })
-    this.router.navigate(['/edit-profile'])
     this.showWebcam = false;
   }
 
