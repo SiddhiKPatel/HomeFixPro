@@ -24,10 +24,11 @@
                                         <div> <img width="80"
                                                 [src]="profileData && profileData.avatar_url ? profileData.avatar_url : ''"
                                                 onerror="this.src='./assets/images/Group2094.png'" alt=""> </div>
-                                        <p style="color: #00A3FF;"><img src='./assets/images/iconuploadicon.png'
-                                                class="img-fluid mx-1" width="25" height="25" alt="">Profile
-                                            Image</p>
-                                        <input type="file" name="file" (change)="onFileChange($event)" id="">
+                                        <a style="color: #00A3FF;" (click)="openPopup()"><img
+                                                src='./assets/images/iconuploadicon.png' class="img-fluid mx-1"
+                                                width="25" height="25" alt="">Profile
+                                            Image</a>
+                                        <!-- <input type="file" name="file" (change)="onFileChange($event)" id=""> -->
                                     </div>
                                 </div>
                             </div>
@@ -227,6 +228,27 @@
         </div>
     </div>
 </div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Profile Image upload</h4>
+            </div>
+            <div class="modal-body">
+                <input type="file" name="file" (change)="onFileChange($event)" id="">
+                <button class="btn btn-primary" (click)="openCamera()">
+                    Camera
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="closePopup()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
     <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>

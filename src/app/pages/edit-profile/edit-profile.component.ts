@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { WebcamImage } from 'ngx-webcam';
 import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
 declare var $;
@@ -30,8 +31,8 @@ export class EditProfileComponent implements OnInit {
 
   skills: any = [];
   selectedSkills: any = [];
-  // urlRegEx = '[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}(.[a-z]{2,4})?\b(/[-a-zA-Z0-9@:%_+.~#?&//=]*)?';
   urlRegEx = /^(?:(http(s)?)?(sftp)?(ftp)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+  displayStyle = "none";
   // selectedSkills = [{ id: 3, name: "Volkswagen Ford" }];
 
   constructor(private page: PagesService,
@@ -41,19 +42,6 @@ export class EditProfileComponent implements OnInit {
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
-    // this.dropdownList = [
-    //   { item_id: 1, item_text: 'Item1' },
-    //   { item_id: 2, item_text: 'Item2' },
-    //   { item_id: 3, item_text: 'Item3' },
-    //   { item_id: 4, item_text: 'Item4' },
-    //   { item_id: 5, item_text: 'Item5' }
-    // ];
-    // this.dropdownSettings = {
-    //   idField: 'item_id',
-    //   textField: 'item_text',
-    // };
-
-
     this.roleId = localStorage.getItem("roleId");
     this.profileSecOne = this.formBuilder.group({
       fname: ['', [Validators.required]],
@@ -62,7 +50,6 @@ export class EditProfileComponent implements OnInit {
       country_id: ['', [Validators.required]],
       city: ['', [Validators.required]],
       zip_code: ['', [Validators.required, Validators.pattern("[0-9]{6}")]],
-
     });
 
     this.profileSecTwo = this.formBuilder.group({
@@ -75,11 +62,6 @@ export class EditProfileComponent implements OnInit {
       twitter_url: ['', [Validators.pattern(this.urlRegEx)]],
       linkedin_url: ['', [Validators.pattern(this.urlRegEx)]],
     });
-
-    // this.profileSecFour = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: ['', [Validators.required]]
-    // });
 
     $(".editProfileBox .list-group a").on("click", function (event) {
       var $anchor = $(this);
@@ -112,7 +94,6 @@ export class EditProfileComponent implements OnInit {
     const token = localStorage.getItem("token");
     this.spinner.show();
     this.userService.getProfile(token).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.countries = res.countries;
         this.image_path = res.image_path;
@@ -132,6 +113,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   async onFileChange(event: any) {
+    this.displayStyle = 'none';
     this.spinner.show();
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
@@ -190,10 +172,8 @@ export class EditProfileComponent implements OnInit {
         linkedin_url: this.profileSecThree.value.linkedin_url ? this.profileSecThree.value.linkedin_url : "",
         skill_id: skills,
       }
-      console.log(skills)
       const token = localStorage.getItem("token");
       this.userService.updateProfile(token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
           this.router.navigate(['/user-profile']);
@@ -210,5 +190,14 @@ export class EditProfileComponent implements OnInit {
 
     }
   }
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
 
+  openCamera(){
+    this.router.navigate(['/camera']);
+  }
 }

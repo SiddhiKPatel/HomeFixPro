@@ -97,6 +97,14 @@ export class UserService {
     });
   }
 
+  profileImageUpload(token,data){
+    let httpHeaders = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + token);
+  return this._http.post(environment.API + "/api/profile-image/upload", data, {
+    headers: httpHeaders
+  });
+}
+
 
   // http://creativeonlinezone.com/project/homefix/api/update-profile
   // avatar = Profile Image (Optional)
