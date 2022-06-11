@@ -9,7 +9,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',
-  styleUrls: ['./camera.component.scss']
+  styleUrls: ['./camera.component.css']
 })
 export class CameraComponent implements OnInit {
   @Output() getPicture = new EventEmitter<WebcamImage>();
