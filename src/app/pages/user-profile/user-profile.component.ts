@@ -81,7 +81,4 @@ export class UserProfileComponent implements OnInit {
   getEstimate() {
     this.router.navigate(['/estimates']);
   }
-  handleImage(webcamImage: WebcamImage) {
-    this.webcamImage = webcamImage;
-  }
 }
