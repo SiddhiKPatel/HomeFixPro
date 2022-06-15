@@ -5,6 +5,7 @@ import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,27 @@ export class LoginComponent implements OnInit {
   userId: any;
   show_button: Boolean = false;
   show_eye: Boolean = false;
+  socialUser: import("angularx-social-login").SocialUser;
+  isLoggedin: boolean;
   constructor(private page: PagesService,
     private router: Router,
-    private toastr: ToastrService, private spinner: NgxSpinnerService, private userService: UserService, private formBuilder: FormBuilder) { }
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      debugger
+      this.socialUser = user;
+      this.isLoggedin = user != null;
+      console.log(this.socialUser);
     });
   }
 
@@ -66,5 +80,10 @@ export class LoginComponent implements OnInit {
   showPassword() {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;
+  }
+
+  googleLogin() {
+    debugger
+    let data = this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }
