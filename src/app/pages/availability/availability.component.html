@@ -1,24 +1,25 @@
 <app-header></app-header>
 <div class="container">
-    <div class="test" *ngFor="let item of week;">
+    <div class="test" *ngFor="let item of week;let i = index;">
         <div class="data">
-            <label class="form-check-label" for="item{{item}}">
-                <input class="form-check-input" type="checkbox" id="item{{item}}" name="tagOptions"
-                    (change)="changeCheckbox(item)" [checked]="item.checked">
-                {{item}}
+            <label class="form-check-label" for="item{{item.name}}">
+                <input class="form-check-input" type="checkbox" id="item{{item.name}}" name="tagOptions"
+                    (change)="changeCheckbox(i)" [checked]="item.checked">
+                {{item.name}}
             </label>
         </div>
         <div class="data">
-            <select class="form-control">
-                <option *ngFor="let web of time">{{web}}</option>
+            <select class="form-control" id="dp{{i}}">
+                <option *ngFor="let t of time;">{{t}}</option>
             </select>
         </div> to
         <div class="data">
-            <select class="form-control">
-                <option *ngFor="let web of time">{{web}}</option>
+            <select class="form-control" id="to{{i}}">
+                <option *ngFor="let t of time">{{t}}</option>
             </select>
         </div>
     </div>
+    <span>These are the hours you’re available to work. Customers can still message you any time.</span><br>
     <button class="btn btn-primary" (click)="saveAvailability()">Save</button>
 </div>
 <app-footer></app-footer>
