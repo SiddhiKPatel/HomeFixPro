@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       debugger
       this.socialUser = user;
       this.isLoggedin = user != null;
-      console.log(this.socialUser);
     });
   }
 
@@ -82,8 +81,9 @@ export class LoginComponent implements OnInit {
     this.show_eye = !this.show_eye;
   }
 
-  googleLogin() {
+  loginWithGoogle() {
     debugger
-    let data = this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(() => this.router.navigate(['/user-profile']));
   }
 }

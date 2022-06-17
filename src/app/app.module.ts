@@ -12,11 +12,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { WebcamModule } from 'ngx-webcam';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-} from 'angularx-social-login';
+import { SocialLoginModule } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { AuthGuardService } from './service/auth-guard.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -38,21 +36,20 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     WebcamModule,
     SocialLoginModule
   ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('1070914515677-jtljao497pf3afi53k7k8coc6jjsv9nq.apps.googleusercontent.com'),
-          },
-        ],
-      } as SocialAuthServiceConfig,
-    },
-  ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  providers: [{
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: true,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('148517665605-jspahbqleats6lvlag9kasc2c11b5g7o.apps.googleusercontent.com')
+        }
+      ]
+    }
+  },
+    AuthGuardService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
