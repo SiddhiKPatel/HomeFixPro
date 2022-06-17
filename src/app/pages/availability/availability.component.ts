@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-availability',
@@ -34,18 +38,52 @@ export class AvailabilityComponent implements OnInit {
   selectedValue = null;
   fromValue: any = [];
   toValue: any = [];
-  constructor() { }
+  userId: string;
+  fromtime = "";
+  toTime = "";
+  constructor(private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem("userId");
   }
   saveAvailability() {
     this.week.forEach((element, i) => {
-      var inputValue = (<HTMLInputElement>document.getElementById('dp' + i)).value;
-      var inputValue1 = (<HTMLInputElement>document.getElementById('to' + i)).value;
+      let inputValue = (<HTMLInputElement>document.getElementById('dp' + i)).value;
+      let inputValue1 = (<HTMLInputElement>document.getElementById('to' + i)).value;
       this.fromValue.push(inputValue)
       this.toValue.push(inputValue1)
     });
-    let data = this.week.filter(x => x.checked != false)
+    this.fromValue.forEach(element => {
+      this.fromtime = `"${this.fromtime},` + `"${element}"`
+    });
+    this.toValue.forEach(element => {
+      this.toTime = `"${this.toTime},` + `"${element}"`
+    });
+    this.fromtime = this.fromtime.substring(8);
+    this.toTime = this.toTime.substring(8);
+    const token = localStorage.getItem("token");
+    let obj = {
+      user_id: this.userId,
+      name: this.week,
+      start_time: [this.fromtime],
+      end_time: [this.toTime]
+    }
+    this.userService.setAvailibilty(token, obj).subscribe((res: any) => {
+      if (res.status) {
+        this.toastr.success(res.message);
+        this.router.navigate(['/user-profile']);
+      } else if (res.message) {
+        this.toastr.error(res.message);
+      } else {
+        this.toastr.error("Server error!! please try again later.");
+      }
+      this.spinner.hide();
+    }, err => {
+      console.log(err);
+      this.toastr.error(err.error.message);
+    })
   }
   changeCheckbox(i) {
     this.week[i].checked = !this.week[i].checked;

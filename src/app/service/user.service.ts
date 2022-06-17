@@ -81,7 +81,7 @@ export class UserService {
       headers: httpHeaders
     });
   }
-  deleteAccount(token,obj) {
+  deleteAccount(token, obj) {
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
     return this._http.post(environment.API + "/api/delete/user", obj, {
@@ -97,13 +97,13 @@ export class UserService {
     });
   }
 
-  profileImageUpload(token,data){
+  profileImageUpload(token, data) {
     let httpHeaders = new HttpHeaders()
-    .set('Authorization', 'Bearer ' + token);
-  return this._http.post(environment.API + "/api/profile-image/upload", data, {
-    headers: httpHeaders
-  });
-}
+      .set('Authorization', 'Bearer ' + token);
+    return this._http.post(environment.API + "/api/profile-image/upload", data, {
+      headers: httpHeaders
+    });
+  }
 
 
   // http://creativeonlinezone.com/project/homefix/api/update-profile
@@ -128,6 +128,13 @@ export class UserService {
       headers: httpHeaders
     });
   }
-
+  setAvailibilty(token, data) {
+    debugger
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this._http.post(environment.API + "/api/user/avaibility", data, {
+      headers: httpHeaders
+    });
+  }
 
 }
