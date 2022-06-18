@@ -33,20 +33,48 @@ export class AvailabilityComponent implements OnInit {
     name: 'Sat',
     checked: true
   },];
-  time: string[] = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm',
+  startTime: string[] = ['12 am', '1 am', '2 am', '3 am', '4 am', '5 am', '6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm',
     '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm', '9 pm', '10 pm', '11 pm'];
+
   selectedValue = null;
   fromValue: any = [];
   toValue: any = [];
   userId: string;
   fromtime = "";
   toTime = "";
+  endTime = this.startTime;
   constructor(private userService: UserService,
     private router: Router,
     private toastr: ToastrService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("userId");
+    this.getAvailibility()
+  }
+  getAvailibility() {
+    const token = localStorage.getItem("token");
+    let obj = {
+      user_id: this.userId,
+    }
+    this.userService.getAvailibilty(token, obj).subscribe((res: any) => {
+      if (res.status) {
+        this.week = res.response_data.name;
+        res.response_data.start_time.forEach((element, i) => {
+          (<HTMLInputElement>document.getElementById('dp' + i)).value = element;
+        });
+        res.response_data.end_time.forEach((element, i) => {
+          (<HTMLInputElement>document.getElementById('to' + i)).value = element;
+        });
+      } else if (res.message) {
+        this.toastr.error(res.message);
+      } else {
+        this.toastr.error("Server error!! please try again later.");
+      }
+      this.spinner.hide();
+    }, err => {
+      console.log(err);
+      this.toastr.error(err.error.message);
+    })
   }
   saveAvailability() {
     this.week.forEach((element, i) => {
@@ -60,14 +88,6 @@ export class AvailabilityComponent implements OnInit {
         this.toValue.push(inputValue1)
       }
     });
-    // this.fromValue.forEach(element => {
-    //   this.fromtime = `"${this.fromtime},` + `"${element}"`
-    // });
-    // this.toValue.forEach(element => {
-    //   this.toTime = `"${this.toTime},` + `"${element}"`
-    // });
-    // this.fromtime = this.fromtime.substring(8);
-    // this.toTime = this.toTime.substring(8);
     const token = localStorage.getItem("token");
     let obj = {
       user_id: this.userId,

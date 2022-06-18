@@ -10,12 +10,12 @@
         </div>
         <div class="data">
             <select class="form-control" id="dp{{i}}">
-                <option *ngFor="let t of time;">{{t}}</option>
+                <option *ngFor="let t of startTime;" [selected]="selectedValue">{{t}}</option>
             </select>
         </div> to
         <div class="data">
             <select class="form-control" id="to{{i}}">
-                <option *ngFor="let t of time">{{t}}</option>
+                <option *ngFor="let t of endTime">{{t}}</option>
             </select>
         </div>
     </div>

@@ -135,5 +135,12 @@ export class UserService {
       headers: httpHeaders
     });
   }
+  getAvailibilty(token, data) {
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this._http.post(environment.API + "/api/user/get/avaibility", data, {
+      headers: httpHeaders
+    });
+  }
 
 }
