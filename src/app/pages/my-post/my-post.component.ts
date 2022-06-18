@@ -27,7 +27,6 @@ export class MyPostComponent implements OnInit {
   getMyJobs(){
     const token = localStorage.getItem("token");
     this.apiService.myJob(token, {}).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.jobData = res;
         this.myJobList = res.response_data.data ? res.response_data.data : [];

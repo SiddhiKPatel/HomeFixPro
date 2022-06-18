@@ -27,8 +27,6 @@ export class OppurtunityComponent implements OnInit {
     }
     this.spinner.show();
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params);
-      console.log(params['p']);
       if (params && params['p'] && (params['p'] == 'active' || params['p'] == 'sent')) {
         this.projectSelect = params['p'];
         if (this.projectSelect == 'sent') {
@@ -80,7 +78,6 @@ export class OppurtunityComponent implements OnInit {
     this.spinner.show();
     const token = localStorage.getItem("token");
     this.apiService.myJob(token, {}).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.jobData = res;
         this.opportunityList = res.response_data.data ? res.response_data.data : [];

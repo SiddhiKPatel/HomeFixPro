@@ -20,9 +20,7 @@ export class ServiceSearchComponent implements OnInit {
     }
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
         this.category = params.category;
-        console.log(this.category); 
         if (this.category) {
           this.getServices(this.category);
         }
@@ -39,7 +37,6 @@ export class ServiceSearchComponent implements OnInit {
     formData.set('s', category);
 
     this.pageService.getServices(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.serviceList = res.response_data;
         this.image_path = res.image_path;

@@ -61,7 +61,6 @@ export class NotificationComponent implements OnInit {
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.userService.getProfile(token).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.profileData = res.response_data;
         if (this.profileData) {
@@ -92,7 +91,6 @@ export class NotificationComponent implements OnInit {
       }
 
       this.userService.updateProfile(token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
         } else if (res.message) {
@@ -123,7 +121,6 @@ export class NotificationComponent implements OnInit {
       }
 
       this.userService.changePassword(token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
           this.changePassSubmitted = false;

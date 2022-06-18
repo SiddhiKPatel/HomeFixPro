@@ -28,7 +28,6 @@ export class ServiceComponent implements OnInit {
   getPage(){
     let self = this;
     this.pageService.getPage('explore').subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.explorePageData = res;
         this.image_path = res.image_path;
@@ -92,7 +91,6 @@ export class ServiceComponent implements OnInit {
 
   async getServices(){
     this.pageService.getServices({}).subscribe((res: any)=>{
-      console.log(res);
       if(res.status && res.response_data){
         this.servicesList = res.response_data.data;
         this.image_path = res.image_path ? res.image_path : '';

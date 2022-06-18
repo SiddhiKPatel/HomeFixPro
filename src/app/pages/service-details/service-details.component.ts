@@ -22,7 +22,6 @@ export class ServiceDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.route.params.subscribe((parameter: any) => {
-      console.log(parameter);
       if (parameter.slug) {
         this.slug = parameter.slug;
         if (this.slug) {
@@ -42,7 +41,6 @@ export class ServiceDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set("slug", slug);
     this.pageService.getServiceCategoryDetails(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         // this.explorePageData = res;
         if (res.response_data) {

@@ -23,7 +23,6 @@ export class OppurtunityDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.slug = this.route.snapshot.paramMap.get('slug');
-    console.log(this.slug);
     if (this.slug) {
       this.getjobDetails(this.slug);
     }
@@ -34,7 +33,6 @@ export class OppurtunityDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.append('slug', slug);
     this.pageService.getJobDetails(token, formData).subscribe((res: any) => {
-      console.log(res);
       if(res.status && res.response_data){
         this.jobDetails = res.response_data;
         this.image_path = res.image_path ? res.image_path : '';
