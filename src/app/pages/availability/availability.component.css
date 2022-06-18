@@ -22,3 +22,7 @@
 button{
     margin-bottom: 10px;
 }
+.box{
+    border: 1px solid grey;
+    margin: 10px;
+}

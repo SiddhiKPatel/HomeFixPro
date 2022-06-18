@@ -50,25 +50,30 @@ export class AvailabilityComponent implements OnInit {
   }
   saveAvailability() {
     this.week.forEach((element, i) => {
-      let inputValue = (<HTMLInputElement>document.getElementById('dp' + i)).value;
-      let inputValue1 = (<HTMLInputElement>document.getElementById('to' + i)).value;
-      this.fromValue.push(inputValue)
-      this.toValue.push(inputValue1)
+      if (element.checked == false) {
+        this.fromValue.push("")
+        this.toValue.push("")
+      } else {
+        let inputValue = (<HTMLInputElement>document.getElementById('dp' + i)).value;
+        let inputValue1 = (<HTMLInputElement>document.getElementById('to' + i)).value;
+        this.fromValue.push(inputValue)
+        this.toValue.push(inputValue1)
+      }
     });
-    this.fromValue.forEach(element => {
-      this.fromtime = `"${this.fromtime},` + `"${element}"`
-    });
-    this.toValue.forEach(element => {
-      this.toTime = `"${this.toTime},` + `"${element}"`
-    });
-    this.fromtime = this.fromtime.substring(8);
-    this.toTime = this.toTime.substring(8);
+    // this.fromValue.forEach(element => {
+    //   this.fromtime = `"${this.fromtime},` + `"${element}"`
+    // });
+    // this.toValue.forEach(element => {
+    //   this.toTime = `"${this.toTime},` + `"${element}"`
+    // });
+    // this.fromtime = this.fromtime.substring(8);
+    // this.toTime = this.toTime.substring(8);
     const token = localStorage.getItem("token");
     let obj = {
       user_id: this.userId,
       name: this.week,
-      start_time: [this.fromtime],
-      end_time: [this.toTime]
+      start_time: this.fromValue,
+      end_time: this.toValue
     }
     this.userService.setAvailibilty(token, obj).subscribe((res: any) => {
       if (res.status) {
@@ -87,5 +92,16 @@ export class AvailabilityComponent implements OnInit {
   }
   changeCheckbox(i) {
     this.week[i].checked = !this.week[i].checked;
+    if (this.week[i].checked == false) {
+      let inputValue = (<HTMLInputElement>document.getElementById('dp' + i));
+      let inputValue1 = (<HTMLInputElement>document.getElementById('to' + i));
+      inputValue.disabled = true;
+      inputValue1.disabled = true;
+    } else {
+      let inputValue = (<HTMLInputElement>document.getElementById('dp' + i));
+      let inputValue1 = (<HTMLInputElement>document.getElementById('to' + i));
+      inputValue.disabled = false;
+      inputValue1.disabled = false;
+    }
   }
 }

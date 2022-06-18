@@ -129,7 +129,6 @@ export class UserService {
     });
   }
   setAvailibilty(token, data) {
-    debugger
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
     return this._http.post(environment.API + "/api/user/avaibility", data, {
