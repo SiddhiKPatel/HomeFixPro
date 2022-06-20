@@ -81,7 +81,6 @@ export class UserCreateSolutionComponent implements OnInit {
     private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    debugger
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
@@ -168,9 +167,8 @@ export class UserCreateSolutionComponent implements OnInit {
       if (res.status) {
         this.serviceListData = res;
         if (this.slug) {
-          debugger
           this.editProjectdata = this.serviceListData.response_data.filter(x => x.slug == this.slug)[0];
-
+          this.bindFormData();
         }
       }
     }, err => {
@@ -178,11 +176,10 @@ export class UserCreateSolutionComponent implements OnInit {
     })
   }
   bindFormData() {
-    debugger
     this.overViewForm.patchValue({
       title: this.editProjectdata.title,
       category_id: this.editProjectdata.category_id,
-      selectedTags: this.editProjectdata.tag[0]
+      selectedTags: this.editProjectdata.tag
     })
     this.descForm.patchValue({
       body: this.editProjectdata.body
