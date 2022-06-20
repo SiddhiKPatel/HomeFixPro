@@ -17,7 +17,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     LoginRoutingModule,
     IncludeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ]
 })
 export class LoginModule { }

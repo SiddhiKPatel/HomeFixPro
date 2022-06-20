@@ -5,6 +5,7 @@ import { PagesService } from 'src/app/service/pages.service';
 import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,25 @@ export class LoginComponent implements OnInit {
   userId: any;
   show_button: Boolean = false;
   show_eye: Boolean = false;
+  socialUser: import("angularx-social-login").SocialUser;
+  isLoggedin: boolean;
   constructor(private page: PagesService,
     private router: Router,
-    private toastr: ToastrService, private spinner: NgxSpinnerService, private userService: UserService, private formBuilder: FormBuilder) { }
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private userService: UserService,
+    private formBuilder: FormBuilder,
+    private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
+    });
+
+    this.socialAuthService.authState.subscribe((user) => {
+      this.socialUser = user;
+      this.isLoggedin = user != null;
     });
   }
 
@@ -66,5 +78,39 @@ export class LoginComponent implements OnInit {
   showPassword() {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;
+  }
+
+  loginWithGoogle() {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then(() => {
+        let obj = {
+          name: this.socialUser.name,
+          fname: this.socialUser.firstName,
+          lname: this.socialUser.lastName,
+          email: this.socialUser.email,
+          social_id: this.socialUser.id,
+          social_type: this.socialUser.provider
+        }
+        this.userService.socialLogin(obj).subscribe((res: any) => {
+          if (res.status) {
+            this.submitted = false;
+            this.userId = res.response_data.id;
+            localStorage.setItem("token", res.api_token);
+            localStorage.setItem("userId", res.response_data.id);
+            localStorage.setItem("roleId", res.response_data.role_id);
+            localStorage.setItem("fName", res.response_data.fname);
+            localStorage.setItem("lName", res.response_data.lname);
+            this.userService.storeUserData(res);
+            this.loginForm.reset();
+            this.router.navigate(['/user-profile']);
+            this.toastr.success(res.message);
+          } else if (res) {
+            this.toastr.error(res.message);
+          }
+          this.spinner.hide();
+        }, err => {
+          console.log(err);
+        });
+      });
   }
 }
