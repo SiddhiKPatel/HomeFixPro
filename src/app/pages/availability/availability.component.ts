@@ -49,8 +49,13 @@ export class AvailabilityComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem("userId");
-    this.getAvailibility()
   }
+  ngAfterViewInit() {
+    setTimeout(() =>
+      this.getAvailibility()
+      , 5000);
+  }
+
   getAvailibility() {
     const token = localStorage.getItem("token");
     let obj = {
@@ -59,6 +64,7 @@ export class AvailabilityComponent implements OnInit {
     this.userService.getAvailibilty(token, obj).subscribe((res: any) => {
       if (res.status) {
         this.week = res.response_data.name;
+        debugger
         res.response_data.start_time.forEach((element, i) => {
           (<HTMLInputElement>document.getElementById('dp' + i)).value = element;
         });
