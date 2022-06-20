@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
     });
 
     this.socialAuthService.authState.subscribe((user) => {
-      debugger
       this.socialUser = user;
       this.isLoggedin = user != null;
     });
@@ -82,8 +81,36 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoogle() {
-    debugger
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
-      .then(() => this.router.navigate(['/user-profile']));
+      .then(() => {
+        let obj = {
+          name: this.socialUser.name,
+          fname: this.socialUser.firstName,
+          lname: this.socialUser.lastName,
+          email: this.socialUser.email,
+          social_id: this.socialUser.id,
+          social_type: this.socialUser.provider
+        }
+        this.userService.socialLogin(obj).subscribe((res: any) => {
+          if (res.status) {
+            this.submitted = false;
+            this.userId = res.response_data.id;
+            localStorage.setItem("token", res.api_token);
+            localStorage.setItem("userId", res.response_data.id);
+            localStorage.setItem("roleId", res.response_data.role_id);
+            localStorage.setItem("fName", res.response_data.fname);
+            localStorage.setItem("lName", res.response_data.lname);
+            this.userService.storeUserData(res);
+            this.loginForm.reset();
+            this.router.navigate(['/user-profile']);
+            this.toastr.success(res.message);
+          } else if (res) {
+            this.toastr.error(res.message);
+          }
+          this.spinner.hide();
+        }, err => {
+          console.log(err);
+        });
+      });
   }
 }
