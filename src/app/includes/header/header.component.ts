@@ -20,12 +20,9 @@ export class HeaderComponent implements OnInit {
   constructor(private page: PagesService,
     private router: Router,
     private userService: UserService) {
-    console.log("HeaderComponent")
   }
 
   ngOnInit(): void {
-    console.log("ngOnInit HeaderComponent")
-    // console.log($);
     /// check user
     this.checkUser().then(() => {
       this.jsInit();
@@ -79,7 +76,6 @@ export class HeaderComponent implements OnInit {
 
   getHeader() {
     this.page.getHeader().subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.headerData = res;
       }

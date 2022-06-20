@@ -46,7 +46,6 @@ export class BlogDetailsComponent implements OnInit {
     });
 
     this.route.params.subscribe((parameter: any) => {
-      console.log(parameter);
       if (parameter.slug) {
         this.slug = parameter.slug;
         if (this.slug) {
@@ -78,7 +77,6 @@ export class BlogDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set('slug', this.slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.scrollTop();
         this.responseData = res;
@@ -97,7 +95,6 @@ export class BlogDetailsComponent implements OnInit {
     this.token = localStorage.getItem("token");
     if (this.token) {
       this.userService.getProfile(this.token).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.profileData = res.response_data;
         }
@@ -120,7 +117,6 @@ export class BlogDetailsComponent implements OnInit {
       formData.set("body", this.postCommentForm.value.comment_text);
 
       this.apiService.postComment(this.token, formData).subscribe((res: any) => {
-        console.log(res);
         if (res && res.status) {
           this.getBlogDetails2();
           this.toastr.success(res.message ? res.message : 'Comment post successfully.');
@@ -136,7 +132,6 @@ export class BlogDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set('slug', this.slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.responseData = res;
         this.categoryList = res.category ? res.category : [];
@@ -153,7 +148,6 @@ export class BlogDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set('slug', slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.scrollTop();
         this.responseData = res;

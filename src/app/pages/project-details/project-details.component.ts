@@ -32,7 +32,6 @@ export class ProjectDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.slug = this.route.snapshot.paramMap.get('slug');
-    console.log(this.slug);
     if (this.slug) {
       this.getServiceDetails(this.slug).then(() => { this.sliderLoad(); })
     }
@@ -57,15 +56,12 @@ export class ProjectDetailsComponent implements OnInit {
 
   sendContract() {
     this.submitted = true;
-    console.log("registrationSubmit", this.contactForm);
     if (!this.token || !this.serviceDetails) {
       this.router.navigate(['/login']);
     }
     if (this.contactForm.invalid) {
       return;
     } else {
-      console.log("valid...");
-
       let obj = {
         service_id: this.serviceDetails.id,
         title: this.serviceDetails.title,
@@ -75,7 +71,6 @@ export class ProjectDetailsComponent implements OnInit {
       }
 
       this.pageService.createJobRequest(this.token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message ? res.message : '');
           this.contactForm.reset();
@@ -121,7 +116,6 @@ export class ProjectDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set('slug', this.slug);
     this.pageService.getServiceDetails(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.serviceDetails = res.response_data;
         this.image_path = res.image_path ? res.image_path : '';

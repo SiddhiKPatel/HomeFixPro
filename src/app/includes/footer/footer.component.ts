@@ -21,7 +21,6 @@ export class FooterComponent implements OnInit {
 
   getFooter() {
     this.page.getFooter().subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.footerData = res;
       }

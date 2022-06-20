@@ -27,7 +27,6 @@ export class EstimatesComponent implements OnInit {
     this.token = localStorage.getItem("token");;
 
     this.route.params.subscribe((parameter: any) => {
-      console.log(parameter);
       if (parameter.slug) {
         this.slug = parameter.slug;
         if (this.slug) {
@@ -42,7 +41,6 @@ export class EstimatesComponent implements OnInit {
     // formData.set("slug", slug);
     this.spinner.show()
     this.pageService.getPage(slug).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         // this.explorePageData = res;
         if(res.extra_data){

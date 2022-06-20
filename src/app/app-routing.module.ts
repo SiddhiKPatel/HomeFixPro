@@ -88,6 +88,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user-create-solution/user-create-solution.module').then(m => m.UserCreateSolutionModule)
   },
   {
+    path: 'user-create-solution/slug',
+    loadChildren: () => import('./pages/user-create-solution/user-create-solution.module').then(m => m.UserCreateSolutionModule)
+  },
+  {
     path: 'job-post',
     loadChildren: () => import('./pages/job-post-page/job-post-page.module').then(m => m.JobPostPageModule)
   },

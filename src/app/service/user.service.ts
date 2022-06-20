@@ -40,6 +40,14 @@ export class UserService {
       }));
   }
 
+  socialLogin(data: any) {
+    return this._http
+      .post(environment.API + "/api/social/login", data, {})
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
   storeUserData(data: any) {
     localStorage.setItem('userClick', data.status);
     this.userSubject.next(data);

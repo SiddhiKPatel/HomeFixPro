@@ -21,10 +21,8 @@ export class SearchResultComponent implements OnInit {
     }
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
         this.category = params.keyword;
         this.zipcode = params.zipcode ? params.zipcode : '';
-        console.log(this.category); 
         if (this.category) {
           if(this.category == 'all'){
             this.getServices('', '');
@@ -39,7 +37,6 @@ export class SearchResultComponent implements OnInit {
 
   getServiceCategory(){
     this.pageService.getServiceCategory({}).subscribe((res: any)=>{
-      console.log(res);
       if(res && res.response_data){
         this.categoryList = res.response_data.data;
       }
@@ -59,7 +56,6 @@ export class SearchResultComponent implements OnInit {
     formData.set('zipcode', zipcode);
 
     this.pageService.getServices(formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.serviceList = res.response_data;
         this.image_path = res.image_path;

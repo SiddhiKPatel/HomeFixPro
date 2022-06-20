@@ -23,13 +23,10 @@ export class SearchHeaderComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService) {
-    console.log("HeaderComponent")
 
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
         this.category = params.keyword;
-        console.log(this.category); 
       });
   }
 
@@ -87,7 +84,6 @@ export class SearchHeaderComponent implements OnInit {
 
   getHeader() {
     this.page.getHeader().subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.headerData = res;
       }
@@ -97,7 +93,6 @@ export class SearchHeaderComponent implements OnInit {
   }
 
   search(){
-    console.log($('#search-keyword').val());
     if($('#search-keyword').val()){
       let keyword = $('#search-keyword').val();
       let zipcode = $('#search-zipcode').val();

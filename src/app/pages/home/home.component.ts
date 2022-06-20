@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
-    console.log(this.searchForm);
     if (this.searchForm.invalid) {
       return;
     } else {
@@ -56,7 +55,6 @@ export class HomeComponent implements OnInit {
   getHomePage() {
     let self = this;
     this.page.getPage('home').subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.homePageData = res;
         // this.pageExtraData = res.extra_data;

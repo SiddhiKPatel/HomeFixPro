@@ -30,11 +30,9 @@ export class ForgotPasswordComponent implements OnInit {
   forgotSubmit() {
     this.submitted = true;
     // this.loginResponseError = null;
-    console.log("loginSubmit", this.forgotForm);
     if (this.forgotForm.invalid) {
       return;
     } else {
-      console.log("valid...");
 
       // let formData = new FormData();
       let obj = {
@@ -42,7 +40,6 @@ export class ForgotPasswordComponent implements OnInit {
       }
       // formData.set('email', this.forgotForm.value.email);
       this.page.forgotPassword(obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
           this.submitted = false;
