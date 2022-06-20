@@ -30,7 +30,6 @@ export class SubmitProposalComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.slug = this.route.snapshot.paramMap.get('slug');
-    console.log(this.slug);
     if (this.slug) {
       // this.getaddProposalPageData(this.slug);
     }
@@ -54,7 +53,6 @@ export class SubmitProposalComponent implements OnInit {
     let formData = new FormData();
     // formData.set('slug', slug);
     this.pageService.addProposalPage(token, formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.addProposalPageData = res.response_data;
         this.services = res.services;
@@ -69,12 +67,9 @@ export class SubmitProposalComponent implements OnInit {
   sendProposals() {
     this.submitted = true;
 
-    console.log("registrationSubmit", this.proposalForm);
-
     if (this.proposalForm.invalid) {
       return;
     } else {
-      console.log("valid...");
       const token = localStorage.getItem("token");
       let formData = new FormData();
 
@@ -91,7 +86,6 @@ export class SubmitProposalComponent implements OnInit {
       }
 
       this.pageService.addUpdateProposal(token, formData).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           // this.registerResponse = res;
           this.toastr.success(res.message);
@@ -118,7 +112,6 @@ export class SubmitProposalComponent implements OnInit {
       if (!files.length)
         return;
       var fileName = files[0].name.toUpperCase();
-      console.log(fileName.endsWith);
       if (fileName.endsWith(".JPG") || fileName.endsWith(".JPEG") || fileName.endsWith(".PNG")) {
         this.image = files[0];
         this.imageLoaded = true;
@@ -130,7 +123,6 @@ export class SubmitProposalComponent implements OnInit {
 
   }
   serviceChoose(s){
-    console.log(s);
     this.proposalForm.patchValue({"service_id": s.id});
   }
 }

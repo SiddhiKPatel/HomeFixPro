@@ -29,7 +29,6 @@ export class MyPostDetailsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
     if (this.id) {
       this.getjobDetails(this.id);
     }
@@ -41,7 +40,6 @@ export class MyPostDetailsComponent implements OnInit {
     let formData = new FormData();
     formData.set('id', id);
     this.pageService.myJobDetails(token, formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.responseData = res;
         this.jobDetails = res.response_data;
@@ -55,11 +53,9 @@ export class MyPostDetailsComponent implements OnInit {
   }
 
   acceptMessage(jobproposal){
-    console.log(jobproposal);
     let formData = new FormData();
     formData.set('code', jobproposal.code);
     this.apiService.messages(this.token, formData).subscribe((res:any)=>{
-      console.log(res);
       if(res){
         this.router.navigate(['/inbox']);
       }

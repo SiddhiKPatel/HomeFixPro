@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/service/api.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $;
 
 @Component({
@@ -27,8 +27,7 @@ export class UserCreateSolutionComponent implements OnInit {
   imageLoaded = false;
   tags: any = [];
   selectedTags: any = [];
-  // var steps = $("fieldset").length;
-
+  slug: any;
   editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -72,15 +71,20 @@ export class UserCreateSolutionComponent implements OnInit {
       ['fontSize']
     ]
   };
+  serviceListData: any;
+  editProjectdata: any;
 
   constructor(private toastr: ToastrService,
     private router: Router,
-    private apiService: ApiService, private formBuilder: FormBuilder) { }
+    private apiService: ApiService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
+    this.getServiceList();
     let self = this;
     $(".next-step").click(function () {
       self.currentGfgStep = $(this).parent();
@@ -153,10 +157,44 @@ export class UserCreateSolutionComponent implements OnInit {
       question: ['', [Validators.required]],
       answer: ['', [Validators.required]]
     });
-
+    this.slug = this.route.snapshot.paramMap.get('slug');
     this.getServices();
   }
 
+  async getServiceList() {
+    const token = localStorage.getItem("token");
+    this.apiService.serviceList(token).subscribe((res: any) => {
+      if (res.status) {
+        this.serviceListData = res;
+        if (this.slug) {
+          this.editProjectdata = this.serviceListData.response_data.filter(x => x.slug == this.slug)[0];
+          this.bindFormData();
+        }
+      }
+    }, err => {
+      console.log(err);
+    })
+  }
+  bindFormData() {
+    this.overViewForm.patchValue({
+      title: this.editProjectdata.title,
+      category_id: this.editProjectdata.category_id,
+      selectedTags: this.editProjectdata.tag
+    })
+    this.descForm.patchValue({
+      body: this.editProjectdata.body
+    });
+
+    this.imgForm.patchValue({
+      file: this.editProjectdata.gallery,
+      fileSource: this.editProjectdata.image2
+    });
+
+    this.faqForm.patchValue({
+      question: this.editProjectdata.faq,
+      answer: ''
+    });
+  }
   images: any = [];
   galleryimages: any = [];
   onFileChange(event) {
@@ -166,7 +204,6 @@ export class UserCreateSolutionComponent implements OnInit {
         var reader = new FileReader();
         this.galleryimages.push(event.target.files[i]);
         reader.onload = (event: any) => {
-          // console.log(event.target.result);
           this.images.push(event.target.result);
 
           this.imgForm.patchValue({
@@ -183,11 +220,9 @@ export class UserCreateSolutionComponent implements OnInit {
   getServices() {
     const token = localStorage.getItem("token");
     this.apiService.getService(token, {}).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.serviceData = res;
         this.tags = res.tags;
-        console.log(this.tags);
         this.categories = res.categories;
       } else if (res.message) {
         this.toastr.error(res.message);
@@ -204,12 +239,9 @@ export class UserCreateSolutionComponent implements OnInit {
 
   addService() {
     this.submitted = true;
-    console.log("addService", this.overViewForm);
-    console.log("selectedTags", this.overViewForm.value.selectedTags);
     if (this.overViewForm.invalid) {
       return;
     } else {
-      console.log("valid...");
       const token = localStorage.getItem("token");
       let formData = new FormData();
       let galleryimage: any = []
@@ -241,7 +273,6 @@ export class UserCreateSolutionComponent implements OnInit {
       }
 
       this.apiService.addUpdateService(token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
           // this.submitted = false;
@@ -270,11 +301,9 @@ export class UserCreateSolutionComponent implements OnInit {
   }
   faqAdd() {
     this.submittedFaq = true;
-    console.log("addService", this.faqForm);
     if (this.faqForm.invalid) {
       return;
     } else {
-      console.log("valid...");
       this.question.push(this.faqForm.value.question);
       this.answer.push(this.faqForm.value.answer);
       this.submittedFaq = false;

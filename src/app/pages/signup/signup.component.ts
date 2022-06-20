@@ -54,7 +54,6 @@ export class SignupComponent implements OnInit {
 
   getRegisterPage() {
     this.page.getRegister().subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.registerPageData = res;
       }
@@ -64,7 +63,6 @@ export class SignupComponent implements OnInit {
   }
 
   selectRole(role) {
-    console.log("role", role);
     this.role_id = role.id;
   }
 

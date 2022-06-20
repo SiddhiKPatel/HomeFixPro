@@ -84,7 +84,6 @@ export class ContractComponent implements OnInit {
 
   countStar(star) {
     this.selectedValue = star;
-    console.log('Value of star', star);
   }
 
   addClass(star) {
@@ -109,7 +108,6 @@ export class ContractComponent implements OnInit {
     let formData = new FormData();
     formData.append('slug', slug);
     this.pageService.getJobDetails(token, formData).subscribe((res: any) => {
-      console.log(res);
       if (res.status && res.response_data) {
         this.jobDetails = res.response_data;
         this.image_path = res.image_path ? res.image_path : '';
@@ -141,7 +139,6 @@ export class ContractComponent implements OnInit {
     this.token = localStorage.getItem("token");
     this.roleId = localStorage.getItem("roleId");
     this.slug = this.route.snapshot.paramMap.get('slug');
-    console.log(this.slug);
     if (this.slug) {
       this.getjobDetails(this.slug);
     }
@@ -1363,7 +1360,6 @@ export class ContractComponent implements OnInit {
 
 
   submitWithdraw() {
-    console.log(this.messageconnection)
     let formData = new FormData();
     formData.set("receiver_id", this.to_user_id);
     formData.set("connection_id", this.messageconnection);
@@ -1371,7 +1367,6 @@ export class ContractComponent implements OnInit {
     formData.set("message", 'Project withdraw');
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
-      console.log(res);
       if (res && res.status == 200) {
         this.toastr.success(res.message ? res.message : 'Successfully withdraw.');
       } else {
@@ -1384,16 +1379,10 @@ export class ContractComponent implements OnInit {
   }
 
   submitProject() {
-    console.log(this.selectedValue);
-    console.log(this.messageconnection);
     this.submitted = true;
-
-    console.log("submit", this.submitForm);
-
     if (this.submitForm.invalid) {
       return;
     } else {
-      console.log(this.messageconnection)
       let formData = new FormData();
       formData.set("receiver_id", this.to_user_id);
       formData.set("connection_id", this.messageconnection);
@@ -1401,7 +1390,6 @@ export class ContractComponent implements OnInit {
       formData.set("message", this.submitForm.value.body);
 
       this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
-        console.log(res);
         if (res && res.status == 200) {
           this.toastr.success(res.message ? res.message : 'Successfully submitted.');
         } else {
@@ -1417,8 +1405,6 @@ export class ContractComponent implements OnInit {
   addRating() {
     this.submitted1 = true;
 
-    console.log("submit", this.ratingForm);
-
     if (this.ratingForm.invalid) {
       return;
     } else {
@@ -1427,7 +1413,6 @@ export class ContractComponent implements OnInit {
       formData.set("rating", this.selectedValue.toString());
       formData.set("review", this.ratingForm.value.body);
       this.apiService.addReview(this.token, formData).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message ? res.message : 'Successfully submitted the rating');
         }else{
@@ -1443,7 +1428,6 @@ export class ContractComponent implements OnInit {
   }
 
   completed() {
-    console.log(this.messageconnection)
     let formData = new FormData();
     formData.set("receiver_id", this.to_user_id);
     formData.set("connection_id", this.messageconnection);
@@ -1451,7 +1435,6 @@ export class ContractComponent implements OnInit {
     formData.set("message", 'Project completed');
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
-      console.log(res);
       if (res && res.status == 200) {
         this.toastr.success(res.message ? res.message : 'Successfully completed.');
       } else {

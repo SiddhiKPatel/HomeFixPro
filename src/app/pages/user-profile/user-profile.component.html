@@ -188,7 +188,8 @@
                                 *ngFor="let service of serviceListData.response_data">
                                 <div class="proj_single_items mt-30 ">
                                     <div class="proj_single_inner">
-                                        <a [routerLink]="['/blog-details',service.title]" class="proj_single_thumb d-block">
+                                        <a [routerLink]="['/user-create-solution', service]"
+                                            class="proj_single_thumb d-block">
                                             <img [src]="service.gallery && service.gallery[0] && service.gallery[0].file ? serviceListData.image_path + service.gallery[0].file : ''"
                                                 onerror="this.src='assets/images/no-image.png';" alt="">
                                         </a>

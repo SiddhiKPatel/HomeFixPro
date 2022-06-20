@@ -39,7 +39,6 @@ export class ProjectStatusComponent implements OnInit {
     this.roleId = localStorage.getItem("roleId");
     if (this.roleId == 2) {
       this.apiService.myProposal(token, {}).subscribe((res: any) => {
-        console.log(res);
         this.responseData = res;
         this.proposalList = res.response_data.data;
       }, err => {
@@ -47,7 +46,6 @@ export class ProjectStatusComponent implements OnInit {
       })
     } else if (this.roleId == 3) {
       this.apiService.myJob(token, {}).subscribe((res: any) => {
-        console.log(res);
         this.responseData = res;
         this.jobList = res.response_data.data;
       }, err => {

@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService,
     private router: Router,
     private apiService: ApiService,
-    private spinner : NgxSpinnerService) { }
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.userService.getProfile(token).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.countries = res.countries;
         // this.image_path  = res.image_path;
@@ -60,7 +59,6 @@ export class UserProfileComponent implements OnInit {
     const token = localStorage.getItem("token");
     // const user = { user_id: this.userId };
     this.apiService.serviceList(token).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.serviceListData = res;
       }
@@ -81,4 +79,5 @@ export class UserProfileComponent implements OnInit {
   getEstimate() {
     this.router.navigate(['/estimates']);
   }
+
 }

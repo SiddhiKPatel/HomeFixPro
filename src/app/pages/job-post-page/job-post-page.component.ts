@@ -39,7 +39,6 @@ export class JobPostPageComponent implements OnInit {
   getJobDetails() {
     const token = localStorage.getItem("token");
     this.apiService.addJobDetails(token, {}).subscribe((res: any) => {
-      console.log(res);
       if (res.status) {
         this.jobPageData = res;
       } else if (res.message) {
@@ -57,11 +56,9 @@ export class JobPostPageComponent implements OnInit {
   addJob() {
     this.jobPostForm.value.status = 1;
     this.submitted = true;
-    console.log("addJob", this.jobPostForm);
     if (this.jobPostForm.invalid) {
       return;
     } else {
-      console.log("valid...");
       const token = localStorage.getItem("token");
       // let formData = new FormData();
       // formData.set('id', '0');
@@ -86,7 +83,6 @@ export class JobPostPageComponent implements OnInit {
       }
 
       this.apiService.addUpdateJob(token, obj).subscribe((res: any) => {
-        console.log(res);
         if (res.status) {
           this.toastr.success(res.message);
           this.submitted = false;
@@ -110,7 +106,6 @@ export class JobPostPageComponent implements OnInit {
       if (!files.length)
         return;
       var fileName = files[0].name.toUpperCase();
-      console.log(fileName.endsWith);
       if (fileName.endsWith(".JPG") || fileName.endsWith(".JPEG") || fileName.endsWith(".PNG")) {
         this.image = files[0];
         this.imageLoaded = true;

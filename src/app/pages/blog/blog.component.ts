@@ -21,7 +21,6 @@ export class BlogComponent implements OnInit {
 
   getBlogList() {
     this.page.getPage('blog').subscribe((res: any) => {
-      console.log(res);
       if (res.blogs) {
         this.blogList = res.blogs;
         this.image_path = res.image_path;
