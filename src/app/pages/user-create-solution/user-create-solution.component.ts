@@ -73,6 +73,7 @@ export class UserCreateSolutionComponent implements OnInit {
   };
   serviceListData: any;
   editProjectdata: any;
+  projectId: any;
 
   constructor(private toastr: ToastrService,
     private router: Router,
@@ -194,6 +195,7 @@ export class UserCreateSolutionComponent implements OnInit {
       question: this.editProjectdata.faq,
       answer: ''
     });
+    this.projectId = this.editProjectdata.id
   }
   images: any = [];
   galleryimages: any = [];
@@ -265,7 +267,7 @@ export class UserCreateSolutionComponent implements OnInit {
         question: question,
         answer: answer,
         tag_id: tags,
-        id: '0',
+        id: this.projectId ? this.projectId : '0',
         title: this.overViewForm.value.title,
         category_id: this.overViewForm.value.category_id,
         status: '1',
@@ -275,10 +277,7 @@ export class UserCreateSolutionComponent implements OnInit {
       this.apiService.addUpdateService(token, obj).subscribe((res: any) => {
         if (res.status) {
           this.toastr.success(res.message);
-          // this.submitted = false;
-          // this.imageLoaded = false;
           document.getElementById("next-step").click();
-          // this.jobPostForm.reset();
         } else if (res.message) {
           this.toastr.error(res.message);
         } else {

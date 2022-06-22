@@ -49,7 +49,7 @@ export class UserService {
   }
 
   storeUserData(data: any) {
-    localStorage.setItem('userClick', data);
+    localStorage.setItem('userClick', data.status);
     this.userSubject.next(data);
   }
 
