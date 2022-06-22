@@ -15,9 +15,11 @@ import { WebcamModule } from 'ngx-webcam';
 import { SocialLoginModule } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { AuthGuardService } from './service/auth-guard.service';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,11 @@ import { AuthGuardService } from './service/auth-guard.service';
     IncludeModule,
     AngularEditorModule,
     WebcamModule,
-    SocialLoginModule
+    SocialLoginModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

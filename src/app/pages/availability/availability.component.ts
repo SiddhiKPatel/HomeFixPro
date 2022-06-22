@@ -130,4 +130,8 @@ export class AvailabilityComponent implements OnInit {
       inputValue1.disabled = false;
     }
   }
+
+  calender(){
+    this.router.navigate(['/calender'])
+  }
 }
