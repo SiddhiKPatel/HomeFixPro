@@ -177,6 +177,7 @@ export class UserCreateSolutionComponent implements OnInit {
     })
   }
   bindFormData() {
+    this.projectId = this.editProjectdata.id
     this.overViewForm.patchValue({
       title: this.editProjectdata.title,
       category_id: this.editProjectdata.category_id,
@@ -186,16 +187,14 @@ export class UserCreateSolutionComponent implements OnInit {
       body: this.editProjectdata.body
     });
 
-    this.imgForm.patchValue({
-      file: this.editProjectdata.gallery,
-      fileSource: this.editProjectdata.image2
-    });
-
     this.faqForm.patchValue({
       question: this.editProjectdata.faq,
       answer: ''
     });
-    this.projectId = this.editProjectdata.id
+    this.imgForm.patchValue({
+      file: this.editProjectdata.gallery,
+      fileSource: this.editProjectdata.image2
+    });
   }
   images: any = [];
   galleryimages: any = [];
@@ -245,8 +244,7 @@ export class UserCreateSolutionComponent implements OnInit {
       return;
     } else {
       const token = localStorage.getItem("token");
-      let formData = new FormData();
-      let galleryimage: any = []
+      const galleryimage: any = []
       for (let k = 0; k < this.galleryimages.length; k++) {
         galleryimage.push(this.galleryimages[k])
       }
@@ -262,19 +260,18 @@ export class UserCreateSolutionComponent implements OnInit {
       for (let i = 0; i < this.overViewForm.value.selectedTags.length; i++) {
         tags.push(this.overViewForm.value.selectedTags[i].id);
       }
-      let obj = {
-        galleryimage: galleryimage,
-        question: question,
-        answer: answer,
-        tag_id: tags,
-        id: this.projectId ? this.projectId : '0',
-        title: this.overViewForm.value.title,
-        category_id: this.overViewForm.value.category_id,
-        status: '1',
-        body: this.descForm.value.body
-      }
+      let formData = new FormData;
+      formData.append('galleryimage[]', this.galleryimages[0]);
+      formData.append('question', question);
+      formData.append('answer', answer);
+      formData.append('tag_id', tags);
+      formData.append('id', this.projectId ? this.projectId : '0');
+      formData.append('title', this.overViewForm.value.title);
+      formData.append('category_id', this.overViewForm.value.category_id);
+      formData.append('status', '1');
+      formData.append('body', this.descForm.value.body);
 
-      this.apiService.addUpdateService(token, obj).subscribe((res: any) => {
+      this.apiService.addUpdateService(token, formData).subscribe((res: any) => {
         if (res.status) {
           this.toastr.success(res.message);
           document.getElementById("next-step").click();
