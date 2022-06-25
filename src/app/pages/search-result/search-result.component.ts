@@ -52,8 +52,8 @@ export class SearchResultComponent implements OnInit {
   image_path: any;
   getServices(category, zipcode) {
     let formData = new FormData();
-    formData.set('s', category);
-    formData.set('zipcode', zipcode);
+    formData.append('s', category);
+    formData.append('zipcode', zipcode);
 
     this.pageService.getServices(formData).subscribe((res: any) => {
       if (res.status) {

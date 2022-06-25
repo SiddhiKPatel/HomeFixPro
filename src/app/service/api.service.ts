@@ -31,11 +31,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/get-service
   getService(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/get-service", formData, {
+    return this.http.post(environment.API + "/api/get-service", data, {
       headers: httpHeaders
     });
   }
@@ -52,11 +52,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/add-job
   addJobDetails(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/add-job", formData, {
+    return this.http.post(environment.API + "/api/add-job", data, {
       headers: httpHeaders
     });
   }
@@ -80,11 +80,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/my-job
   myJob(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/my-job", formData, {
+    return this.http.post(environment.API + "/api/my-job", data, {
       headers: httpHeaders
     });
   }
@@ -105,11 +105,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/messages
   messages(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/messages", formData, {
+    return this.http.post(environment.API + "/api/messages", data, {
       headers: httpHeaders
     });
   }
@@ -118,11 +118,11 @@ export class ApiService {
   // connectionid = Connection ID
   // http://creativeonlinezone.com/project/homefix/api/fetch-messages
   fetchMessages(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/fetch-messages", formData, {
+    return this.http.post(environment.API + "/api/fetch-messages", data, {
       headers: httpHeaders
     });
   }
@@ -133,11 +133,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/prepend-message
   prependMessage(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/prepend-message", formData, {
+    return this.http.post(environment.API + "/api/prepend-message", data, {
       headers: httpHeaders
     });
   }
@@ -150,11 +150,11 @@ export class ApiService {
   // file_name = Upload video/image/another file"
   // http://creativeonlinezone.com/project/homefix/api/post-message
   postMessage(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/post-message", formData, {
+    return this.http.post(environment.API + "/api/post-message", data, {
       headers: httpHeaders
     });
   }
@@ -170,11 +170,11 @@ export class ApiService {
   // parent_id= Comment ID for reply - Optional
   // http://creativeonlinezone.com/project/homefix/api/post-comment
   postComment(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/post-comment", formData, {
+    return this.http.post(environment.API + "/api/post-comment", data, {
       headers: httpHeaders
     });
   }
@@ -182,11 +182,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/my-proposal
   myProposal(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/my-proposal", formData, {
+    return this.http.post(environment.API + "/api/my-proposal", data, {
       headers: httpHeaders
     });
   }
@@ -194,11 +194,11 @@ export class ApiService {
 
   // http://creativeonlinezone.com/project/homefix/api/update-rating?job_id=1&rating=4.5&review=Good
   addReview(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/update-rating", formData, {
+    return this.http.post(environment.API + "/api/update-rating", data, {
       headers: httpHeaders
     });
   }

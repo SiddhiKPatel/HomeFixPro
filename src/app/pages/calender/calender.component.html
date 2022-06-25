@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
     <ng-template #weekViewHourSegmentTemplate let-segment="segment" vent let-locale="locale"
         let-segmentHeight="segmentHeight" let-isTimeLabel="isTimeLabel">
@@ -11,10 +12,9 @@
     </ng-template>
 </div>
 
-
 <mwl-calendar-week-view [viewDate]="viewDate" [events]="events" [hourSegmentTemplate]="weekViewHourSegmentTemplate"
     [weekStartsOn]="weekStartsOn">
 </mwl-calendar-week-view>
 <hr>
-<div>Selected Slots</div>
-<pre>{{ slots | json }}</pre>
+
+<app-footer></app-footer>

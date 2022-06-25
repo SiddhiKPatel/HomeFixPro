@@ -38,7 +38,7 @@ export class MyPostDetailsComponent implements OnInit {
   getjobDetails(id) {
     const token = localStorage.getItem("token");
     let formData = new FormData();
-    formData.set('id', id);
+    formData.append('id', id);
     this.pageService.myJobDetails(token, formData).subscribe((res: any) => {
       if (res.status && res.response_data) {
         this.responseData = res;
@@ -54,7 +54,7 @@ export class MyPostDetailsComponent implements OnInit {
 
   acceptMessage(jobproposal){
     let formData = new FormData();
-    formData.set('code', jobproposal.code);
+    formData.append('code', jobproposal.code);
     this.apiService.messages(this.token, formData).subscribe((res:any)=>{
       if(res){
         this.router.navigate(['/inbox']);
