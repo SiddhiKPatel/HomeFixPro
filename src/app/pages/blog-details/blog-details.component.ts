@@ -75,7 +75,7 @@ export class BlogDetailsComponent implements OnInit {
 
   getBlogDetails(slug) {
     let formData = new FormData();
-    formData.set('slug', this.slug);
+    formData.append('slug', this.slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
       if (res.status && res.response_data) {
         this.scrollTop();
@@ -110,11 +110,11 @@ export class BlogDetailsComponent implements OnInit {
     } else {
       this.token = localStorage.getItem("token");
       let formData = new FormData();
-      formData.set("user_id", this.profileData.id);
-      formData.set("blog_id", this.blogDetails.id);
-      formData.set("name", this.profileData.name);
-      formData.set("email", this.profileData.email);
-      formData.set("body", this.postCommentForm.value.comment_text);
+      formData.append("user_id", this.profileData.id);
+      formData.append("blog_id", this.blogDetails.id);
+      formData.append("name", this.profileData.name);
+      formData.append("email", this.profileData.email);
+      formData.append("body", this.postCommentForm.value.comment_text);
 
       this.apiService.postComment(this.token, formData).subscribe((res: any) => {
         if (res && res.status) {
@@ -130,7 +130,7 @@ export class BlogDetailsComponent implements OnInit {
 
   getBlogDetails2() {
     let formData = new FormData();
-    formData.set('slug', this.slug);
+    formData.append('slug', this.slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
       if (res.status && res.response_data) {
         this.responseData = res;
@@ -146,7 +146,7 @@ export class BlogDetailsComponent implements OnInit {
 
   getDetails(slug) {
     let formData = new FormData();
-    formData.set('slug', slug);
+    formData.append('slug', slug);
     this.pageService.getBlogDetails(formData).subscribe((res: any) => {
       if (res.status && res.response_data) {
         this.scrollTop();

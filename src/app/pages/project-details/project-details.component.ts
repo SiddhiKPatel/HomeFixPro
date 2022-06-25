@@ -114,7 +114,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   async getServiceDetails(slug) {
     let formData = new FormData();
-    formData.set('slug', this.slug);
+    formData.append('slug', this.slug);
     this.pageService.getServiceDetails(formData).subscribe((res: any) => {
       if (res.status && res.response_data) {
         this.serviceDetails = res.response_data;

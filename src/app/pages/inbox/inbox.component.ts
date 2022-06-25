@@ -89,8 +89,8 @@ export class InboxComponent implements OnInit {
     this.deliveryTime = user.delivery_times ? user.delivery_times : [];
 
     let formData = new FormData();
-    formData.set("fetch_id", user.id);
-    formData.set("connectionid", user.connection_id);
+    formData.append("fetch_id", user.id);
+    formData.append("connectionid", user.connection_id);
     this.apiService.fetchMessages(this.token, formData).subscribe((res: any) => {
       if (res) {
         this.fetchMessagesRes = res;
@@ -113,10 +113,10 @@ export class InboxComponent implements OnInit {
     this.scrollToBottom();
     if (this.messageText) {
       let formData = new FormData();
-      formData.set("receiver_id", this.oppositeUser.id);
-      formData.set("connection_id", this.oppositeUser.connection_id);
-      formData.set("message_type", '3');
-      formData.set("message", this.messageText);
+      formData.append("receiver_id", this.oppositeUser.id);
+      formData.append("connection_id", this.oppositeUser.connection_id);
+      formData.append("message_type", '3');
+      formData.append("message", this.messageText);
       //  formData.set("file_name", );
 
       this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
@@ -208,19 +208,19 @@ export class InboxComponent implements OnInit {
       return;
     } else {
       let formData = new FormData();
-      formData.set("receiver_id", this.oppositeUser.id);
-      formData.set("connection_id", this.oppositeUser.connection_id);
-      formData.set("message_type", '6');
+      formData.append("receiver_id", this.oppositeUser.id);
+      formData.append("connection_id", this.oppositeUser.connection_id);
+      formData.append("message_type", '6');
 
       // formData.set('job_slug', this.fetchMessagesRes.job.slug);
-      formData.set('service_id', this.proposalForm.value.service_id);
+      formData.append('service_id', this.proposalForm.value.service_id);
       // formData.set('id', '0');
-      formData.set('body', this.proposalForm.value.body);
-      formData.set('amount', this.proposalForm.value.cost);
-      formData.set('delivery_time_id', this.proposalForm.value.delivery_time_id);
+      formData.append('body', this.proposalForm.value.body);
+      formData.append('amount', this.proposalForm.value.cost);
+      formData.append('delivery_time_id', this.proposalForm.value.delivery_time_id);
 
       if (this.imageLoaded) {
-        formData.set('file', this.image);
+        formData.append('file', this.image);
       }
       // formData.set("message", this.messageText);
       //  formData.set("file_name", );
@@ -243,10 +243,10 @@ export class InboxComponent implements OnInit {
 
   acceptContract(contract_id) {
     let formData = new FormData();
-    formData.set("receiver_id", this.oppositeUser.id);
-    formData.set("connection_id", this.oppositeUser.connection_id);
-    formData.set("message_type", '7');
-    formData.set("contract_id", contract_id);
+    formData.append("receiver_id", this.oppositeUser.id);
+    formData.append("connection_id", this.oppositeUser.connection_id);
+    formData.append("message_type", '7');
+    formData.append("contract_id", contract_id);
     //  formData.set("file_name", );
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
@@ -262,10 +262,10 @@ export class InboxComponent implements OnInit {
 
   declineChat() {
     let formData = new FormData();
-    formData.set("receiver_id", this.oppositeUser.id);
-    formData.set("connection_id", this.oppositeUser.connection_id);
-    formData.set("message_type", '11');
-    formData.set("message", 'Decline the request');
+    formData.append("receiver_id", this.oppositeUser.id);
+    formData.append("connection_id", this.oppositeUser.connection_id);
+    formData.append("message_type", '11');
+    formData.append("message", 'Decline the request');
     //  formData.set("file_name", );
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
@@ -281,10 +281,10 @@ export class InboxComponent implements OnInit {
 
   acceptChat() {
     let formData = new FormData();
-    formData.set("receiver_id", this.oppositeUser.id);
-    formData.set("connection_id", this.oppositeUser.connection_id);
-    formData.set("message_type", '10');
-    formData.set("message", "Request accepted");
+    formData.append("receiver_id", this.oppositeUser.id);
+    formData.append("connection_id", this.oppositeUser.connection_id);
+    formData.append("message_type", '10');
+    formData.append("message", "Request accepted");
     //  formData.set("file_name", );
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
@@ -362,12 +362,12 @@ export class InboxComponent implements OnInit {
     this.scrollToBottom();
     if (this.imageMsg) {
       let formData = new FormData();
-      formData.set("receiver_id", this.oppositeUser.id);
-      formData.set("connection_id", this.oppositeUser.connection_id);
-      formData.set("message_type", '4');
-      formData.set("file_name", this.imageMsg);
-      formData.set("media_file", '1');
-      formData.set("message", this.imageMsg);
+      formData.append("receiver_id", this.oppositeUser.id);
+      formData.append("connection_id", this.oppositeUser.connection_id);
+      formData.append("message_type", '4');
+      formData.append("file_name", this.imageMsg);
+      formData.append("media_file", '1');
+      formData.append("message", this.imageMsg);
       //  formData.set("file_name", );
 
       this.apiService.postMessage(this.token, formData).subscribe((res: any) => {

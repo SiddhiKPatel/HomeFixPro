@@ -156,6 +156,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/camera/camera.module').then(m => m.CameraModule)
   },
   {
+    path: 'calender',
+    loadChildren: () => import('./pages/calender/calender.module').then(m => m.CalenderModule)
+  },
+  {
     path: '',
     redirectTo: '',
     pathMatch: 'full'

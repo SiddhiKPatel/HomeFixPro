@@ -34,7 +34,7 @@ export class ServiceSearchComponent implements OnInit {
   image_path: any;
   getServices(category) {
     let formData = new FormData();
-    formData.set('s', category);
+    formData.append('s', category);
 
     this.pageService.getServices(formData).subscribe((res: any) => {
       if (res.status) {

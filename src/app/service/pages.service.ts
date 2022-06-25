@@ -89,46 +89,46 @@ export class PagesService {
 
   // http://creativeonlinezone.com/project/homefix/api/get-blog-details
   getBlogDetails(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/get-blog-details', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/get-blog-details', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-services
   getServices(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/get-services', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/get-services', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-service-category-details
   getServiceCategoryDetails(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/get-service-category-details', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/get-service-category-details', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-service-category
   getServiceCategory(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/get-service-category', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/get-service-category', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-service-details
   getServiceDetails(data) {
-    const formData = new FormData();
-    formData.append('data', data);
-    return this.http.post(this.apiurl + '/api/get-service-details', formData);
+    // const formData = new FormData();
+    // formData.append('data', data);
+    return this.http.post(this.apiurl + '/api/get-service-details', data);
   }
 
   // http://creativeonlinezone.com/project/homefix/api/my-job-details
   myJobDetails(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/my-job-details", formData, {
+    return this.http.post(environment.API + "/api/my-job-details", data, {
       headers: httpHeaders
     });
   }
@@ -146,11 +146,11 @@ export class PagesService {
 
   // http://creativeonlinezone.com/project/homefix/api/add-proposal
   addProposalPage(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/add-proposal", formData, {
+    return this.http.post(environment.API + "/api/add-proposal", data, {
       headers: httpHeaders
     });
   }
@@ -175,11 +175,11 @@ export class PagesService {
 
   // http://creativeonlinezone.com/project/homefix/api/create-job-request
   createJobRequest(token, data) {
-    const formData = new FormData();
-    formData.append('data', data);
+    // const formData = new FormData();
+    // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/create-job-request", formData, {
+    return this.http.post(environment.API + "/api/create-job-request", data, {
       headers: httpHeaders
     });
   }

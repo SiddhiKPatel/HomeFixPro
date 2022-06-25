@@ -1361,10 +1361,10 @@ export class ContractComponent implements OnInit {
 
   submitWithdraw() {
     let formData = new FormData();
-    formData.set("receiver_id", this.to_user_id);
-    formData.set("connection_id", this.messageconnection);
-    formData.set("message_type", '8');
-    formData.set("message", 'Project withdraw');
+    formData.append("receiver_id", this.to_user_id);
+    formData.append("connection_id", this.messageconnection);
+    formData.append("message_type", '8');
+    formData.append("message", 'Project withdraw');
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
       if (res && res.status == 200) {
@@ -1384,10 +1384,10 @@ export class ContractComponent implements OnInit {
       return;
     } else {
       let formData = new FormData();
-      formData.set("receiver_id", this.to_user_id);
-      formData.set("connection_id", this.messageconnection);
-      formData.set("message_type", '3');
-      formData.set("message", this.submitForm.value.body);
+      formData.append("receiver_id", this.to_user_id);
+      formData.append("connection_id", this.messageconnection);
+      formData.append("message_type", '3');
+      formData.append("message", this.submitForm.value.body);
 
       this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
         if (res && res.status == 200) {
@@ -1409,9 +1409,9 @@ export class ContractComponent implements OnInit {
       return;
     } else {
       let formData = new FormData();
-      formData.set("job_id", this.jobDetails.id);
-      formData.set("rating", this.selectedValue.toString());
-      formData.set("review", this.ratingForm.value.body);
+      formData.append("job_id", this.jobDetails.id);
+      formData.append("rating", this.selectedValue.toString());
+      formData.append("review", this.ratingForm.value.body);
       this.apiService.addReview(this.token, formData).subscribe((res: any) => {
         if (res.status) {
           this.toastr.success(res.message ? res.message : 'Successfully submitted the rating');
@@ -1429,10 +1429,10 @@ export class ContractComponent implements OnInit {
 
   completed() {
     let formData = new FormData();
-    formData.set("receiver_id", this.to_user_id);
-    formData.set("connection_id", this.messageconnection);
-    formData.set("message_type", '9');
-    formData.set("message", 'Project completed');
+    formData.append("receiver_id", this.to_user_id);
+    formData.append("connection_id", this.messageconnection);
+    formData.append("message_type", '9');
+    formData.append("message", 'Project completed');
 
     this.apiService.postMessage(this.token, formData).subscribe((res: any) => {
       if (res && res.status == 200) {

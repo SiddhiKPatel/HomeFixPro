@@ -39,7 +39,7 @@ export class ServiceDetailsComponent implements OnInit {
   serviceCatDetails: any;
   getCategoryDetails(slug) {
     let formData = new FormData();
-    formData.set("slug", slug);
+    formData.append("slug", slug);
     this.pageService.getServiceCategoryDetails(formData).subscribe((res: any) => {
       if (res.status) {
         // this.explorePageData = res;
