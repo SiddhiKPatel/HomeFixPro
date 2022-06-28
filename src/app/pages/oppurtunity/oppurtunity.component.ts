@@ -14,6 +14,7 @@ export class OppurtunityComponent implements OnInit {
   opportunityList: any = [];
   projectSelect: any = 'active';
   sUsername: any;
+  activeJobFlag = false
   constructor(private router: Router,
     private toastr: ToastrService,
     private apiService: ApiService,
@@ -60,6 +61,7 @@ export class OppurtunityComponent implements OnInit {
     }
     this.apiService.getAllJobs(token, obj).subscribe((res: any) => {
       if (res.status) {
+        this.activeJobFlag = true;
         this.jobData = res;
         this.opportunityList = res.response_data.data ? res.response_data.data : [];
         this.spinner.hide();
@@ -77,8 +79,9 @@ export class OppurtunityComponent implements OnInit {
   getMyJobs() {
     this.spinner.show();
     const token = localStorage.getItem("token");
-    this.apiService.myJob(token, {}).subscribe((res: any) => {
+    this.apiService.myProposal(token, {}).subscribe((res: any) => {
       if (res.status) {
+        this.activeJobFlag = false
         this.jobData = res;
         this.opportunityList = res.response_data.data ? res.response_data.data : [];
       } else if (res.message) {
