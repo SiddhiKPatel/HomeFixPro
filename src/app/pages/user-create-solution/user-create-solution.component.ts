@@ -186,14 +186,13 @@ export class UserCreateSolutionComponent implements OnInit {
     this.descForm.patchValue({
       body: this.editProjectdata.body
     });
-
-    this.faqForm.patchValue({
-      question: this.editProjectdata.faq,
-      answer: ''
+    this.editProjectdata.faq.forEach(element => {
+      this.question.push(element.question)
+      this.answer.push(element.answer)
     });
+
     this.imgForm.patchValue({
-      file: this.editProjectdata.gallery,
-      fileSource: this.editProjectdata.image2
+      fileSource: this.editProjectdata.gallery
     });
   }
   images: any = [];
@@ -262,8 +261,8 @@ export class UserCreateSolutionComponent implements OnInit {
       }
       let formData = new FormData;
       formData.append('galleryimage[]', this.galleryimages[0]);
-      formData.append('question', question);
-      formData.append('answer', answer);
+      formData.append('question[]', question);
+      formData.append('answer[]', answer);
       formData.append('tag_id', tags);
       formData.append('id', this.projectId ? this.projectId : '0');
       formData.append('title', this.overViewForm.value.title);

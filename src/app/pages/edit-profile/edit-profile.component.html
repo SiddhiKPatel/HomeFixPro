@@ -107,8 +107,8 @@
                                                     [ngClass]="{ 'is-invalid': submitted && f.zip_code.errors }"
                                                     id="exampleInputEmail1" aria-describedby="emailHelp">
                                                 <div *ngIf="submitted && f.zip_code.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.zip_code.errors.required">Zip code is required</div>
-                                                    <div *ngIf="f.zip_code.errors.pattern">6 digit Zip code is required
+                                                    <div *ngIf="f.zip_code.errors.required">ZIP code is required</div>
+                                                    <div *ngIf="f.zip_code.errors.pattern">6 digit ZIP Code is required
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +175,7 @@
                                     <!-- <span class="badge rounded-pill bg-light fs-6 text-dark">@toryw42 <i class="bi bi-x"></i></span> -->
                                     <input type="text" class="putbtn" formControlName="instagram_url"
                                         placeholder="Put URL"
-                                        [ngClass]="{ 'is-invalid': submitted && f1.facebook_url.errors }"
+                                        [ngClass]="{ 'is-invalid': submitted && f1.instagram_url.errors }"
                                         id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div *ngIf="submitted && f1.instagram_url.errors" class="invalid-feedback">
                                         <div *ngIf="f1.instagram_url.errors.pattern">URL format is wrong
@@ -192,7 +192,7 @@
                                     style="background-color: javascript:void(0);0A3FF;">Link </span>  -->
                                     <input type="text" class="putbtn" formControlName="twitter_url"
                                         placeholder="Put URL"
-                                        [ngClass]="{ 'is-invalid': submitted && f1.facebook_url.errors }"
+                                        [ngClass]="{ 'is-invalid': submitted && f1.twitter_url.errors }"
                                         id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div *ngIf="submitted && f1.twitter_url.errors" class="invalid-feedback">
                                         <div *ngIf="f1.twitter_url.errors.pattern">URL format is wrong</div>
@@ -209,7 +209,7 @@
                                 <div class="col-md-6 text-end">
                                     <input type="text" class="putbtn" formControlName="linkedin_url"
                                         placeholder="Put URL"
-                                        [ngClass]="{ 'is-invalid': submitted && f1.facebook_url.errors }"
+                                        [ngClass]="{ 'is-invalid': submitted && f1.linkedin_url.errors }"
                                         id="exampleInputEmail1" aria-describedby="emailHelp">
                                     <div *ngIf="submitted && f1.linkedin_url.errors" class="invalid-feedback">
                                         <div *ngIf="f1.linkedin_url.errors.pattern">URL format is wrong</div>

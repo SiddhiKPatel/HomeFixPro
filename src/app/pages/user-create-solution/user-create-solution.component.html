@@ -193,17 +193,6 @@
                                         <div class="text-start">
                                             Add Question and Answer for your Buyers.
                                             <div class="">
-                                                <!-- <button class="btn btn-link text-decoration-none"
-                                                    style="color: #00A3FF;">
-                                                    +Add FAQ
-                                                </button> -->
-                                                <!-- Button trigger modal -->
-                                                <!-- <button type="button" class="btn " style="color: #00A3FF;"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                                    +Add FAQ
-                                                </button> -->
-
-
                                             </div>
                                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                                 <div class="accordion-item" *ngFor="let q of question;let ii=index;">
@@ -338,7 +327,8 @@
                             class="next-step btn btn-sm btn-primary mx-auto d-block float-md-start" value="Publish" />
                         <button type="button" [disabled]="imgForm.invalid" (click)="addService()"
                             class="btn btn-sm btn-primary mx-auto d-block float-md-start">Publish</button>
-                        <input type="button" name="previous-step" style="margin-left: 6% !important; margin-top: 1px !important;"
+                        <input type="button" name="previous-step"
+                            style="margin-left: 6% !important; margin-top: 1px !important;"
                             class="previous-step btn btn-sm btn-primary mx-auto d-block  mt-3" value="Previous Step" />
                     </fieldset>
                     <fieldset>

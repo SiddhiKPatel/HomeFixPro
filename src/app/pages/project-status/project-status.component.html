@@ -45,7 +45,7 @@
                 <div class="tab-content" id="pills-contract">
                     <div class="tab-pane fade show active" id="contract" role="tabpanel"
                         aria-labelledby="pills-contract-tab">
-                        <div class="table-responsive" *ngIf="roleId == 2">
+                        <div class="table-responsive" *ngIf="roleId == 2" >
                             <table border="1">
                                 <tr>
                                     <td>Buyer</td>
@@ -53,10 +53,10 @@
                                     <td>&nbsp;</td>
                                 </tr>
 
-                                <tr *ngFor="let p of proposalList" [hidden]="p.job.status !=2">
+                                <tr *ngFor="let p of proposalList" [hidden]="p.job.status != 2">
                                     <td class="all">
                                         <!-- <span> -->
-                                        <img src="responseData && responseData.image_path ? responseData.image_path + p.user.avatar : ''"
+                                        <img src="p.user.avatar_url"
                                             onerror="this.src='assets/images/home/proj_client_img.png';" alt=" ">
                                         <!-- </span> -->
                                         {{p.user.name}}
@@ -65,18 +65,6 @@
                                     <td class="text-right"><a *ngIf="p.job" [routerLink]="['/contract', p.job.slug]"
                                             class="view">View Details</a></td>
                                 </tr>
-                                <!-- <tr>
-                                    <td class="all all20"><span><img src="assets/images/Ellipse12.png"
-                                                alt=" "></span>Piku Sorkar</td>
-                                    <td class="allone">Plumbing Services </td>
-                                    <td class="text-right"><a href="#" class="view">View Details</a></td>
-                                </tr>
-                                <tr>
-                                    <td class="all all20"><span><img src="assets/images/Ellipse12.png"
-                                                alt=" "></span>Rajib Nath</td>
-                                    <td class="allone">Plumbing Services </td>
-                                    <td class="text-right"><a href="#" class="view view20">End </a></td>
-                                </tr> -->
                             </table>
                         </div>
 
@@ -125,18 +113,6 @@
                                     <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td class="alltwo"><span><img src="assets/images/tabimg.png"
-                                                alt=" "></span>Professinal Cleaning Services</td>
-                                    <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="alltwo"><span><img src="assets/images/tabimg1.png" alt=" "></span>House
-                                        Cleaning Services </td>
-                                    <td class="text-right"><a href="#"><i class="bi bi-three-dots-vertical"></i></a>
-                                    </td>
-                                </tr> -->
                             </table>
 
                         </div>
