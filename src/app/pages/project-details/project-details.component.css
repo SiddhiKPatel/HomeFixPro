@@ -1,3 +1,19 @@
-.thubm img{
+.thubm img {
     border-radius: 50px;
 }
+
+.cont {
+    width: 93%;
+    max-width: 350px;
+    text-align: center;
+    margin: 4% auto;
+    padding: 30px 0;
+    color: #EEE;
+    overflow: hidden;
+}
+
+div.stars {
+    width: 270px;
+    display: inline-block;
+}
+

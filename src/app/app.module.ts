@@ -17,6 +17,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 import { AuthGuardService } from './service/auth-guard.service';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +42,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgxStarRatingModule
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

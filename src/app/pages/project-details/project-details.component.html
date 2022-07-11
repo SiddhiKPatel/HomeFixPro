@@ -299,6 +299,16 @@
                                         <span class="two "> </span> <span> 0%</span>
                                     </li>
                                 </ul>
+                                <form [formGroup]="form">
+                                    <div class="cont">
+                                        <div class="stars">
+                                            <ngx-star-rating formControlName="rating" [id]="'rating'">
+                                            </ngx-star-rating>
+                                            <textarea formControlName="review"></textarea><br>
+                                            <button (click)="saveRate()" class="btn btn-sm btn-primary">submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                             <div class="comment-item">
                                 <div class="comment">
@@ -422,7 +432,7 @@
                             <input type="date" placeholder="Select date" formControlName="contract_estimate_end"
                                 class="form-control form-select-sm  rounded-0" id="exampleInputamount"
                                 [ngClass]="{ 'is-invalid': submitted && f.contract_estimate_end.errors }"
-                                aria-describedby="emailHelp" (change)="tDate()" />
+                                aria-describedby="emailHelp" (blur)="tDate()" />
                             <div *ngIf="submitted && f.contract_estimate_end.errors" class="invalid-feedback">
                                 <div *ngIf="f.contract_estimate_end.errors.required">Scheduling is required</div>
                             </div>

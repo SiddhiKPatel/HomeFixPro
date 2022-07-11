@@ -6,6 +6,7 @@ import { ProjectDetailsComponent } from './project-details.component';
 import { IncludeModule } from 'src/app/includes/include.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [ProjectDetailsComponent],
@@ -14,7 +15,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
     ReactiveFormsModule,
     ProjectDetailsRoutingModule,
     IncludeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxStarRatingModule
   ]
 })
 export class ProjectDetailsModule { }

@@ -15,6 +15,7 @@ export class OppurtunityComponent implements OnInit {
   projectSelect: any = 'active';
   sUsername: any;
   activeJobFlag = false
+  userId!: string;
   constructor(private router: Router,
     private toastr: ToastrService,
     private apiService: ApiService,
@@ -26,6 +27,7 @@ export class OppurtunityComponent implements OnInit {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
+    this.userId = localStorage.getItem("userId");
     this.spinner.show();
     this.activatedRoute.queryParams.subscribe(params => {
       if (params && params['p'] && (params['p'] == 'active' || params['p'] == 'sent')) {
@@ -57,7 +59,8 @@ export class OppurtunityComponent implements OnInit {
       param: '',
       category_id: '',
       delivery_time_id: '',
-      filter_string: this.sUsername ? this.sUsername : ''
+      filter_string: this.sUsername ? this.sUsername : '',
+      user_id: this.userId
     }
     this.apiService.getAllJobs(token, obj).subscribe((res: any) => {
       if (res.status) {

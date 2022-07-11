@@ -12,6 +12,7 @@ export class OppurtunityDetailsComponent implements OnInit {
   slug: any;
   jobDetails: any;
   image_path: any;
+  userId: string;
 
   constructor(private _location: Location, 
     private route: ActivatedRoute, 
@@ -22,6 +23,7 @@ export class OppurtunityDetailsComponent implements OnInit {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
+    this.userId = localStorage.getItem("userId");
     this.slug = this.route.snapshot.paramMap.get('slug');
     if (this.slug) {
       this.getjobDetails(this.slug);
@@ -32,6 +34,7 @@ export class OppurtunityDetailsComponent implements OnInit {
     const token = localStorage.getItem("token");
     let formData = new FormData();
     formData.append('slug', slug);
+    formData.append('user_id', this.userId);
     this.pageService.getJobDetails(token, formData).subscribe((res: any) => {
       if(res.status && res.response_data){
         this.jobDetails = res.response_data;

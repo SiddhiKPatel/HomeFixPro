@@ -16,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   countries: any = [];
   serviceListData: any = [];
   roleId: any;
+  userId: string;
 
   constructor(private userService: UserService,
     private router: Router,
@@ -27,7 +28,7 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.roleId = localStorage.getItem("roleId");
-
+    this.userId = localStorage.getItem("userId");
     this.getProfile().then(() => {
       this.getServiceList();
     })
@@ -79,5 +80,4 @@ export class UserProfileComponent implements OnInit {
   getEstimate() {
     this.router.navigate(['/estimates']);
   }
-
 }

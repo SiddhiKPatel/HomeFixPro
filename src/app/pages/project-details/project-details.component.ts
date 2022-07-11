@@ -19,6 +19,7 @@ export class ProjectDetailsComponent implements OnInit {
   searchForm: FormGroup;
   submitted = false;
   token: any;
+  form: any;
 
   constructor(private _location: Location,
     private route: ActivatedRoute,
@@ -46,6 +47,11 @@ export class ProjectDetailsComponent implements OnInit {
     this.searchForm = this.formBuilder.group({
     });
     this.token = localStorage.getItem("token");
+
+    this.form = this.formBuilder.group({
+      rating: ['', Validators.required],
+      review:['']
+    });
   }
 
   get f() { return this.contactForm.controls; }
@@ -135,6 +141,10 @@ export class ProjectDetailsComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  saveRate(){
+    this.form.value
   }
 
 }

@@ -6,7 +6,8 @@
             <div class="col-lg-12 mt-30" *ngIf="jobDetails">
                 <div class="left-box">
                     <h2 class="fs-2">{{jobDetails.title}}</h2>
-                    <p>3 hours ago. <br />
+                    <p>{{jobDetails.created_at | date:
+                        'MMM d, h:mm:ss a'}} <br />
                         <!-- <a href="javascript:void(0);" style="color: #00A3FF; font-size: 14px;" class="text-decoration-none">1 pro responded</a> -->
                         <a href="javascript:void(0);" style="color: #00A3FF; font-size: 14px;"
                             class="text-decoration-none">{{jobDetails.category.name}}</a>
