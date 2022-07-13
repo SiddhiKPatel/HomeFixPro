@@ -106,20 +106,17 @@
                                     <p class="text2">
                                         {{job.job.created_at | date: 'MMM d, h:mm:ss a'}}
                                     </p>
-                                </div>
-                                <!-- <div class="col-md-4 pt-2">
-                                    <div class="text-md-end">
-                                        <button
-                                            class="btn  btn-sm btn-link text-secondary text-decoration-none me-md-2">
-                                            <a [routerLink]="['/opportunity-details', job.slug]"
-                                                rel="noopener noreferrer">View details</a>
-                                        </button>
-                                        <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
-                                            type="button"><a [routerLink]="['/send-proposals', job.slug]"
-                                                class="text-white" rel="noopener noreferrer">send
-                                                proposals</a></button>
+                                    <div *ngIf="job.status == '2'">
+                                        <select [(ngModel)]="jobStatus">
+                                            <option *ngFor="let item of jobData.job_status_array" [ngValue]="item">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <br>
+                                        <button class="btn btn-primary" type="button" (click)="updateStatus(job)">Change
+                                            Status</button>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                         <div class="card-body">

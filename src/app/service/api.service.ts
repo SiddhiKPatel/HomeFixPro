@@ -95,7 +95,7 @@ export class ApiService {
     // formData.append('data', data);
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/get-job",data, {
+    return this.http.post(environment.API + "/api/get-job", data, {
       headers: httpHeaders
     });
   }
@@ -206,6 +206,14 @@ export class ApiService {
   // http://creativeonlinezone.com/project/homefix/api/get-state?country_id=233
   getStates(id) {
     return this.http.get(environment.API + "/api/get-state?country_id=" + id);
+  }
+
+  updateStatus(token, data) {
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this.http.post(environment.API + "/api/update-rating", data, {
+      headers: httpHeaders
+    });
   }
 
 }

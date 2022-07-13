@@ -50,7 +50,7 @@ export class ProjectDetailsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       rating: ['', Validators.required],
-      review:['']
+      review: ['']
     });
   }
 
@@ -143,8 +143,14 @@ export class ProjectDetailsComponent implements OnInit {
     return true;
   }
 
-  saveRate(){
-    this.form.value
+  saveRate() {
+    debugger
+    let obj = {
+      service_id: this.serviceDetails.id,
+      rating: this.form.value.rating,
+      review: this.form.value.review
+    }
+    
   }
 
 }

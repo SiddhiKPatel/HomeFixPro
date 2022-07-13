@@ -72,13 +72,18 @@
                                 </div>
                                 <div class="col-md-4 pt-2">
                                     <div class="text-md-end">
+                                        <select *ngIf="jobproposal.status !== '2'" [(ngModel)]="vendorValue"
+                                            placeholder="Select Vendor">
+                                            <option *ngFor="let item of UserData" [ngValue]="item">{{item.name}}
+                                            </option>
+                                        </select>
+                                        &nbsp;
                                         <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
                                             type="button" (click)="acceptMessage(jobproposal)">Message
+                                        </button>&nbsp;
+                                        <button *ngIf="jobproposal.status !== '2'" class="btn btn-sm text-white" style="background-color: #00A3FF;"
+                                            type="button" (click)="hire()">Hire
                                         </button>
-                                        <!-- <button class="btn btn-sm text-white" style="background-color: #00A3FF;"
-                                            type="button"><a href="submit-proposal.html" class="text-white" target="_blank"
-                                                rel="noopener noreferrer">send
-                                                proposals</a></button> -->
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +94,8 @@
                                 <div class="article">
                                     <p [innerHTML]="jobproposal.body"></p>
                                 </div>
-                                <p style="color: #00a3ff;" *ngIf="responseData && responseData.proposal_status_array">Status: 
+                                <p style="color: #00a3ff;" *ngIf="responseData && responseData.proposal_status_array">
+                                    Status:
                                     <span *ngFor="let pp of responseData.proposal_status_array; let i=index">
                                         <span *ngIf="jobproposal.status == i">{{pp}}</span>
                                     </span>

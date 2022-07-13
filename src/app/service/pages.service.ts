@@ -2,15 +2,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-                'Access-Control-Allow-Headers': 'Content-Type',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
 
-            })
-        };
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -26,12 +26,12 @@ export class PagesService {
   // http://creativeonlinezone.com/project/homefix/api/get-header
   getHeader() {
     let user_id = localStorage.getItem("userId");
-    if(user_id){
+    if (user_id) {
       const formData = new FormData();
       formData.append('user_id', user_id);
       return this.http.post(this.apiurl + '/api/get-header', formData);
-    }else{
-     return this.http.post(this.apiurl + '/api/get-header', JSON.stringify({}));
+    } else {
+      return this.http.post(this.apiurl + '/api/get-header', JSON.stringify({}));
     }
   }
 
@@ -184,6 +184,13 @@ export class PagesService {
     });
   }
 
-  
+  hirePro(token, data) {
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this.http.post(environment.API + "/api/my-proposal-hired", data, {
+      headers: httpHeaders
+    });
+  }
+
 
 }
