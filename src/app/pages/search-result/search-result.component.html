@@ -35,9 +35,11 @@
 
                         <ul class="checklist">
                             <li><a [routerLink]="['/search-result']"
-                                [queryParams]="{ keyword: 'all', zipcode: zipcode}"> <span>View All </span> <span class="two"></span> </a></li>
+                                    [queryParams]="{ keyword: 'all', zipcode: zipcode}"> <span>View All </span> <span
+                                        class="two"></span> </a></li>
                             <li><a *ngFor="let c of categoryList" [routerLink]="['/search-result']"
-                                [queryParams]="{ keyword: c.slug, zipcode: zipcode}"> <span>{{c.name}} </span> <span class="two"> </span> </a></li>
+                                    [queryParams]="{ keyword: c.slug, zipcode: zipcode}"> <span>{{c.name}} </span> <span
+                                        class="two"> </span> </a></li>
                             <!-- <li><a href="#0"> <span>Drywall </span> <span class="two"> </span> </a></li>
                             <li><a href="#0"> <span>General Carpentry </span> <span class="two"> 365 </span> </a></li>
                             <li><a href="#0"> <span>Framing </span> <span class="two"> 104 </span> </a></li>
@@ -122,9 +124,9 @@
                                         </a>
                                         <!-- ratting area -->
                                         <div class="proj_ratting">
-                                            <span class="proj_raing_per">4.1</span>
+                                            <span class="proj_raing_per">{{service.avg}}</span>
                                             <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
-                                            <span class="proj_reviews">( 11 reviews)</span>
+                                            <span class="proj_reviews">( {{service.user_rating?.length}} reviews)</span>
                                         </div>
                                     </div>
                                     <div class="proj_single_item_title">

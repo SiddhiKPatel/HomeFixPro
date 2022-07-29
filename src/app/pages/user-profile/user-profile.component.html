@@ -31,8 +31,9 @@
                             <div class="px-3 pt-3">
                                 <p><span class="profileName">{{profileData?.fname}} {{profileData?.lname}}</span><br />
                                     <span class="profileReview">
-                                        <strong>4.9</strong><img src="./assets/images/star.png" alt=""
-                                            srcset=""><span>(2 reviews)</span>
+                                        <strong>{{profileData.average_rating}}</strong><img
+                                            src="./assets/images/star.png" alt=""
+                                            srcset=""><span>({{profileData.ratings?.length}} reviews)</span>
 
                                     </span>
                                 </p>
@@ -180,9 +181,10 @@
                                                 </a>
 
                                                 <div class="proj_ratting">
-                                                    <span class="proj_raing_per">4.1</span>
+                                                    <span class="proj_raing_per">{{service.service_avg}}</span>
                                                     <span class="proj_ver_star"><i class="icofont-ui-rating"></i></span>
-                                                    <span class="proj_reviews">( 11 reviews)</span>
+                                                    <span class="proj_reviews">( {{service.user_rating?.length}}
+                                                        reviews)</span>
                                                 </div>
                                             </div>
 
@@ -267,16 +269,17 @@
                                     </p>
                                     <div class="row order-1">
                                         <div class="col-md-8 col-7">
-                                            <p><span class="fw-light text-dark" style="font-size: 18px;">2
+                                            <p><span class="fw-light text-dark"
+                                                    style="font-size: 18px;">{{userRating?.length}}
                                                     Reviews</span>
-                                                <span class="text-warning ms-3">
+                                                <!-- <span class="text-warning ms-3">
                                                     <img src="./assets/images/star.png">
                                                     <img src="./assets/images/star.png">
                                                     <img src="./assets/images/star.png">
                                                     <img src="./assets/images/star.png">
                                                     <img src="./assets/images/star.png">
-                                                    5
-                                                </span>
+                                                    {{averageRating}}
+                                                </span> -->
                                             </p>
                                         </div>
                                         <div class="col-md-4 col-5 pt-3">
@@ -332,7 +335,7 @@
                             </div>
                         </div>
                         <div>
-                            <div class="row py-3 pb-lg-4 border-bottom">
+                            <div class="row py-3 pb-lg-4 border-bottom" *ngFor="let item of userRating">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6 col-6">
@@ -345,14 +348,12 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <p style="line-height: 18px;"> <span style="font-size: 20px;"
-                                                            class="me-3">Linuxdeo1</span> 5 <img
-                                                            src="./assets/images/star.png" alt="" srcset="">
+                                                            class="me-3">{{item.given_user.name}}</span> {{item.rating}}
+                                                        <img src="./assets/images/star.png" alt="" srcset="">
                                                         <br />
-                                                        <span style="font-size: 12px;">New York</span>
+                                                        <span style="font-size: 12px;">{{item.given_user.city}}</span>
                                                         <br />
-                                                        <span style="font-size: 12px;">So good!!!!!! I'm
-                                                            very
-                                                            satisfied with this.</span>
+                                                        <span style="font-size: 12px;">{{item.review}}</span>
                                                     </p>
                                                 </div>
 
@@ -363,135 +364,6 @@
                                                 <img class="img-fluid" src="./assets/images/commentHouse.png" alt="">
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-12 ms-5 mt-3">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="text-lg-end">
-                                                        <img src="./assets/images/Ellipse12.png" alt="">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-10">
-                                                    <p style="line-height: 18px;"> <span style="font-size: 20px;"
-                                                            class="me-3">Musak
-                                                            Khan</span> <br />
-                                                        <span style="font-size: 12px;">Plumber</span>
-                                                        <br />
-                                                        <span style="font-size: 12px;">Thank You so much</span>
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row py-3 pb-lg-4 border-bottom">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-6 col-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="">
-                                                        <img src="./assets/images/commentimg.png" alt="">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <p style="line-height: 18px;"> <span style="font-size: 20px;"
-                                                            class="me-3">Linuxdeo1</span> 5 <img
-                                                            src="./assets/images/star.png" alt="" srcset="">
-                                                        <br />
-                                                        <span style="font-size: 12px;">New York</span>
-                                                        <br />
-                                                        <span style="font-size: 12px;">So good!!!!!! I'm
-                                                            very
-                                                            satisfied with this.</span>
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-6">
-                                            <div class="text-end">
-                                                <img class="img-fluid my-3 my-md-0 mx-md-3"
-                                                    src="./assets/images/commentHouse.png" alt="">
-                                                <img class="img-fluid" src="./assets/images/commentHouse.png" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row py-3 pb-lg-4 border-bottom">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-6 col-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="">
-                                                        <img src="./assets/images/commentimg.png" alt="">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <p style="line-height: 18px;"> <span style="font-size: 20px;"
-                                                            class="me-3">Linuxdeo1</span> 5 <img
-                                                            src="./assets/images/star.png" alt="" srcset="">
-                                                        <br />
-                                                        <span style="font-size: 12px;">New York</span>
-                                                        <br />
-                                                        <span style="font-size: 12px;">So good!!!!!! I'm
-                                                            very
-                                                            satisfied with this.</span>
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-6">
-                                            <div class="text-end">
-
-                                                <img class="img-fluid" src="./assets/images/commentHouse.png" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row py-3 pb-lg-4 border-bottom">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-6 col-6">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="">
-                                                        <img src="./assets/images/commentimg.png" alt="">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <p style="line-height: 18px;"> <span style="font-size: 20px;"
-                                                            class="me-3">Linuxdeo1</span> 5 <img
-                                                            src="./assets/images/star.png" alt="" srcset="">
-                                                        <br />
-                                                        <span style="font-size: 12px;">New York</span>
-                                                        <br />
-                                                        <span style="font-size: 12px;">So good!!!!!! I'm
-                                                            very
-                                                            satisfied with this.</span>
-                                                    </p>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-6">
-                                            <div class="text-end">
-
-                                                <img class="img-fluid" src="./assets/images/commentHouse.png" alt="">
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>

@@ -43,7 +43,8 @@
                     <div class="right pt2">
                         <p class="me-4"> <span class="profileName">{{ serviceDetails && serviceDetails.user &&
                                 serviceDetails.user.name ? serviceDetails.user.name : 'Admin'}}</span><br />
-                            <span class="profileReview"> <strong>4.9</strong> <i class="icofont-star p-1"></i><span>(2
+                            <span class="profileReview"> <strong>{{serviceDetails.service_avg}}</strong> <i
+                                    class="icofont-star p-1"></i><span>({{serviceDetails.user_rating?.length}}
                                     reviews)</span> </span>
                         </p>
                         <div class="bage" *ngIf="serviceDetails && serviceDetails.tag"> <span
@@ -66,7 +67,7 @@
                         <div class="col-md-12">
                             <div id="carouselExampleControls" class="carousel slide mt-3" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                                    <div class="carousel-item active" *ngFor="let item of userRating">
                                         <div class="card border-0">
                                             <div class="card-body"
                                                 style="border: 1px solid whitesmoke; border-radius: 20px;">
@@ -76,20 +77,21 @@
                                                                 src="./assets/images/profileCard.png" alt=""> </div>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <p style="font-size: 20px; color: #000;">Linuxdeo1 </p>
+                                                        <p style="font-size: 20px; color: #000;">
+                                                            {{item.given_user.name}} </p>
                                                         <p style="font-size: 12px; color: #000;"><i
-                                                                class="icofont-location-pin pe-1"></i> New York </p>
-                                                        <p style="font-size: 12px; color: #000;">So good!!!!!!
-                                                            I'm very satisfied with this.</p>
+                                                                class="icofont-location-pin pe-1"></i>
+                                                            {{item.given_user.city}} </p>
+                                                        <p style="font-size: 12px; color: #000;">{{item.review}}</p>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <p>5 <i class="icofont-star star"></i> </p>
+                                                        <p>{{item.rating}} <i class="icofont-star star"></i> </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="carousel-item">
+                                    <!-- <div class="carousel-item">
                                         <div class="card border-0">
                                             <div class="card-body"
                                                 style="border: 1px solid whitesmoke; border-radius: 20px;">
@@ -134,7 +136,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <button class="carousel-control-prev" type="button"
                                     data-bs-target="#carouselExampleControls" data-bs-slide="prev"> <span
@@ -310,24 +312,28 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="comment-item">
+                            <div class="comment-item" *ngFor="let item of userRating">
                                 <div class="comment">
                                     <div class="left">
                                         <div class="thumb"> <img src="assets/images/innerpage/review-1.png" alt="">
                                         </div>
                                         <div class="content">
-                                            <h4>Delaw12<span class="ps-1">5 <i class="icofont-star"></i> </span> </h4>
-                                            <div class="loc"> <i class="icofont-location-pin p1-2"></i> New York </div>
-                                            <p class="pt-1"> It was an excellent experience to work with this worker.
-                                                Thank you so much for the final work and patience. </p>
+                                            <h4>{{item.given_user.name}}<span class="ps-1">{{item.rating}} <i
+                                                        class="icofont-star"></i>
+                                                </span> </h4>
+                                            <div class="loc"> <i
+                                                    class="icofont-location-pin p1-2"></i>{{item.given_user.city}}
+                                            </div>
+                                            <p class="pt-1">{{item.review}}</p>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="right d-xl-block d-none ">
                                         <div class="thumb"> <img src="assets/images/innerpage/thumb-1.png" alt="">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="replay pt-3">
+                                <!-- <div class="replay pt-3">
                                     <div class="comment">
                                         <div class="left">
                                             <div class="thumb"> <img src="assets/images/innerpage/review-3.png" alt="">
@@ -340,10 +346,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="comment-item">
-                                <div class="comment">
+                            <!-- <div class="comment-item">
+                                <div class="comfment">
                                     <div class="left">
                                         <div class="thumb"> <img src="assets/images/innerpage/review-2.png" alt="">
                                         </div>
@@ -380,7 +386,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

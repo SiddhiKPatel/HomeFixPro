@@ -87,7 +87,6 @@ export class OppurtunityComponent implements OnInit {
       if (res.status) {
         this.activeJobFlag = false
         this.jobData = res;
-        debugger
         this.opportunityList = res.response_data.data ? res.response_data.data : [];
       } else if (res.message) {
         this.toastr.error(res.message);
@@ -102,19 +101,14 @@ export class OppurtunityComponent implements OnInit {
   }
 
   updateStatus(param: any) {
-    debugger
     const token = localStorage.getItem("token");
     let obj = {
-      jobstatus: this.jobStatus,
+      status: this.jobStatus,
       job_id: param.job_id,
       user_id: param.user_id
     }
     this.apiService.updateStatus(token, obj).subscribe((res: any) => {
-      if (res.success) {
-        this.toastr.success(res.message);
-      } else {
-        this.toastr.error(res.message);
-      }
+      this.toastr.success(res.message);
     }, err => {
       console.log(err);
       this.toastr.error(err.error.message);

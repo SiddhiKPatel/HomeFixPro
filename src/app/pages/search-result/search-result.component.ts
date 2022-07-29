@@ -11,8 +11,8 @@ export class SearchResultComponent implements OnInit {
   category: any;
   categoryList; any = [];
   zipcode: any = '';
-  constructor(private route: ActivatedRoute, 
-    private router : Router,
+  constructor(private route: ActivatedRoute,
+    private router: Router,
     public pageService: PagesService) { }
 
   ngOnInit(): void {
@@ -24,23 +24,23 @@ export class SearchResultComponent implements OnInit {
         this.category = params.keyword;
         this.zipcode = params.zipcode ? params.zipcode : '';
         if (this.category) {
-          if(this.category == 'all'){
+          if (this.category == 'all') {
             this.getServices('', '');
-          }else{
+          } else {
             this.getServices(this.category, this.zipcode);
           }
         }
       });
 
-      this.getServiceCategory();
+    this.getServiceCategory();
   }
 
-  getServiceCategory(){
-    this.pageService.getServiceCategory({}).subscribe((res: any)=>{
-      if(res && res.response_data){
+  getServiceCategory() {
+    this.pageService.getServiceCategory({}).subscribe((res: any) => {
+      if (res && res.response_data) {
         this.categoryList = res.response_data.data;
       }
-    }, err=>{
+    }, err => {
       console.log(err);
     });
   }
@@ -58,6 +58,13 @@ export class SearchResultComponent implements OnInit {
     this.pageService.getServices(formData).subscribe((res: any) => {
       if (res.status) {
         this.serviceList = res.response_data;
+        this.serviceList.data.forEach(element => {
+          let avg = 0.0;
+          element.user_rating?.forEach(item => {
+            avg = +  parseFloat(item.rating)
+          });
+          element.avg = avg;
+        });
         this.image_path = res.image_path;
       }
     }, err => {

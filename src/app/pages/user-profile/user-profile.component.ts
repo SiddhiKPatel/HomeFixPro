@@ -17,6 +17,8 @@ export class UserProfileComponent implements OnInit {
   serviceListData: any = [];
   roleId: any;
   userId: string;
+  userRating: any;
+  averageRating: any;
 
   constructor(private userService: UserService,
     private router: Router,
@@ -31,6 +33,7 @@ export class UserProfileComponent implements OnInit {
     this.userId = localStorage.getItem("userId");
     this.getProfile().then(() => {
       this.getServiceList();
+      this.getRating();
     })
   }
 
@@ -68,7 +71,17 @@ export class UserProfileComponent implements OnInit {
       console.log(err);
     })
   }
-
+  getRating() {
+    const token = localStorage.getItem("token");
+    let obj = { user_id: this.userId }
+    this.apiService.getRating(token, obj).subscribe((res: any) => {
+      this.averageRating = res.response_data.average_rating
+      this.userRating = res.response_data.user_rating;
+      console.log(this.userRating)
+    }, err => {
+      console.log(err);
+    })
+  }
   message() {
     this.router.navigate(['/inbox']);
   }

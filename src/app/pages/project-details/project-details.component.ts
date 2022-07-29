@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/service/api.service';
 import { PagesService } from 'src/app/service/pages.service';
 declare var $;
 
@@ -20,18 +21,22 @@ export class ProjectDetailsComponent implements OnInit {
   submitted = false;
   token: any;
   form: any;
+  userRating: any;
+  userId: string;
 
   constructor(private _location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private pageService: PagesService) { }
+    private pageService: PagesService,
+    private api: ApiService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("token") == null) {
       this.router.navigate(['/login']);
     }
+    this.userId = localStorage.getItem("userId");
     this.slug = this.route.snapshot.paramMap.get('slug');
     if (this.slug) {
       this.getServiceDetails(this.slug).then(() => { this.sliderLoad(); })
@@ -125,6 +130,7 @@ export class ProjectDetailsComponent implements OnInit {
       if (res.status && res.response_data) {
         this.serviceDetails = res.response_data;
         this.image_path = res.image_path ? res.image_path : '';
+        this.getRating();
       }
     }, err => {
       console.log(err);
@@ -144,13 +150,29 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   saveRate() {
-    debugger
     let obj = {
-      service_id: this.serviceDetails.id,
+      project_id: this.serviceDetails.id,
+      user_id: this.serviceDetails.user_id,
       rating: this.form.value.rating,
-      review: this.form.value.review
+      review: this.form.value.review,
+      given_user_id: this.userId
     }
-    
+    this.api.addReview(this.token, obj).subscribe((res: any) => {
+      if (res.status) {
+        this.toastr.success(res.message ? res.message : '');
+        this.form.reset();
+      }
+    }, err => {
+      console.log(err);
+    })
   }
-
+  getRating() {
+    let obj = { user_id: this.serviceDetails.user_id }
+    this.api.getRating(this.token, obj).subscribe((res: any) => {
+      this.userRating = res.response_data.user_rating;
+      console.log(this.userRating)
+    }, err => {
+      console.log(err);
+    })
+  }
 }

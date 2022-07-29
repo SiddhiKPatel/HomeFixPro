@@ -203,6 +203,14 @@ export class ApiService {
     });
   }
 
+  getRating(token,data){
+    let httpHeaders = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token);
+    return this.http.post(environment.API + "/api/get-user-rating", data, {
+      headers: httpHeaders
+    });
+  }
+
   // http://creativeonlinezone.com/project/homefix/api/get-state?country_id=233
   getStates(id) {
     return this.http.get(environment.API + "/api/get-state?country_id=" + id);
@@ -211,7 +219,7 @@ export class ApiService {
   updateStatus(token, data) {
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.post(environment.API + "/api/update-rating", data, {
+    return this.http.post(environment.API + "/api/job-status-change", data, {
       headers: httpHeaders
     });
   }
