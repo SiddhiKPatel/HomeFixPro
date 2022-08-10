@@ -203,12 +203,16 @@ export class ApiService {
     });
   }
 
-  getRating(token,data){
+  getRating(token, data) {
     let httpHeaders = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
     return this.http.post(environment.API + "/api/get-user-rating", data, {
       headers: httpHeaders
     });
+  }
+
+  getQuestionList() {
+    return this.http.get(environment.API + "/api/get-question");
   }
 
   // http://creativeonlinezone.com/project/homefix/api/get-state?country_id=233

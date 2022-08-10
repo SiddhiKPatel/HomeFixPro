@@ -71,6 +71,7 @@ export class UserProfileComponent implements OnInit {
       console.log(err);
     })
   }
+  
   getRating() {
     const token = localStorage.getItem("token");
     let obj = { user_id: this.userId }

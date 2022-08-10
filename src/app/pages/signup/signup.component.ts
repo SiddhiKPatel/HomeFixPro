@@ -21,6 +21,15 @@ export class SignupComponent implements OnInit {
   registerResponseError: any;
   show_button: Boolean = false;
   show_eye: Boolean = false;
+  questionList: any;
+  category: any = [];
+  submittedStep2: boolean;
+  step2success: boolean;
+  questionForm: FormGroup;
+  isCateSelect: boolean = false;
+  catequestionList: any = [];
+  questions: any = [];
+  selectedfile: any[] = [];
   constructor(private page: PagesService,
     private apiService: ApiService,
     private formBuilder: FormBuilder, private spinner: NgxSpinnerService) { }
@@ -36,11 +45,10 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z]).{8,}$')]],
       // password_confirmation: ['', Validators.compose([Validators.required, CustomValidator.equalTo('password')])],
       // phone_number: ['', Validators.required],
+      zip_code: ['', Validators.required],
       country_id: ['', Validators.required],
       state_id: ['', Validators.required],
       city: ['', Validators.required],
-      zip_code: ['', Validators.required, Validators.pattern("[0-9]{6}")],
-      terms: [false, Validators.requiredTrue]
       // city: ['', Validators.required],
       // zip: ['', Validators.required],
       // dob: ['', Validators.compose([Validators.required, CustomValidator.ageCheck('dob')])],
@@ -49,7 +57,17 @@ export class SignupComponent implements OnInit {
       // recaptchaReactive: ['', Validators.required],
     },
     );
+
+    this.questionForm = this.formBuilder.group({
+      question: [''],
+      yesno: [''],
+      file: [''],
+      text: [''],
+      terms: [false, Validators.requiredTrue],
+      category: ['']
+    })
     this.getRegisterPage();
+    this.getQuestionList();
   }
 
   getRegisterPage() {
@@ -72,23 +90,48 @@ export class SignupComponent implements OnInit {
   registrationSubmit() {
     this.submitted = true;
     this.registerResponseError = null;
-    if (this.registerForm.invalid) {
+    if (this.registerForm.invalid || this.questionForm.invalid) {
       return;
     } else {
       this.spinner.show();
-      let obj = {
-        fname: this.registerForm.value.fname,
-        lname: this.registerForm.value.lname,
-        email: this.registerFormStep1.value.email,
-        password: this.registerForm.value.password,
-        password_confirmation: this.registerForm.value.password,
-        country_id: this.registerForm.value.country_id,
-        state_id: this.registerForm.value.state_id,
-        city: this.registerForm.value.city,
-        zip_code: this.registerForm.value.zip_code,
-        role_id: this.role_id,
+      if (this.questionForm.value.yesno != '') {
+        let data = this.catequestionList.filter(x => x.type_name == 'Yes/No Answer')
+        this.questions.push({
+          quesion_id: data[0].id,
+          type: data[0].type,
+          answer: this.questionForm.value.yesno
+        })
       }
-      this.page.register(obj).subscribe((res: any) => {
+      if (this.questionForm.value.file != '') {
+        let data = this.catequestionList.filter(x => x.type_name == 'File Upload Answer')
+        this.questions.push({
+          quesion_id: data[0].id,
+          type: data[0].type,
+          answer: ""
+        })
+      }
+      if (this.questionForm.value.text != '') {
+        let data = this.catequestionList.filter(x => x.type_name == "Text Answer")
+        this.questions.push({
+          quesion_id: data[0].id,
+          type: data[0].type,
+          answer: this.questionForm.value.text
+        })
+      }
+      let formData = new FormData;
+      formData.append('email', this.registerFormStep1.value.email)
+      formData.append('fname', this.registerForm.value.fname)
+      formData.append('lname', this.registerForm.value.lname)
+      formData.append('password', this.registerForm.value.password)
+      formData.append('password_confirmation', this.registerForm.value.password)
+      formData.append('country_id', this.registerForm.value.country_id)
+      formData.append('state_id', this.registerForm.value.state_id)
+      formData.append('city', this.registerForm.value.city)
+      formData.append('zip_code', this.registerForm.value.zip_code)
+      formData.append('role_id', this.role_id)
+      formData.append('question_answer', JSON.stringify(this.questions));
+      formData.append('answer_file', this.selectedfile[0])
+      this.page.register(formData).subscribe((res: any) => {
         if (res.status) {
           this.registerResponse = res;
         } else {
@@ -98,6 +141,7 @@ export class SignupComponent implements OnInit {
       }, err => {
         console.log(err);
       })
+
     }
   }
   submittedStep1 = false;
@@ -112,9 +156,36 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  next() {
+    this.submitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    } else {
+      this.step2success = true;
+      this.submittedStep2 = true;
+    }
+  }
+  onFileChange(event) {
+    if (event.target.files && event.target.files[0]) {
+      var filesAmount = event.target.files.length;
+      for (let i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
+        this.selectedfile.push(event.target.files[i]);
+        reader.onload = (event: any) => {
+        }
+        reader.readAsDataURL(event.target.files[i]);
+      }
+    }
+  }
+
+
   changeCountry(event) {
     this.registerForm.patchValue({ 'state_id': '' });
     this.getSateList(event.target.value);
+  }
+  changeCate(event) {
+    this.catequestionList = this.questionList.filter(x => x.category_id == parseInt(event.target.value))
+    this.isCateSelect = true;
   }
 
   stateList: any = [];
@@ -131,5 +202,12 @@ export class SignupComponent implements OnInit {
   showPassword() {
     this.show_button = !this.show_button;
     this.show_eye = !this.show_eye;
+  }
+
+  getQuestionList() {
+    this.apiService.getQuestionList().subscribe((res: any) => {
+      this.questionList = res.response_data
+      this.category = res.category
+    });
   }
 }
