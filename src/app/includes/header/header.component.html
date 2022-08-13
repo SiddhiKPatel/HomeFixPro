@@ -102,20 +102,24 @@
                             <nav class="main_menu menu_items">
                                 <ul id="main_menu">
                                     <li class="d-md-inline-block" *ngIf="role && role == 2">
-                                        <div class="d-md-inline-block"><a [routerLink]="['/create-estimates']"
-                                                style="font-size: 18px;">Create Estimates</a> </div>
+                                        <div class="d-md-inline-block" id="create"><a (click)="menuClick('create')"
+                                                [routerLink]="['/create-estimates']" style="font-size: 18px;">Create
+                                                Estimates</a> </div>
                                     </li>
                                     <li class="d-md-inline-block" *ngIf="role && role == 2">
-                                        <div class="d-md-inline-block"><a [routerLink]="['/opportunity']"
-                                                style="font-size: 18px;">Opportunity</a> </div>
+                                        <div class="d-md-inline-block" id="opp"><a (click)="menuClick('opp')"
+                                                [routerLink]="['/opportunity']" style="font-size: 18px;">Opportunity</a>
+                                        </div>
                                     </li>
                                     <li class="d-md-inline-block" *ngIf="role && role == 3">
-                                        <div class="d-md-inline-block"><a [routerLink]="['/my-posts']"
-                                                style="font-size: 18px;">Posted Jobs</a> </div>
+                                        <div class="d-md-inline-block" id="job"><a (click)="menuClick('job')"
+                                                [routerLink]="['/my-posts']" style="font-size: 18px;">Posted Jobs</a>
+                                        </div>
                                     </li>
                                     <li class="d-md-inline-block" *ngIf="role && role == 3">
-                                        <div class="d-md-inline-block"><a [routerLink]="['/job-post']"
-                                                style="font-size: 18px;">Post a Job</a> </div>
+                                        <div class="d-md-inline-block" id="post"><a (click)="menuClick('post')"
+                                                [routerLink]="['/job-post']" style="font-size: 18px;">Post a Job</a>
+                                        </div>
                                     </li>
                                     <!-- <li class="d-md-inline-block">
                                         <div class="d-md-inline-block"><a href="#" style="font-size: 18px;"
@@ -126,23 +130,28 @@
                                                 target="_blank">Manage</a> </div>
                                     </li> -->
                                     <li class="d-md-inline-block">
-                                        <div class="d-md-inline-block"><a href="#" style="font-size: 18px;"
-                                                [routerLink]="['/inbox']">Inbox</a> </div>
+                                        <div class="d-md-inline-block" id="inbox"><a href="#" (click)="menuClick('inbox')"
+                                                style="font-size: 18px;" [routerLink]="['/inbox']">Inbox</a> </div>
                                     </li>
                                     <li class="d-md-inline-block">
                                         <div class="d-md-inline-block mx-24 menuprofile">
                                             <a href="javascript:void(0);" style="font-size: 18px;">
                                                 <img [src]="headerData && headerData.user && headerData.user.avatar_url ? headerData.user.avatar_url : ''"
-                                                onerror="this.src='./assets/images/Group2094.png'" alt="">
-                                                <span *ngIf="headerData && headerData.user && headerData.user.name" style="font-size: 12px;margin-left: 5px;">{{headerData.user.name}}</span>
+                                                    onerror="this.src='./assets/images/Group2094.png'" alt="">
+                                                <span *ngIf="headerData && headerData.user && headerData.user.name"
+                                                    style="font-size: 12px;margin-left: 5px;">{{headerData.user.name}}</span>
                                             </a>
                                             <div class="icon"><i class="icofont-rounded-down"></i></div>
                                             <div class="pdropdownbox">
-                                                <p><a [routerLink]="['/user-profile']">Dashboard </a></p>
-                                                <p><a [routerLink]="['/edit-profile']">Profile </a></p>
-                                                <p><a [routerLink]="['/help']">Help </a></p>
-                                                <p><a [routerLink]="['/settings']">Setting </a></p>
-                                                <p><a href="javascript:void(0);" (click)="logout()" class="mlogout"> <i
+                                                <p><a (click)="menuClick('dash')" [routerLink]="['/user-profile']">Dashboard
+                                                    </a></p>
+                                                <p><a (click)="menuClick('pro')" [routerLink]="['/edit-profile']">Profile
+                                                    </a></p>
+                                                <p><a (click)="menuClick('help')" [routerLink]="['/help']">Help </a></p>
+                                                <p><a (click)="menuClick('setting')" [routerLink]="['/settings']">Setting </a>
+                                                </p>
+                                                <p><a (click)="menuClick('logout')" href="javascript:void(0);"
+                                                        (click)="logout()" class="mlogout"> <i
                                                             class="icofont-logout pe-1"></i> Log Out </a></p>
                                             </div>
                                         </div>

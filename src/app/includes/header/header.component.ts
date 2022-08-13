@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     /// check user
+    debugger
     this.checkUser().then(() => {
       this.jsInit();
     });
@@ -82,6 +83,34 @@ export class HeaderComponent implements OnInit {
     }, err => {
       console.log(err);
     })
+  }
+
+  ngAfterViewChecked() {
+    let data = sessionStorage.getItem('activeMenu')
+    if (data == 'create') {
+      let data = document.getElementById('create')
+      data.classList.add('test')
+    }
+    if (data == 'opp') {
+      let data = document.getElementById('opp')
+      data.classList.add('test')
+    }
+    if (data == 'job') {
+      let data = document.getElementById('job')
+      data.classList.add('test')
+    }
+    if (data == 'post') {
+      let data = document.getElementById('post')
+      data.classList.add('test')
+    }
+    if (data == 'inbox') {
+      let data = document.getElementById('inbox')
+      data.classList.add('test')
+    }
+  }
+
+  menuClick(param: any) {
+    sessionStorage.setItem('activeMenu', param)
   }
 
 }
