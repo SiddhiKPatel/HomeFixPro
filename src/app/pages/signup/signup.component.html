@@ -75,26 +75,28 @@
                                     <div class="input-group customborder">
                                         <span class="input-group-text bg-white  border-0 " id="basic-addon1"><i
                                                 class="bi bi-person-fill" style="color: #00a3ff"></i></span>
-                                        <input type="text" placeholder="First name" formControlName="fname"
+                                        <input type="text" placeholder="First Name" formControlName="fname"
                                             [ngClass]="{ 'is-invalid': submitted && f.fname.errors }"
                                             class="form-control border-start-0 rounded-0" id="exampleInputEmail1"
                                             name="fname" aria-describedby="emailHelp" />
                                     </div>
                                     <div *ngIf="submitted && f.fname.errors" class="invalid-feedback">
-                                        <div *ngIf="f.fname.errors.required">First name is required</div>
+                                        <div *ngIf="f.fname.errors.required">First Name is required</div>
+                                        <div *ngIf="f.fname.errors.pattern">Only characters are allowed</div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group customborder">
                                         <span class="input-group-text bg-white  border-0 " id="basic-addon1"><i
                                                 class="bi bi-person-fill" style="color: #00a3ff"></i></span>
-                                        <input type="text" placeholder="Last name" formControlName="lname"
+                                        <input type="text" placeholder="Last Name" formControlName="lname"
                                             [ngClass]="{ 'is-invalid': submitted && f.lname.errors }"
                                             class="form-control border-start-0 rounded-0" id="exampleInputEmail1"
                                             name="lname" aria-describedby="emailHelp" />
                                     </div>
                                     <div *ngIf="submitted && f.lname.errors" class="invalid-feedback">
-                                        <div *ngIf="f.lname.errors.required">Last name is required</div>
+                                        <div *ngIf="f.lname.errors.required">Last Name is required</div>
+                                        <div *ngIf="f.lname.errors.pattern">Only characters are allowed</div>
                                     </div>
                                 </div>
                             </div>
@@ -188,6 +190,7 @@
                                             id="exampleInputEmail1" aria-describedby="emailHelp" />
                                         <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
                                             <div *ngIf="f.city.errors.required">City is required</div>
+                                            <div *ngIf="f.city.errors.pattern">Only characters are allowed</div>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +254,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form [formGroup]="questionForm">
-                            <div>
+                            <div style="padding-bottom: 20px;">
                                 <select class="form-select form-select-sm" formControlName="category"
                                     aria-label=".form-select-sm example" (change)="changeCate($event)">
                                     <option selected value="">Select category</option>
@@ -261,25 +264,22 @@
                             </div>
                             <div *ngIf="isCateSelect">
                                 <div *ngFor="let item of catequestionList">
-                                    <div *ngIf="item.type_name == 'Yes/No Answer'">
+                                    <div style="padding-bottom: 20px;" *ngIf="item.type_name == 'Yes/No Answer'">
                                         <span><strong>{{item.question}}</strong></span><br>
                                         <input type="radio" id="yes" formControlName="yesno" value="Yes">
                                         <label for="yes">Yes</label>&nbsp;
                                         <input type="radio" id="no" formControlName="yesno" value="No">
                                         <label for="no">No</label>
                                     </div>
-                                    <br>
-                                    <div *ngIf="item.type_name == 'File Upload Answer'">
+                                    <div style="padding-bottom: 20px;" *ngIf="item.type_name == 'File Upload Answer'">
                                         <span><strong>{{item.question}}</strong></span><br>
                                         <input type="file" formControlName="file" name="" id="file" multiple=""
                                             (change)="onFileChange($event)">
                                     </div>
-                                    <br>
-                                    <div *ngIf="item.type_name == 'Text Answer'">
+                                    <div style="padding-bottom: 20px;" *ngIf="item.type_name == 'Text Answer'">
                                         <span><strong>{{item.question}}</strong></span><br>
                                         <input type="text" formControlName="text" name="" id="file">
                                     </div>
-                                    <br>
                                 </div>
                                 <div class="my-3 form-check">
                                     <input type="checkbox" formControlName="terms" class="form-check-input"

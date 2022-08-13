@@ -40,15 +40,15 @@ export class SignupComponent implements OnInit {
     });
 
     this.registerForm = this.formBuilder.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+      fname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      lname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z]).{8,}$')]],
       // password_confirmation: ['', Validators.compose([Validators.required, CustomValidator.equalTo('password')])],
       // phone_number: ['', Validators.required],
-      zip_code: ['', Validators.required],
+      zip_code: ['', [Validators.required,Validators.pattern("[0-9]{6}")]],
       country_id: ['', Validators.required],
       state_id: ['', Validators.required],
-      city: ['', Validators.required],
+      city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       // city: ['', Validators.required],
       // zip: ['', Validators.required],
       // dob: ['', Validators.compose([Validators.required, CustomValidator.ageCheck('dob')])],

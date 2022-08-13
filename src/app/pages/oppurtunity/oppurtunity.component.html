@@ -9,9 +9,9 @@
             <div class="col-md-4 pb-2">
                 <div class="inputBox">
                     <div class="input-group">
-                        <input type="text" class="form-control form-control-sm border-0 "
+                        <input type="search" class="form-control form-control-sm border-0 "
                             placeholder="search by username" aria-label="search by username"
-                            aria-describedby="button-addon2" [(ngModel)]="sUsername">
+                            aria-describedby="button-addon2" [(ngModel)]="sUsername" (keyup.enter)="getAllJobs()">
                         <button class="btn btn-warning" type="button" id="button-addon2"
                             (click)="getAllJobs()">Search</button>
                     </div>
@@ -96,6 +96,9 @@
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="opportunityList.length == 0">
+                        <div style="text-align: center;border: 1px solid;">No Data found </div>
+                    </div>
                 </div>
                 <div *ngIf="!activeJobFlag">
                     <div class="card rounded-0 my-3" *ngFor="let job of opportunityList">
@@ -146,9 +149,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="opportunityList.length == 0">
-                            <div style="text-align: center;border: 1px solid;">No Data found </div>
-                        </div>
+                    </div>
+                    <div *ngIf="opportunityList.length == 0">
+                        <div style="text-align: center;border: 1px solid;">No Data found </div>
                     </div>
                 </div>
             </div>
