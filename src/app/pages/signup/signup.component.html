@@ -142,8 +142,8 @@
                                             [ngClass]="{ 'is-invalid': submitted && f.country_id.errors }"
                                             aria-label="Default select example" (change)="changeCountry($event)">
                                             <option selected value="">Country</option>
-                                            <option *ngFor="let country of registerPageData?.countries"
-                                                [value]="country.id">{{country.name}}</option>
+                                            <option *ngFor="let country of country" [value]="country.id">
+                                                {{country.name}}</option>
                                             <!-- <option value="1">One</option>
                                             <option value="2">Two</option>
                                             <option value="3">Three</option> -->
@@ -223,10 +223,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-grid gap-2">
+                                    <div class="d-grid gap-2" *ngIf="role_id == 2">
                                         <button class="btn btn-primary accountbtn" type="button" (click)="next()"
                                             style="background-color: #00A3FF;">Next
                                         </button>
+                                    </div>
+                                    <div class="d-grid gap-2" *ngIf="role_id == 3">
+                                        <button class="btn btn-primary accountbtn" type="button"
+                                            (click)="registrationSubmit()" style="background-color: #00A3FF;">Create My
+                                            Account</button>
                                     </div>
                                     <hr class="my-3" />
                                     <p class="text-center"> Already a member? <a routerLink="/login"

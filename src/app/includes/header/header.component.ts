@@ -24,7 +24,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     /// check user
-    debugger
     this.checkUser().then(() => {
       this.jsInit();
     });

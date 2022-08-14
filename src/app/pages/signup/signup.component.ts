@@ -30,6 +30,7 @@ export class SignupComponent implements OnInit {
   catequestionList: any = [];
   questions: any = [];
   selectedfile: any[] = [];
+  country: any;
   constructor(private page: PagesService,
     private apiService: ApiService,
     private formBuilder: FormBuilder, private spinner: NgxSpinnerService) { }
@@ -45,7 +46,7 @@ export class SignupComponent implements OnInit {
       password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z]).{8,}$')]],
       // password_confirmation: ['', Validators.compose([Validators.required, CustomValidator.equalTo('password')])],
       // phone_number: ['', Validators.required],
-      zip_code: ['', [Validators.required,Validators.pattern("[0-9]{6}")]],
+      zip_code: ['', [Validators.required, Validators.pattern("[0-9]{6}")]],
       country_id: ['', Validators.required],
       state_id: ['', Validators.required],
       city: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -74,6 +75,7 @@ export class SignupComponent implements OnInit {
     this.page.getRegister().subscribe((res: any) => {
       if (res.status) {
         this.registerPageData = res;
+        this.country = this.registerPageData.countries.filter(x => x.id == 233);// US
       }
     }, err => {
       console.log(err);
@@ -90,59 +92,119 @@ export class SignupComponent implements OnInit {
   registrationSubmit() {
     this.submitted = true;
     this.registerResponseError = null;
-    if (this.registerForm.invalid || this.questionForm.invalid) {
-      return;
-    } else {
-      this.spinner.show();
-      if (this.questionForm.value.yesno != '') {
-        let data = this.catequestionList.filter(x => x.type_name == 'Yes/No Answer')
-        this.questions.push({
-          quesion_id: data[0].id,
-          type: data[0].type,
-          answer: this.questionForm.value.yesno
-        })
+    if (this.role_id == 3) {
+      if (this.registerForm.invalid) {
+        return;
       }
-      if (this.questionForm.value.file != '') {
-        let data = this.catequestionList.filter(x => x.type_name == 'File Upload Answer')
-        this.questions.push({
-          quesion_id: data[0].id,
-          type: data[0].type,
-          answer: ""
-        })
-      }
-      if (this.questionForm.value.text != '') {
-        let data = this.catequestionList.filter(x => x.type_name == "Text Answer")
-        this.questions.push({
-          quesion_id: data[0].id,
-          type: data[0].type,
-          answer: this.questionForm.value.text
-        })
-      }
-      let formData = new FormData;
-      formData.append('email', this.registerFormStep1.value.email)
-      formData.append('fname', this.registerForm.value.fname)
-      formData.append('lname', this.registerForm.value.lname)
-      formData.append('password', this.registerForm.value.password)
-      formData.append('password_confirmation', this.registerForm.value.password)
-      formData.append('country_id', this.registerForm.value.country_id)
-      formData.append('state_id', this.registerForm.value.state_id)
-      formData.append('city', this.registerForm.value.city)
-      formData.append('zip_code', this.registerForm.value.zip_code)
-      formData.append('role_id', this.role_id)
-      formData.append('question_answer', JSON.stringify(this.questions));
-      formData.append('answer_file', this.selectedfile[0])
-      this.page.register(formData).subscribe((res: any) => {
-        if (res.status) {
-          this.registerResponse = res;
-        } else {
-          this.registerResponseError = res;
+      else {
+        this.spinner.show();
+        if (this.questionForm.value.yesno != '') {
+          let data = this.catequestionList.filter(x => x.type_name == 'Yes/No Answer')
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: this.questionForm.value.yesno
+          })
         }
-        this.spinner.hide();
-      }, err => {
-        console.log(err);
-      })
-
+        if (this.questionForm.value.file != '') {
+          let data = this.catequestionList.filter(x => x.type_name == 'File Upload Answer')
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: ""
+          })
+        }
+        if (this.questionForm.value.text != '') {
+          let data = this.catequestionList.filter(x => x.type_name == "Text Answer")
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: this.questionForm.value.text
+          })
+        }
+        let formData = new FormData;
+        formData.append('email', this.registerFormStep1.value.email)
+        formData.append('fname', this.registerForm.value.fname)
+        formData.append('lname', this.registerForm.value.lname)
+        formData.append('password', this.registerForm.value.password)
+        formData.append('password_confirmation', this.registerForm.value.password)
+        formData.append('country_id', this.registerForm.value.country_id)
+        formData.append('state_id', this.registerForm.value.state_id)
+        formData.append('city', this.registerForm.value.city)
+        formData.append('zip_code', this.registerForm.value.zip_code)
+        formData.append('role_id', this.role_id)
+        formData.append('question_answer', JSON.stringify(this.questions));
+        formData.append('answer_file', this.selectedfile[0])
+        this.page.register(formData).subscribe((res: any) => {
+          if (res.status) {
+            this.registerResponse = res;
+          } else {
+            this.registerResponseError = res;
+          }
+          this.spinner.hide();
+        }, err => {
+          console.log(err);
+        })
+  
+      }
     }
+    if (this.role_id == 2) {
+      if (this.registerForm.invalid || this.questionForm.invalid) {
+        return;
+      }
+      else {
+        this.spinner.show();
+        if (this.questionForm.value.yesno != '') {
+          let data = this.catequestionList.filter(x => x.type_name == 'Yes/No Answer')
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: this.questionForm.value.yesno
+          })
+        }
+        if (this.questionForm.value.file != '') {
+          let data = this.catequestionList.filter(x => x.type_name == 'File Upload Answer')
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: ""
+          })
+        }
+        if (this.questionForm.value.text != '') {
+          let data = this.catequestionList.filter(x => x.type_name == "Text Answer")
+          this.questions.push({
+            quesion_id: data[0].id,
+            type: data[0].type,
+            answer: this.questionForm.value.text
+          })
+        }
+        let formData = new FormData;
+        formData.append('email', this.registerFormStep1.value.email)
+        formData.append('fname', this.registerForm.value.fname)
+        formData.append('lname', this.registerForm.value.lname)
+        formData.append('password', this.registerForm.value.password)
+        formData.append('password_confirmation', this.registerForm.value.password)
+        formData.append('country_id', this.registerForm.value.country_id)
+        formData.append('state_id', this.registerForm.value.state_id)
+        formData.append('city', this.registerForm.value.city)
+        formData.append('zip_code', this.registerForm.value.zip_code)
+        formData.append('role_id', this.role_id)
+        formData.append('question_answer', JSON.stringify(this.questions));
+        formData.append('answer_file', this.selectedfile[0])
+        this.page.register(formData).subscribe((res: any) => {
+          if (res.status) {
+            this.registerResponse = res;
+          } else {
+            this.registerResponseError = res;
+          }
+          this.spinner.hide();
+        }, err => {
+          console.log(err);
+        })
+  
+      }
+    }
+    
   }
   submittedStep1 = false;
   step1success = false;
