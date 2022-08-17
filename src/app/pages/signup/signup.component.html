@@ -135,7 +135,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <div class="mb-4">
                                         <select aria-placeholder="Country" class="form-select customborder"
                                             formControlName="country_id"
@@ -144,17 +144,14 @@
                                             <option selected value="">Country</option>
                                             <option *ngFor="let country of country" [value]="country.id">
                                                 {{country.name}}</option>
-                                            <!-- <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option> -->
                                         </select>
                                         <div *ngIf="submitted && f.country_id.errors" class="invalid-feedback">
                                             <div *ngIf="f.country_id.errors.required">Country is required</div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-4">
                                         <select aria-placeholder="State" class="form-select customborder"
                                             formControlName="state_id"
@@ -173,7 +170,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-4">
                                         <!-- <select aria-placeholder="City" class="form-select customborder"
                                             formControlName="city"
@@ -194,7 +191,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="mb-4">
                                         <input type="number" placeholder="ZIP Code"
                                             class="form-control customborder rounded-0" minlength="6" maxlength="6"

@@ -75,7 +75,8 @@ export class SignupComponent implements OnInit {
     this.page.getRegister().subscribe((res: any) => {
       if (res.status) {
         this.registerPageData = res;
-        this.country = this.registerPageData.countries.filter(x => x.id == 233);// US
+        // this.country = this.registerPageData.countries.filter(x => x.id == 233);// US
+        this.getSateList(233) // US
       }
     }, err => {
       console.log(err);
